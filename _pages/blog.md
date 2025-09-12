@@ -39,7 +39,7 @@ permalink: /blog/
                 </div>
                 
                 <div class="post-actions" style="display: flex; justify-content: space-between; align-items: center;">
-                    <a href="{{ post.url | relative_url }}" class="read-more" style="color: var(--vmware-blue); font-weight: 600; text-decoration: none; transition: var(--transition); display: inline-flex; align-items: center; gap: 0.5rem;">
+                    <a href="{{ post.url | relative_url }}" class="read-more" style="background: var(--vmware-blue); color: white; padding: 0.5rem 1rem; border-radius: var(--border-radius); font-weight: 600; text-decoration: none; transition: var(--transition); display: inline-flex; align-items: center; gap: 0.5rem; box-shadow: 0 2px 8px rgba(0, 123, 191, 0.2);">
                         Read Full Article <i class="fas fa-arrow-right"></i>
                     </a>
                     
@@ -84,7 +84,9 @@ permalink: /blog/
 }
 
 .read-more:hover {
-    color: var(--vmware-green);
+    background: var(--vmware-green);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 123, 191, 0.3);
 }
 
 @media (max-width: 768px) {

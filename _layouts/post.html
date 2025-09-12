@@ -49,7 +49,7 @@ layout: default
                 <ul class="tag-list">
                     {% for tag in page.tags %}
                     <li class="tag-item">
-                        <a href="{{ '/tags/' | append: tag | relative_url }}" class="tag-link">{{ tag }}</a>
+                        <span class="tag-link">{{ tag }}</span>
                     </li>
                     {% endfor %}
                 </ul>

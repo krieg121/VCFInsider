@@ -653,6 +653,37 @@ body {
     .article-content {
         padding: 1rem;
     }
+    
+    /* Categories page mobile optimization */
+    .categories-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+    
+    .category-card {
+        padding: 1.5rem !important;
+    }
+    
+    .category-icon {
+        font-size: 2rem !important;
+    }
+    
+    /* Call-to-action mobile optimization */
+    .post-cta {
+        margin: 2rem 0 !important;
+        padding: 1.5rem !important;
+    }
+    
+    .cta-button {
+        padding: 0.75rem 1.5rem !important;
+        font-size: 1rem !important;
+    }
+    
+    /* Getting started cards mobile */
+    .getting-started-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
 }
 
 /* Call-to-Action Box */

@@ -9,7 +9,7 @@ permalink: /categories/
 
 Explore our content organized by topic. Whether you're looking for deployment guides, security insights, or automation tips, find exactly what you need.
 
-<div class="categories-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin: 3rem 0;">
+<div class="categories-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 3rem 0;">
 
 <div class="category-card" style="background: linear-gradient(135deg, var(--vmware-blue), #2c5aa0); padding: 2rem; border-radius: var(--border-radius-lg); color: white; box-shadow: var(--shadow-medium);">
     <div class="category-icon" style="font-size: 3rem; margin-bottom: 1rem; text-align: center;">
@@ -30,8 +30,7 @@ Explore our content organized by topic. Whether you're looking for deployment gu
     <h3 style="color: white; margin-bottom: 1rem; text-align: center;">Security & Hardening</h3>
     <p style="color: rgba(255,255,255,0.9); margin-bottom: 1.5rem; text-align: center;">Implementing security best practices and compliance</p>
     <div class="category-links">
-        <a href="/2025/09/10/vcf-security-hardening-guide/" style="color: var(--vmware-orange); text-decoration: none; display: block; margin-bottom: 0.5rem;">→ VCF Security Hardening Guide</a>
-        <a href="/2025/09/09/next-level-lateral-security-for-your-private-cloud/" style="color: var(--vmware-orange); text-decoration: none; display: block;">→ Lateral Security for Private Cloud</a>
+        <a href="/2025/09/10/vcf-security-hardening-guide/" style="color: var(--vmware-orange); text-decoration: none; display: block;">→ VCF Security Hardening Guide</a>
     </div>
 </div>
 
