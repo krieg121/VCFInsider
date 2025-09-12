@@ -39,6 +39,27 @@ VCF Insider is dedicated to providing comprehensive insights, tutorials, and bes
 
 </div>
 
+Welcome to VCF Insider – your ultimate resource for VMware Cloud Foundation (VCF) technology. Led by an IT professional with 25 years of experience centered around virtualization, including certifications as a VCP for vSphere 4, 5, and 2023 (7), VCF Insider offers expert insights, practical advice, and in-depth tutorials on VMware Cloud Foundation.
+
+This blog is designed to empower IT architects, system admins and cloud engineers with the tools, techniques and updates needed to master VCF technology. Whether you're focused on architecture, automation, or multi-cloud strategies, VCF Insider will help guide you. Join the VCF Insider community and learn how to optimize, deploy, and manage VMware Cloud Foundation.
+
+## Professional Certifications
+
+<div class="certifications-section" style="background: var(--vmware-light-gray); padding: 2rem; border-radius: var(--border-radius-lg); margin: 2rem 0; text-align: center;">
+    <h3 style="color: var(--vmware-blue); margin-bottom: 1.5rem;">VMware Certifications</h3>
+    <div class="cert-badges" style="display: flex; justify-content: center; align-items: center; gap: 1.5rem; flex-wrap: wrap; flex-direction: column;">
+        <div class="cert-item" style="background: white; padding: 1rem 2rem; border-radius: 8px; box-shadow: var(--shadow-medium); border-left: 4px solid var(--vmware-blue);">
+            <strong style="color: var(--vmware-blue);">VMware Certified Professional (VCP)</strong><br>
+            <span style="color: var(--text-secondary);">vSphere 4, 5, and 2023 (7)</span>
+        </div>
+        <div class="cert-item" style="background: white; padding: 1rem 2rem; border-radius: 8px; box-shadow: var(--shadow-medium); border-left: 4px solid var(--vmware-green);">
+            <strong style="color: var(--vmware-green);">VMware vExpert</strong><br>
+            <span style="color: var(--text-secondary);">2025 Recognition</span>
+        </div>
+    </div>
+    <p style="color: var(--text-secondary); margin-top: 1rem; font-size: 0.9rem; font-style: italic;">Continuous learning and certification maintenance ensures up-to-date expertise</p>
+</div>
+
 ## Our Expertise
 
 Our team consists of VMware Cloud Foundation experts with years of hands-on experience in:
