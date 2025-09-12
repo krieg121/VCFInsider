@@ -5,6 +5,10 @@ subtitle: Your trusted source for VMware Cloud Foundation expertise
 permalink: /about/
 ---
 
+Welcome to VCF Insider – your ultimate resource for VMware Cloud Foundation (VCF) technology. Led by an IT professional with 25 years of experience centered around virtualization, including certifications as a VCP for vSphere 4, 5, and 2023 (7), VCF Insider offers expert insights, practical advice, and in-depth tutorials on VMware Cloud Foundation.
+
+This blog is designed to empower IT architects, system admins and cloud engineers with the tools, techniques and updates needed to master VCF technology. Whether you're focused on architecture, automation, or multi-cloud strategies, VCF Insider will help guide you. Join the VCF Insider community and learn how to optimize, deploy, and manage VMware Cloud Foundation.
+
 ## Our Mission
 
 VCF Insider is dedicated to providing comprehensive insights, tutorials, and best practices for VMware Cloud Foundation professionals. We believe that knowledge sharing is the key to unlocking the full potential of VCF in modern enterprise environments.
@@ -78,7 +82,8 @@ We'd love to hear from you! [Contact us](/contact/) to learn more about contribu
 
 Follow us on social media and subscribe to our newsletter to stay updated with the latest VCF insights:
 
-- **Twitter**: [@vcfinsider](https://twitter.com/vcfinsider)
+- **Email**: [Chris@VCFInsider.com](mailto:Chris@VCFInsider.com)
+- **Twitter**: [@VCFInsider](https://twitter.com/VCFInsider)
 - **LinkedIn**: [VCF Insider](https://linkedin.com/company/vcfinsider)
 - **Newsletter**: Subscribe below for weekly VCF insights
 
