@@ -1,7 +1,7 @@
 # VCF Insider Blog Configuration
 title: VCF Insider
 description: Your Gateway to VMware Cloud Foundation Excellence
-baseurl: "/VCFInsider" # the subpath of your site, e.g. /blog
+baseurl: "/vcf-insider" # the subpath of your site, e.g. /blog
 url: "https://krieg121.github.io" # the base hostname & protocol for your site
 # For GitHub Pages, use: url: "https://krieg121.github.io/VCFInsider"
 
@@ -90,7 +90,7 @@ seo:
   type: "WebSite"
   name: "VCF Insider"
   description: "Your Gateway to VMware Cloud Foundation Excellence"
-  url: "https://krieg121.github.io/VCFInsider"
+  url: "https://krieg121.github.io/vcf-insider"
   # image: "/assets/images/vcf-insider-logo.png"
   twitter:
     username: "VCFInsider"
