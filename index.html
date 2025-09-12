@@ -1,0 +1,118 @@
+---
+layout: default
+title: VCF Insider
+subtitle: Your Gateway to VMware Cloud Foundation Excellence
+---
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>VCF Insider</h1>
+        <p>Your Gateway to VMware Cloud Foundation Excellence</p>
+        <div class="cta-buttons">
+            <a href="{{ '/blog/' | relative_url }}" class="btn btn-primary">
+                <i class="fas fa-book-open"></i>
+                Explore Articles
+            </a>
+            <a href="{{ '/about/' | relative_url }}" class="btn btn-secondary">
+                <i class="fas fa-info-circle"></i>
+                Learn More
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Latest Articles Section -->
+<section class="articles-section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Latest VCF Insights</h2>
+            <p class="section-subtitle">Stay ahead with expert insights, tutorials, and best practices for VMware Cloud Foundation</p>
+        </div>
+        
+        <div class="articles-grid">
+            {% for post in site.posts limit:8 %}
+            <article class="article-card">
+                {% if post.featured_image %}
+                <img src="{{ post.featured_image | relative_url }}" alt="{{ post.title | escape }}" class="article-image">
+                {% endif %}
+                
+                <div class="article-content">
+                    <span class="article-category">{{ post.category | default: 'VCF Insights' }}</span>
+                    
+                    <h3 class="article-title">
+                        <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+                    </h3>
+                    
+                    <p class="article-excerpt">
+                        {{ post.excerpt | strip_html | truncate: 150 }}
+                    </p>
+                    
+                    <div class="article-meta">
+                        <time datetime="{{ post.date | date_to_xmlschema }}">
+                            {{ post.date | date: "%B %d, %Y" }}
+                        </time>
+                        <a href="{{ post.url | relative_url }}" class="read-more">
+                            Read More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+        
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="{{ '/blog/' | relative_url }}" class="btn btn-primary">
+                View All Articles <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Categories Section -->
+<section class="categories-section" style="padding: 80px 0; background: var(--vmware-white);">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Explore by Category</h2>
+            <p class="section-subtitle">Find content tailored to your specific VCF interests</p>
+        </div>
+        
+        <div class="categories-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem;">
+            <div class="category-card" style="background: var(--vmware-light-gray); padding: 2rem; border-radius: var(--border-radius-lg); text-align: center; transition: var(--transition);">
+                <div style="font-size: 3rem; color: var(--vmware-blue); margin-bottom: 1rem;">
+                    <i class="fas fa-cloud"></i>
+                </div>
+                <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Cloud Foundation</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Core VCF platform insights and best practices</p>
+                <a href="{{ '/categories/cloud-foundation/' | relative_url }}" class="btn btn-primary">Explore</a>
+            </div>
+            
+            <div class="category-card" style="background: var(--vmware-light-gray); padding: 2rem; border-radius: var(--border-radius-lg); text-align: center; transition: var(--transition);">
+                <div style="font-size: 3rem; color: var(--vmware-green); margin-bottom: 1rem;">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <h3 style="color: var(--text-primary); margin-bottom: 1rem;">AI & Automation</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">AI-powered solutions and automation strategies</p>
+                <a href="{{ '/categories/ai-automation/' | relative_url }}" class="btn btn-primary">Explore</a>
+            </div>
+            
+            <div class="category-card" style="background: var(--vmware-light-gray); padding: 2rem; border-radius: var(--border-radius-lg); text-align: center; transition: var(--transition);">
+                <div style="font-size: 3rem; color: var(--vmware-orange); margin-bottom: 1rem;">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Security</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Security best practices and compliance</p>
+                <a href="{{ '/categories/security/' | relative_url }}" class="btn btn-primary">Explore</a>
+            </div>
+            
+            <div class="category-card" style="background: var(--vmware-light-gray); padding: 2rem; border-radius: var(--border-radius-lg); text-align: center; transition: var(--transition);">
+                <div style="font-size: 3rem; color: var(--vmware-blue); margin-bottom: 1rem;">
+                    <i class="fas fa-network-wired"></i>
+                </div>
+                <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Networking</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">NSX and networking solutions</p>
+                <a href="{{ '/categories/networking/' | relative_url }}" class="btn btn-primary">Explore</a>
+            </div>
+        </div>
+    </div>
+</section>
