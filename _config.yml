@@ -32,6 +32,8 @@ navigation:
     url: /blog/
   - title: About
     url: /about/
+  - title: Share Your Story
+    url: /share-your-story/
   - title: Categories
     url: /categories/
   - title: Contact
@@ -90,7 +92,7 @@ seo:
   type: "WebSite"
   name: "VCF Insider"
   description: "Your Gateway to VMware Cloud Foundation Excellence"
-  url: "https://krieg121.github.io/vcf-insider"
+  url: "https://www.vcfinsider.com"
   # image: "/assets/images/vcf-insider-logo.png"
   twitter:
     username: "VCFInsider"
