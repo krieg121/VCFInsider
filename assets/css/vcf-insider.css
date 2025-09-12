@@ -684,6 +684,17 @@ body {
         grid-template-columns: 1fr !important;
         gap: 1rem !important;
     }
+    
+    /* Certifications mobile optimization */
+    .cert-badges {
+        flex-direction: column !important;
+        gap: 1rem !important;
+    }
+    
+    .cert-badge {
+        min-width: 100px !important;
+        padding: 0.75rem !important;
+    }
 }
 
 /* Call-to-Action Box */
