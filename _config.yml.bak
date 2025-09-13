@@ -1,0 +1,99 @@
+# VCF Insider Blog Configuration
+title: VCF Insider
+description: Your Gateway to VMware Cloud Foundation Excellence
+baseurl: "/VCFInsider" # the subpath of your site, e.g. /blog
+url: "https://krieg121.github.io" # the base hostname & protocol for your site
+# For GitHub Pages, use: url: "https://krieg121.github.io/VCFInsider"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# GitHub Pages settings
+github: [metadata]
+
+# Site settings
+author:
+  name: Chris
+  email: Chris@VCFInsider.com
+  twitter: VCFInsider
+  github: krieg121
+
+# Navigation
+navigation:
+  - title: Home
+    url: /
+  - title: Blog
+    url: /blog/
+  - title: About
+    url: /about/
+  - title: Share Your Story
+    url: /share-your-story/
+  - title: Categories
+    url: /categories/
+  - title: Contact
+    url: /contact/
+
+# Collections
+collections:
+  posts:
+    output: true
+    permalink: /:categories/:year/:month/:day/:title/
+  categories:
+    output: true
+    permalink: /categories/:name/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: "VCF Insider Team"
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - README.md
+  - package.json
+  - package-lock.json
+  - .gitignore
+  - .git/
+  - .github/
+
+# Include
+include:
+  - _pages
+
+# RSS Feed
+feed:
+  posts_limit: 20
+  excerpt_only: true
+
+# SEO
+seo:
+  type: "WebSite"
+  name: "VCF Insider"
+  description: "Your Gateway to VMware Cloud Foundation Excellence"
+  url: "https://www.vcfinsider.com"
+  # image: "/assets/images/vcf-insider-logo.png"
+  twitter:
+    username: "VCFInsider"
+    card: "summary_large_image"
