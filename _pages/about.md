@@ -45,6 +45,7 @@ VCF Insider is dedicated to providing comprehensive insights, tutorials, and bes
 
 </div>
 
+{% comment %}
 ## Professional Certifications
 
 <div class="certifications-section" style="background: var(--vmware-light-gray); padding: 2rem; border-radius: var(--border-radius-lg); margin: 2rem 0; text-align: center;">
@@ -62,6 +63,8 @@ VCF Insider is dedicated to providing comprehensive insights, tutorials, and bes
     <p style="color: var(--text-secondary); margin-top: 1rem; font-size: 0.9rem; font-style: italic;">Continuous learning and certification maintenance ensures up-to-date expertise</p>
 </div>
 
+
+{% endcomment %}
 ## Our Expertise
 
 Our team consists of VMware Cloud Foundation experts with years of hands-on experience in:
@@ -72,7 +75,6 @@ Our team consists of VMware Cloud Foundation experts with years of hands-on expe
 - **Performance Optimization** - Tuning and optimizing VCF performance
 - **Migration Strategies** - Moving workloads to and within VCF environments
 
-{% comment %}
 ## Professional Certifications
 
 <div class="certifications-section" style="background: var(--vmware-light-gray); padding: 2rem; border-radius: var(--border-radius-lg); margin: 2rem 0; text-align: center;">
@@ -83,8 +85,7 @@ Our team consists of VMware Cloud Foundation experts with years of hands-on expe
     <p style="color: var(--text-secondary); margin-top: 1rem; font-size: 0.9rem; font-style: italic;">Continuous learning and certification maintenance ensures up-to-date expertise</p>
 </div>
 
-
-{% endcomment %}## Why Choose VCF Insider?
+## Why Choose VCF Insider?
 
 ### 🎯 **Focused Content**
 We specialize exclusively in VMware Cloud Foundation, ensuring every article is relevant and actionable for VCF professionals.

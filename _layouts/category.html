@@ -6,24 +6,27 @@
     {% if page.description %}<p class="post-excerpt">{{ page.description }}</p>{% endif %}
   </header>
 
-  {% assign cat = page.category %}
-  {% assign posts_in_cat = site.posts | where_exp: "p", "p.categories contains cat" %}
-
+  {% assign wanted = page.category | slugify %}
   <ul class="post-list">
-    {% if posts_in_cat == empty %}
-      <li>No posts found in this category yet.</li>
-    {% else %}
-      {% for post in posts_in_cat %}
-        <li class="card">
-          <a class="post-link" href="{{ post.url | relative_url }}">
-            <h3>{{ post.title }}</h3>
-          </a>
-          <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-          {% if post.excerpt %}
-            <p>{{ post.excerpt | strip_html | truncate: 140 }}</p>
-          {% endif %}
-        </li>
+    {% assign found = 0 %}
+    {% for post in site.posts %}
+      {% assign hit = false %}
+      {% for c in post.categories %}
+        {% if c | slugify == wanted %}
+          {% assign hit = true %}{% break %}
+        {% endif %}
       {% endfor %}
+      {% if hit %}
+        {% assign found = 1 %}
+        <li class="card">
+          <a class="post-link" href="{{ post.url | relative_url }}"><h3>{{ post.title }}</h3></a>
+          <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+          {% if post.excerpt %}<p>{{ post.excerpt | strip_html | truncate: 140 }}</p>{% endif %}
+        </li>
+      {% endif %}
+    {% endfor %}
+    {% if found == 0 %}
+      <li>No posts found in this category yet.</li>
     {% endif %}
   </ul>
 </article>
