@@ -12,7 +12,8 @@
     {% for post in site.posts %}
       {% assign hit = false %}
       {% for c in post.categories %}
-        {% if c | slugify == wanted %}
+        {% assign cslug = c | slugify %}
+        {% if cslug == wanted %}
           {% assign hit = true %}{% break %}
         {% endif %}
       {% endfor %}

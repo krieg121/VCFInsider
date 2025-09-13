@@ -46,6 +46,7 @@ VCF Insider is dedicated to providing comprehensive insights, tutorials, and bes
 </div>
 
 {% comment %}
+{% comment %}
 ## Professional Certifications
 
 <div class="certifications-section" style="background: var(--vmware-light-gray); padding: 2rem; border-radius: var(--border-radius-lg); margin: 2rem 0; text-align: center;">
@@ -65,7 +66,8 @@ VCF Insider is dedicated to providing comprehensive insights, tutorials, and bes
 
 
 {% endcomment %}
-## Our Expertise
+
+{% endcomment %}## Our Expertise
 
 Our team consists of VMware Cloud Foundation experts with years of hands-on experience in:
 

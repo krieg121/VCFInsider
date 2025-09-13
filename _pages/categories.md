@@ -21,9 +21,10 @@ permalink: /categories/
       {% endfor %}
       {% assign cats = cats | sort %}
       {% for c in cats %}
+        {% assign cslug = c | slugify %}
         <div class="category-card" style="background:var(--vmware-light-gray);padding:1.75rem;border-radius:var(--border-radius-lg);text-align:center;">
           <h3 style="margin-bottom:.5rem">{{ c }}</h3>
-          <a class="btn btn-primary" href="{{ '/categories/' | append: (c | slugify) | append: '/' | relative_url }}">Explore</a>
+          <a class="btn btn-primary" href="{{ '/categories/' | append: cslug | append: '/' | relative_url }}">Explore</a>
         </div>
       {% endfor %}
     </div>
