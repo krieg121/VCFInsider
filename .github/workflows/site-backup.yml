@@ -21,7 +21,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      # Only warn about Windows 'NUL' (Linux can handle it; don't fail build)
       - name: Warn if Windows-reserved 'NUL' exists
         run: |
           if [ -e "NUL" ] || [ -e "nul" ]; then
@@ -36,24 +35,24 @@ jobs:
           [ -z "$NOTE" ] && NOTE="auto"
           TAG="snapshot-${NOTE}-${TS}"
           echo "tag=$TAG" >> $GITHUB_OUTPUT
-          echo "Using tag: $TAG"
 
-      - name: Setup Ruby (compatible with github-pages)
+      - name: Setup Ruby (pinned Bundler)
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: "3.1"
+          bundler: "2.4.22"
           bundler-cache: true
 
       - name: System deps for native gems
         run: sudo apt-get update && sudo apt-get install -y build-essential zlib1g-dev zip
 
       - name: Install gems
-        run: bundle install --jobs 4 --retry 3
+        run: bundle _2.4.22_ install --jobs 4 --retry 3
 
       - name: Build site
         env:
           JEKYLL_ENV: production
-        run: bundle exec jekyll build --trace
+        run: bundle _2.4.22_ exec jekyll build --trace
 
       - name: Create archives (source & built site)
         run: |
