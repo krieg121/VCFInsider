@@ -19,7 +19,7 @@ permalink: /categories/
   {% if cat_pages.size > 0 %}
     <div class="categories-grid">
       {% for p in cat_pages %}
-        <div class="category-card">
+        <div class="category-card {{ p.class | default: 'generic' }}">
           <div class="category-icon icon-{{ p.class | default: 'generic' }}">
             {% case p.class %}
               {% when 'cloud-foundation' %}☁️
@@ -37,19 +37,19 @@ permalink: /categories/
     </div>
   {% else %}
     <div class="categories-grid">
-      <div class="category-card">
+      <div class="category-card {{ p.class | default: 'generic' }}">
         <div class="category-icon icon-cloud-foundation">☁️</div>
         <div class="category-title">Cloud Foundation</div>
         <div class="category-meta">VCF architecture, lifecycle, operations</div>
         <a class="category-btn" href="{{ '/categories/cloud-foundation/' | relative_url }}">View posts</a>
       </div>
-      <div class="category-card">
+      <div class="category-card {{ p.class | default: 'generic' }}">
         <div class="category-icon icon-networking">🛜</div>
         <div class="category-title">Networking</div>
         <div class="category-meta">NSX, segmentation, routing, load balancing</div>
         <a class="category-btn" href="{{ '/categories/networking/' | relative_url }}">View posts</a>
       </div>
-      <div class="category-card">
+      <div class="category-card {{ p.class | default: 'generic' }}">
         <div class="category-icon icon-security">🔒</div>
         <div class="category-title">Security</div>
         <div class="category-meta">Hardening, compliance, best practices</div>
