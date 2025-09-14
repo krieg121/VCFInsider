@@ -1,0 +1,72 @@
+name: Full Snapshot (build + source)
+
+on:
+  workflow_dispatch:
+    inputs:
+      note:
+        description: "Optional note (e.g., pre-release)"
+        required: false
+
+permissions:
+  contents: write
+
+jobs:
+  full:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (full history)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Metadata
+        id: meta
+        run: |
+          TS="$(date +'%Y%m%d-%H%M%S')"
+          NOTE="${{ github.event.inputs.note }}"
+          [ -z "$NOTE" ] && NOTE="auto"
+          TAG="snapshot-full-${NOTE}-${TS}"
+          echo "tag=$TAG" >> $GITHUB_OUTPUT
+
+      # Build site using GitHub’s maintained Jekyll action (no bundler setup needed)
+      - name: Build with Jekyll
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
+
+      - name: Zip source & built site
+        run: |
+          sudo apt-get update && sudo apt-get install -y zip
+          git archive --format=zip -o "backup-source-${{ steps.meta.outputs.tag }}.zip" HEAD
+          (cd _site && zip -r "../backup-site-${{ steps.meta.outputs.tag }}.zip" .)
+          sha256sum "backup-source-${{ steps.meta.outputs.tag }}.zip" "backup-site-${{ steps.meta.outputs.tag }}.zip" > "backup-${{ steps.meta.outputs.tag }}.sha256"
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: backup-${{ steps.meta.outputs.tag }}
+          path: |
+            backup-source-${{ steps.meta.outputs.tag }}.zip
+            backup-site-${{ steps.meta.outputs.tag }}.zip
+            backup-${{ steps.meta.outputs.tag }}.sha256
+
+      - name: Create annotated tag
+        run: |
+          git tag -a "${{ steps.meta.outputs.tag }}" -m "Full snapshot (built + source) ${{ steps.meta.outputs.tag }}"
+          git push origin "${{ steps.meta.outputs.tag }}"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.meta.outputs.tag }}
+          name: Full snapshot ${{ steps.meta.outputs.tag }}
+          body: |
+            Built site (_site) + source snapshot. Triggered by: ${{ github.actor }}
+            Note: ${{ github.event.inputs.note || '' }}
+          files: |
+            backup-source-${{ steps.meta.outputs.tag }}.zip
+            backup-site-${{ steps.meta.outputs.tag }}.zip
+            backup-${{ steps.meta.outputs.tag }}.sha256
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
