@@ -1,7 +1,8 @@
-cat > _pages/categories.md <<'EOF'
 ---
 layout: default
 title: Categories
+# When a file lives at categories/index.md, you can omit permalink,
+# but keeping it is fine too:
 permalink: /categories/
 ---
 
@@ -35,7 +36,6 @@ permalink: /categories/
       {% endfor %}
     </div>
   {% else %}
-    {# Fallback: static cards so the page never looks empty #}
     <div class="categories-grid">
       <div class="category-card">
         <div class="category-icon icon-cloud-foundation">☁️</div>
@@ -58,4 +58,3 @@ permalink: /categories/
     </div>
   {% endif %}
 </div>
-EOF
