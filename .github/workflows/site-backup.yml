@@ -4,13 +4,13 @@ on:
   workflow_dispatch:
     inputs:
       note:
-        description: "Optional note for this snapshot (e.g., 'pre-major-release')"
+        description: "Optional note for this snapshot (e.g., pre-major-release)"
         required: false
   schedule:
-    - cron: "0 7 * * *"   # daily at 07:00 UTC (optional; adjust or remove)
+    - cron: "0 7 * * *"   # daily at 07:00 UTC; remove if you only want manual
 
 permissions:
-  contents: write    # needed to create tags/releases
+  contents: write   # needed for tags & releases
 
 jobs:
   backup:
@@ -42,10 +42,10 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.2'
+          ruby-version: "3.1"   # plays nicely with github-pages
           bundler-cache: true
 
-      - name: Install Jekyll deps
+      - name: Install gems
         run: bundle install --jobs 4 --retry 3
 
       - name: Build site
@@ -62,7 +62,7 @@ jobs:
           (cd _site && zip -r "../backup-site-${{ steps.meta.outputs.tag }}.zip" .)
           sha256sum "backup-source-${{ steps.meta.outputs.tag }}.zip" "backup-site-${{ steps.meta.outputs.tag }}.zip" > "backup-${{ steps.meta.outputs.tag }}.sha256"
 
-      - name: Upload artifacts (Actions run)
+      - name: Upload artifacts (for this run)
         uses: actions/upload-artifact@v4
         with:
           name: backup-${{ steps.meta.outputs.tag }}
