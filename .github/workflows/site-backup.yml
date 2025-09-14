@@ -4,10 +4,10 @@ on:
   workflow_dispatch:
     inputs:
       note:
-        description: "Optional note for this snapshot (e.g., pre-major-release)"
+        description: "Optional note (e.g., pre-major-release)"
         required: false
   schedule:
-    - cron: "0 7 * * *"   # daily at 07:00 UTC; remove if you only want manual
+    - cron: "0 7 * * *"  # daily 07:00 UTC (optional)
 
 permissions:
   contents: write   # needed for tags & releases
@@ -21,29 +21,31 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Guard against Windows-reserved file 'NUL'
+      # Only warn about Windows 'NUL' (Linux can handle it; don't fail build)
+      - name: Warn if Windows-reserved 'NUL' exists
         run: |
           if [ -e "NUL" ] || [ -e "nul" ]; then
-            echo "::error::Reserved filename 'NUL' detected in repo root. Delete it and re-run."
-            exit 1
+            echo "::warning::Reserved filename 'NUL' is present. On Windows this breaks local builds."
           fi
 
-      - name: Timestamp & tag
+      - name: Metadata
         id: meta
         run: |
           TS="$(date +'%Y%m%d-%H%M%S')"
           NOTE="${{ github.event.inputs.note }}"
           [ -z "$NOTE" ] && NOTE="auto"
           TAG="snapshot-${NOTE}-${TS}"
-          echo "ts=$TS"   >> $GITHUB_OUTPUT
           echo "tag=$TAG" >> $GITHUB_OUTPUT
           echo "Using tag: $TAG"
 
-      - name: Setup Ruby
+      - name: Setup Ruby (compatible with github-pages)
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.1"   # plays nicely with github-pages
+          ruby-version: "3.1"
           bundler-cache: true
+
+      - name: System deps for native gems
+        run: sudo apt-get update && sudo apt-get install -y build-essential zlib1g-dev zip
 
       - name: Install gems
         run: bundle install --jobs 4 --retry 3
@@ -52,9 +54,6 @@ jobs:
         env:
           JEKYLL_ENV: production
         run: bundle exec jekyll build --trace
-
-      - name: Ensure zip is available
-        run: sudo apt-get update && sudo apt-get install -y zip
 
       - name: Create archives (source & built site)
         run: |
