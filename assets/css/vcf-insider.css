@@ -693,3 +693,29 @@ body {
 
 
 /* === PR: Category tile accents === */
+
+/* === Category tile accents (uses per-card class to set --cat) === */
+.categories-grid .category-card { 
+  /* default if a tile has no class */
+  --cat: #0091DA;
+  border-top: 4px solid var(--cat);
+}
+
+/* Map each category to its brand-safe color */
+.categories-grid .category-card.cloud-foundation { --cat: #0091DA; } /* Blue */
+.categories-grid .category-card.networking       { --cat: #6DB33F; } /* Green */
+.categories-grid .category-card.security         { --cat: #00A79D; } /* Teal */
+.categories-grid .category-card.ai-automation    { --cat: #34B6E4; } /* Aqua */
+
+/* Apply the accent color */
+.categories-grid .category-card .category-icon { color: var(--cat); }
+
+/* Make tile buttons match the category color */
+.categories-grid .category-card .category-btn {
+  background: var(--cat) !important;  /* override any earlier generic button color */
+}
+
+/* (Header color for AI & Automation, if not added yet) */
+.category-box.ai-automation { background-color: #34B6E4; }
+.category-box.ai-automation:hover { background-color: #2A94BB; transform: translateY(-3px); }
+.icon-ai-automation { color: #34B6E4; }
