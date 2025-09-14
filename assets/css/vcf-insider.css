@@ -654,3 +654,39 @@ body {
         padding: 1rem;
     }
 }
+/* --- Categories grid & cards (VCF Insider) --- */
+.container .categories-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.categories-grid .category-card {
+  background: var(--vmware-light-gray);
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: var(--border-radius-lg);
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: var(--shadow-light);
+  transition: var(--transition);
+}
+
+.categories-grid .category-card:hover {
+  box-shadow: var(--shadow-medium);
+  transform: translateY(-3px);
+}
+
+.categories-grid .category-icon  { font-size: 2rem;  margin-bottom: .5rem; }
+.categories-grid .category-title { font-weight: 600;  margin: .25rem 0 .5rem; }
+.categories-grid .category-meta  { color: var(--text-secondary); font-size: .95rem; margin-bottom: 1rem; }
+
+.categories-grid .category-btn {
+  display: inline-block;
+  padding: .55rem 1rem;
+  border-radius: var(--border-radius);
+  background: #0091DA;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+}
