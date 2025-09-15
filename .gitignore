@@ -28,3 +28,7 @@ Desktop.ini
 # Environment
 .env
 .env.local
+
+# Local backups
+backup-*.zip
+backup-*.sha256
