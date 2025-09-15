@@ -719,3 +719,52 @@ body {
 .category-box.ai-automation { background-color: #34B6E4; }
 .category-box.ai-automation:hover { background-color: #2A94BB; transform: translateY(-3px); }
 .icon-ai-automation { color: #34B6E4; }
+
+/* === New badge (Pumpkin) === */
+.badge-new {
+  display: inline-block;
+  margin-left: .5rem;
+  padding: .25rem .5rem;
+  border-radius: 999px;
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .04em;
+  background: var(--vmware-orange); /* use theme var */
+  color: #fff;
+  vertical-align: middle;
+  line-height: 1; /* keeps pill snug on baseline */
+}
+
+/* subtle pop-on-load */
+.badge-new { position: relative; animation: badge-pop 300ms ease-out 1; }
+@keyframes badge-pop {
+  0% { transform: scale(0.85); opacity: 0; }
+  60% { transform: scale(1.06); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+/* soft glow pulse a few times */
+.badge-new.pulse {
+  animation: badge-pop 300ms ease-out 1, badge-glow 2400ms ease-in-out 3;
+}
+@keyframes badge-glow {
+  0%,100% { box-shadow: 0 0 0 rgba(255,107,53,0); }
+  50%     { box-shadow: 0 0 16px rgba(255,107,53,0.45); }
+}
+
+/* respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .badge-new { animation: none !important; }
+}
+
+
+/* Keep title + badge aligned and wrap nicely */
+.post-title,
+.article-title {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  width: 100%; /* <- add this here */
+}
+
