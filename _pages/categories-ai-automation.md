@@ -1,4 +1,7 @@
 ---
+sitemap: false
+robots: noindex
+---
 layout: page
 title: "AI & Automation (moved)"
 permalink: /categories/ai-automation/
