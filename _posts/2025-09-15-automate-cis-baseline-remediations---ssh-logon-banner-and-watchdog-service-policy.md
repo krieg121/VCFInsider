@@ -34,3 +34,4 @@ Download the ZIP(s) below and review the README or inline comments before runnin
 </div>
 
 > Tip: run against a test cluster first, then expand in batches. Take a quick config backup or snapshot of affected settings where possible.
+category: AI & Automation
