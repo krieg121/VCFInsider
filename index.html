@@ -38,7 +38,7 @@ subtitle: Your Gateway to VMware Cloud Foundation Excellence
 	
             <article class="article-card">
                 {% if post.featured_image %}
-                <img src="{{ post.featured_image | relative_url }}" alt="{{ post.title | escape }}" class="article-image">
+                <img src="{{ post.featured_image | default: post.image | relative_url }}" alt="{{ post.title | escape }}" class="article-image">
                 {% endif %}
                 
                 <div class="article-content">

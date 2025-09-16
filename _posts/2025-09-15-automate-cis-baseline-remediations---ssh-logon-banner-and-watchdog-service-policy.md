@@ -2,7 +2,7 @@
 layout: post
 title: "Automate CIS baseline remediations - SSH Logon Banner & Watchdog Service policy"
 date: 2025-09-15 09:00:00 -0500
-categories: [Automation]
+categories: ["AI & Automation"]
 tags: [Automation, PowerCLI]
 image: /assets/images/posts/2025-09-15-automate-cis-baseline-remediations---ssh-logon-banner-and-watchdog-service-policy/cover.png
 description: "Quick PowerCLI fixes to meet CIS checks: add an SSH logon banner and update ESXi watchdog service policies across your fleet."
