@@ -25,7 +25,7 @@ permalink: /categories/
               {% when 'cloud-foundation' %}☁️
               {% when 'networking' %}🛜
               {% when 'security' %}🔒
-              {% when 'ai-automation' %}🤖
+              {% when 'automation' %}🤖
               {% else %}📚
             {% endcase %}
           </div>

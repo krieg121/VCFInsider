@@ -56,6 +56,7 @@ Our team consists of VMware Cloud Foundation experts with years of hands-on expe
 - **Migration Strategies** - Moving workloads to and within VCF environments
 
 ## VMware Certifications
+{: style="margin-top: 2.25rem;" }
 
 {% include cert-badges.html %}
 

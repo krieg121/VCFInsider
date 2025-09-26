@@ -705,7 +705,7 @@ body {
 .categories-grid .category-card.cloud-foundation { --cat: #0091DA; } /* Blue */
 .categories-grid .category-card.networking       { --cat: #6DB33F; } /* Green */
 .categories-grid .category-card.security         { --cat: #00A79D; } /* Teal */
-.categories-grid .category-card.ai-automation    { --cat: #34B6E4; } /* Aqua */
+.categories-grid .category-card.automation    { --cat: #34B6E4; } /* Aqua */
 
 /* Apply the accent color */
 .categories-grid .category-card .category-icon { color: var(--cat); }
@@ -716,9 +716,9 @@ body {
 }
 
 /* (Header color for AI & Automation, if not added yet) */
-.category-box.ai-automation { background-color: #34B6E4; }
-.category-box.ai-automation:hover { background-color: #2A94BB; transform: translateY(-3px); }
-.icon-ai-automation { color: #34B6E4; }
+.category-box.automation { background-color: #34B6E4; }
+.category-box.automation:hover { background-color: #2A94BB; transform: translateY(-3px); }
+.icon-automation { color: #34B6E4; }
 
 
 /* subtle pop-on-load */
