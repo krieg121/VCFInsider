@@ -1,33 +1,51 @@
 ---
+layout: default
 ---
-<article class="category">
-  <header>
-    <h1>{{ page.title }}</h1>
-    {% if page.description %}<p class="post-excerpt">{{ page.description }}</p>{% endif %}
-  </header>
 
-  {% assign wanted = page.category | slugify %}
-  <ul class="post-list">
-    {% assign found = 0 %}
-    {% for post in site.posts %}
-      {% assign hit = false %}
-      {% for c in post.categories %}
-        {% assign cslug = c | slugify %}
-        {% if cslug == wanted %}
-          {% assign hit = true %}{% break %}
-        {% endif %}
-      {% endfor %}
-      {% if hit %}
-        {% assign found = 1 %}
-        <li class="card">
-          <a class="post-link" href="{{ post.url | relative_url }}"><h3>{{ post.title }}</h3></a>
-          <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-          {% if post.excerpt %}<p>{{ post.excerpt | strip_html | truncate: 140 }}</p>{% endif %}
-        </li>
-      {% endif %}
-    {% endfor %}
-    {% if found == 0 %}
-      <li>No posts found in this category yet.</li>
+<div class="container page-content">
+  <!-- VMware-colored header box -->
+  <div class="category-box {{ page.class }}">
+    <h1>{{ page.title }}</h1>
+    {% if page.description %}
+      <p>{{ page.description }}</p>
     {% endif %}
-  </ul>
-</article>
+  </div>
+
+  {% assign cat_name = page.category %}
+  {% assign posts = site.categories[cat_name] | default: site.tags[cat_name] %}
+
+  {% if posts and posts.size > 0 %}
+    <div class="articles-grid">
+      {% for post in posts %}
+        <article class="article-card">
+          {% assign card_image = post.image | default: post.featured_image %}
+          {% if card_image %}
+            <img class="article-image" src="{{ card_image | relative_url }}" alt="{{ post.title | escape }}">
+          {% endif %}
+          <div class="article-content">
+            <span class="article-category">{{ cat_name }}</span>
+
+            {% assign now = site.time | date: '%s' | plus: 0 %}
+            {% assign then = post.date | date: '%s' | plus: 0 %}
+            {% assign age = now | minus: then %}
+
+            <h2 class="article-title">
+              <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+              {% if age < 604800 %}<span class="badge-new pulse">NEW</span>{% endif %}
+            </h2>
+
+            <p class="article-excerpt">
+              {{ post.excerpt | default: post.content | strip_html | truncate: 160 }}
+            </p>
+            <div class="article-meta">
+              <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time>
+              <a class="read-more" href="{{ post.url | relative_url }}">Read</a>
+            </div>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>No posts in this category yet.</p>
+  {% endif %}
+</div>

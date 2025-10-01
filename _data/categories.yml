@@ -1,0 +1,12 @@
+automation:
+  label: "Automation"
+  class: automation
+cloud-foundation:
+  label: "Cloud Foundation"
+  class: cloud-foundation
+networking:
+  label: "Networking"
+  class: networking
+security:
+  label: "Security"
+  class: security

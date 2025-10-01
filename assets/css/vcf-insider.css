@@ -654,3 +654,164 @@ body {
         padding: 1rem;
     }
 }
+/* --- Categories grid & cards (VCF Insider) --- */
+.container .categories-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.categories-grid .category-card {
+  background: var(--vmware-light-gray);
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: var(--border-radius-lg);
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: var(--shadow-light);
+  transition: var(--transition);
+}
+
+.categories-grid .category-card:hover {
+  box-shadow: var(--shadow-medium);
+  transform: translateY(-3px);
+}
+
+.categories-grid .category-icon  { font-size: 2rem;  margin-bottom: .5rem; }
+.categories-grid .category-title { font-weight: 600;  margin: .25rem 0 .5rem; }
+.categories-grid .category-meta  { color: var(--text-secondary); font-size: .95rem; margin-bottom: 1rem; }
+
+.categories-grid .category-btn {
+  display: inline-block;
+  padding: .55rem 1rem;
+  border-radius: var(--border-radius);
+  background: #0091DA;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+
+/* === PR: Category tile accents === */
+
+/* === Category tile accents (uses per-card class to set --cat) === */
+.categories-grid .category-card { 
+  /* default if a tile has no class */
+  --cat: #0091DA;
+  border-top: 4px solid var(--cat);
+}
+
+/* Map each category to its brand-safe color */
+.categories-grid .category-card.cloud-foundation { --cat: #0091DA; } /* Blue */
+.categories-grid .category-card.networking       { --cat: #6DB33F; } /* Green */
+.categories-grid .category-card.security         { --cat: #00A79D; } /* Teal */
+.categories-grid .category-card.automation    { --cat: #34B6E4; } /* Aqua */
+
+/* Apply the accent color */
+.categories-grid .category-card .category-icon { color: var(--cat); }
+
+/* Make tile buttons match the category color */
+.categories-grid .category-card .category-btn {
+  background: var(--cat) !important;  /* override any earlier generic button color */
+}
+
+/* (Header color for AI & Automation, if not added yet) */
+.category-box.automation { background-color: #34B6E4; }
+.category-box.automation:hover { background-color: #2A94BB; transform: translateY(-3px); }
+.icon-automation { color: #34B6E4; }
+
+
+/* subtle pop-on-load */
+.badge-new { position: relative; animation: badge-pop 300ms ease-out 1; }
+@keyframes badge-pop {
+  0% { transform: scale(0.85); opacity: 0; }
+  60% { transform: scale(1.06); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+/* soft glow pulse a few times */
+.badge-new.pulse {
+  animation: badge-pop 300ms ease-out 1, badge-glow 2400ms ease-in-out 3;
+}
+@keyframes badge-glow {
+  0%,100% { box-shadow: 0 0 0 rgba(255,107,53,0); }
+  50%     { box-shadow: 0 0 16px rgba(255,107,53,0.45); }
+}
+
+/* respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .badge-new { animation: none !important; }
+}
+
+
+/* Keep title + badge aligned and wrap nicely */
+.post-title,
+.article-title {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  width: 100%; /* <- add this here */
+}
+
+/* Certifications grid */
+.cert-wrap { margin: 2.5rem 0; }
+.cert-title { font-size: 1.25rem; margin-bottom: 1rem; color: var(--text-primary); }
+
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1rem 1.25rem;
+  align-items: center;
+}
+
+.cert-card {
+  background: var(--vmware-light-gray);
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: var(--border-radius);
+  text-align: center;
+  padding: .75rem;
+  transition: var(--transition);
+}
+.cert-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-light); }
+
+.cert-card img {
+  max-width: 100%;
+  max-height: 56px;
+  display: block;
+  margin: 0 auto;
+  filter: saturate(1.05);
+}
+
+.cert-caption {
+  margin-top: .5rem;
+  font-size: .85rem;
+  color: var(--text-secondary);
+}
+
+/* Keep title + NEW pill aligned */
+.post-title,
+.article-title {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+}
+
+/* Expanding ring halo (subtle, runs a couple times) */
+.badge-new.pulse::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 999px;
+  border: 2px solid rgba(255,107,53,.55);
+  opacity: 0;
+  transform: scale(.85);
+  pointer-events: none;
+  animation: badge-ring 1600ms ease-out 2 400ms; /* 2 repeats, slight delay */
+}
+@keyframes badge-ring {
+  0%   { opacity: .55; transform: scale(.85); }
+  70%  { opacity: .12; transform: scale(1.55); }
+  100% { opacity: 0;   transform: scale(1.7); }
+}

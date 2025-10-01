@@ -1,0 +1,17 @@
+<div class="cert-wrap">
+  {% if include.title %}<h3 class="cert-title">{{ include.title }}</h3>{% endif %}
+  <div class="cert-grid">
+    {% for c in site.data.certs %}
+      <div class="cert-card" title="{{ c.title | escape }}">
+        {% if c.url %}
+          <a href="{{ c.url }}" target="_blank" rel="noopener">
+            <img src="{{ c.img | relative_url }}" alt="{{ c.title | escape }}">
+          </a>
+        {% else %}
+          <img src="{{ c.img | relative_url }}" alt="{{ c.title | escape }}">
+        {% endif %}
+        <div class="cert-caption">{{ c.title }}</div>
+      </div>
+    {% endfor %}
+  </div>
+</div>

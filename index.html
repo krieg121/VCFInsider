@@ -43,18 +43,24 @@ Usage inside your homepage cards:
         
         <div class="articles-grid">
             {% for post in site.posts limit:8 %}
+	    {% assign now = site.time | date: '%s' | plus: 0 %}
+	    {% assign then = post.date | date: '%s' | plus: 0 %}
+	    {% assign age = now | minus: then %}
+	
             <article class="article-card">
                 {% if post.featured_image %}
-                <img src="{{ post.featured_image | relative_url }}" alt="{{ post.title | escape }}" class="article-image">
+                <img src="{{ post.featured_image | default: post.image | relative_url }}" alt="{{ post.title | escape }}" class="article-image">
                 {% endif %}
                 
                 <div class="article-content">
                     <span class="article-category">{{ post.categories | first | default: 'VCF Insights' }}</span>
 
                     
-                    <h3 class="article-title">
-                        <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
-                    </h3>
+                   <h3 class="article-title">
+                     <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+                     {% if age < 604800 %}<span class="badge-new pulse">NEW</span>{% endif %}
+		   </h3>
+
                     
                     <p class="article-excerpt">
                         {{ post.excerpt | strip_html | truncate: 150 }}

@@ -1,7 +1,10 @@
 ---
-layout: category
-title: AI & Automation
-permalink: /categories/ai-automation/
-category: AI & Automation
-description: AI-powered solutions and automation strategies.
+sitemap: false
+robots: noindex
 ---
+layout: page
+title: "AI & Automation (moved)"
+permalink: /categories/ai-automation/
+---
+<meta http-equiv="refresh" content="0; url=/categories/automation/">
+<p>If you are not redirected, <a href="/categories/automation/">click here</a>.</p>
