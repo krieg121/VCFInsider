@@ -1,8 +1,9 @@
 ---
 layout: category
-title: "Automation"
-category: automation   # slug used by templates
-class: automation      # used for header/tile accent color
+title: Automation
 permalink: /categories/automation/
-description: AI-powered solutions and automation strategies.
+category: Automation
+description: PowerCLI, vRO/vRA, pipelines, and integrations.
+icon: "⚙️"
+accent: "#22A699"
 ---

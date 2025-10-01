@@ -3,6 +3,17 @@ layout: default
 title: VCF Insider
 subtitle: Your Gateway to VMware Cloud Foundation Excellence
 ---
+{%- assign _category_pages = site.pages | where_exp: "p", "p.layout == 'category'" -%}
+{%- comment -%}
+Usage inside your homepage cards:
+  {% assign cat_url = '' %}
+  {% assign cat_page = _category_pages | where: 'category', cat_name | first %}
+  {% if cat_page %}{% assign cat_url = cat_page.url %}{% else %}
+    {% assign cat_slug = cat_name | downcase | replace: ' ', '-' %}
+    {% assign cat_url = '/categories/' | append: cat_slug | append: '/' %}
+  {% endif %}
+  <a href="{{ cat_url | relative_url }}">…</a>
+{%- endcomment -%}
 
 <!-- Hero Section -->
 <section class="hero">
@@ -42,7 +53,8 @@ subtitle: Your Gateway to VMware Cloud Foundation Excellence
                 {% endif %}
                 
                 <div class="article-content">
-                    <span class="article-category">{{ post.category | default: 'VCF Insights' }}</span>
+                    <span class="article-category">{{ post.categories | first | default: 'VCF Insights' }}</span>
+
                     
                    <h3 class="article-title">
                      <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
@@ -77,48 +89,76 @@ subtitle: Your Gateway to VMware Cloud Foundation Excellence
 
 <!-- Categories Section -->
 <section class="categories-section" style="padding: 80px 0; background: var(--vmware-white);">
-    <div class="container">
-        <div class="section-header">
-            <h2 class="section-title">Explore by Category</h2>
-            <p class="section-subtitle">Find content tailored to your specific VCF interests</p>
-        </div>
-        
-        <div class="categories-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem;">
-            <div class="category-card" style="background: var(--vmware-light-gray); padding: 2rem; border-radius: var(--border-radius-lg); text-align: center; transition: var(--transition);">
-                <div style="font-size: 3rem; color: var(--vmware-blue); margin-bottom: 1rem;">
-                    <i class="fas fa-cloud"></i>
-                </div>
-                <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Cloud Foundation</h3>
-                <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Core VCF platform insights and best practices</p>
-                <a href="{{ '/categories/' | relative_url }}" class="btn btn-primary">Explore</a>
-            </div>
-            
-            <div class="category-card" style="background: var(--vmware-light-gray); padding: 2rem; border-radius: var(--border-radius-lg); text-align: center; transition: var(--transition);">
-                <div style="font-size: 3rem; color: var(--vmware-green); margin-bottom: 1rem;">
-                    <i class="fas fa-robot"></i>
-                </div>
-                <h3 style="color: var(--text-primary); margin-bottom: 1rem;">AI & Automation</h3>
-                <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">AI-powered solutions and automation strategies</p>
-                <a href="{{ '/categories/' | relative_url }}" class="btn btn-primary">Explore</a>
-            </div>
-            
-            <div class="category-card" style="background: var(--vmware-light-gray); padding: 2rem; border-radius: var(--border-radius-lg); text-align: center; transition: var(--transition);">
-                <div style="font-size: 3rem; color: var(--vmware-orange); margin-bottom: 1rem;">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Security</h3>
-                <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Security best practices and compliance</p>
-                <a href="{{ '/categories/' | relative_url }}" class="btn btn-primary">Explore</a>
-            </div>
-            
-            <div class="category-card" style="background: var(--vmware-light-gray); padding: 2rem; border-radius: var(--border-radius-lg); text-align: center; transition: var(--transition);">
-                <div style="font-size: 3rem; color: var(--vmware-blue); margin-bottom: 1rem;">
-                    <i class="fas fa-network-wired"></i>
-                </div>
-                <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Networking</h3>
-                <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">NSX and networking solutions</p>
-                <a href="{{ '/categories/' | relative_url }}" class="btn btn-primary">Explore</a>
-            </div>
-        </div>
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Explore by Category</h2>
+      <p class="section-subtitle">Find content tailored to your specific VCF interests</p>
     </div>
+
+    {%- assign _category_pages = site.pages | where_exp: "p", "p.layout == 'category'" -%}
+
+    <div class="categories-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem;">
+
+      {%- comment -%} Cloud Foundation {%- endcomment -%}
+      {%- assign display_name = "Cloud Foundation" -%}
+      {%- assign lookup_name  = display_name -%}
+      {%- assign cat_page = _category_pages | where: "category", lookup_name | first -%}
+      {%- if cat_page -%}{%- assign cat_url = cat_page.url -%}{%- else -%}
+        {%- assign slug = lookup_name | slugify -%}
+        {%- assign cat_url = "/categories/" | append: slug | append: "/" -%}
+      {%- endif -%}
+      <div class="category-card" style="background: var(--vmware-light-gray); padding: 2rem; border-radius: var(--border-radius-lg); text-align: center; transition: var(--transition);">
+        <div style="font-size: 3rem; color: var(--vmware-blue); margin-bottom: 1rem;"><i class="fas fa-cloud"></i></div>
+        <h3 style="color: var(--text-primary); margin-bottom: 1rem;">{{ display_name }}</h3>
+        <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Core VCF platform insights and best practices</p>
+        <a href="{{ cat_url | relative_url }}" class="btn btn-primary" aria-label="Explore {{ display_name }}">Explore</a>
+      </div>
+
+      {%- comment -%} AI & Automation (maps to 'Automation') {%- endcomment -%}
+      {%- assign display_name = "AI & Automation" -%}
+      {%- assign lookup_name  = "Automation" -%} {%- comment -%} canonical category name {%- endcomment -%}
+      {%- assign cat_page = _category_pages | where: "category", lookup_name | first -%}
+      {%- if cat_page -%}{%- assign cat_url = cat_page.url -%}{%- else -%}
+        {%- assign slug = lookup_name | slugify -%}
+        {%- assign cat_url = "/categories/" | append: slug | append: "/" -%}
+      {%- endif -%}
+      <div class="category-card" style="background: var(--vmware-light-gray); padding: 2rem; border-radius: var(--border-radius-lg); text-align: center; transition: var(--transition);">
+        <div style="font-size: 3rem; color: var(--vmware-green); margin-bottom: 1rem;"><i class="fas fa-robot"></i></div>
+        <h3 style="color: var(--text-primary); margin-bottom: 1rem;">{{ display_name }}</h3>
+        <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">AI-powered solutions and automation strategies</p>
+        <a href="{{ cat_url | relative_url }}" class="btn btn-primary" aria-label="Explore {{ display_name }}">Explore</a>
+      </div>
+
+      {%- comment -%} Security {%- endcomment -%}
+      {%- assign display_name = "Security" -%}
+      {%- assign lookup_name  = display_name -%}
+      {%- assign cat_page = _category_pages | where: "category", lookup_name | first -%}
+      {%- if cat_page -%}{%- assign cat_url = cat_page.url -%}{%- else -%}
+        {%- assign slug = lookup_name | slugify -%}
+        {%- assign cat_url = "/categories/" | append: slug | append: "/" -%}
+      {%- endif -%}
+      <div class="category-card" style="background: var(--vmware-light-gray); padding: 2rem; border-radius: var(--border-radius-lg); text-align: center; transition: var(--transition);">
+        <div style="font-size: 3rem; color: var(--vmware-orange); margin-bottom: 1rem;"><i class="fas fa-shield-alt"></i></div>
+        <h3 style="color: var(--text-primary); margin-bottom: 1rem;">{{ display_name }}</h3>
+        <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Security best practices and compliance</p>
+        <a href="{{ cat_url | relative_url }}" class="btn btn-primary" aria-label="Explore {{ display_name }}">Explore</a>
+      </div>
+
+      {%- comment -%} Networking {%- endcomment -%}
+      {%- assign display_name = "Networking" -%}
+      {%- assign lookup_name  = display_name -%}
+      {%- assign cat_page = _category_pages | where: "category", lookup_name | first -%}
+      {%- if cat_page -%}{%- assign cat_url = cat_page.url -%}{%- else -%}
+        {%- assign slug = lookup_name | slugify -%}
+        {%- assign cat_url = "/categories/" | append: slug | append: "/" -%}
+      {%- endif -%}
+      <div class="category-card" style="background: var(--vmware-light-gray); padding: 2rem; border-radius: var(--border-radius-lg); text-align: center; transition: var(--transition);">
+        <div style="font-size: 3rem; color: var(--vmware-blue); margin-bottom: 1rem;"><i class="fas fa-network-wired"></i></div>
+        <h3 style="color: var(--text-primary); margin-bottom: 1rem;">{{ display_name }}</h3>
+        <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">NSX and networking solutions</p>
+        <a href="{{ cat_url | relative_url }}" class="btn btn-primary" aria-label="Explore {{ display_name }}">Explore</a>
+      </div>
+
+    </div>
+  </div>
 </section>
