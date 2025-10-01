@@ -5,18 +5,17 @@ permalink: /categories/
 ---
 
 <ul>
-  {%- assign cats = site.categories | sort_natural: "first" -%}
-  {%- if cats and cats.size > 0 -%}
-    {%- for cat in cats -%}
-      {%- assign cat_name = cat[0] -%}
-      {%- assign cat_slug = cat_name | downcase | replace: ' ', '-' -%}
+  {%- assign category_pages = site.pages | where_exp: "p", "p.layout == 'category'" | sort: "title" -%}
+  {%- if category_pages and category_pages.size > 0 -%}
+    {%- for p in category_pages -%}
+      {%- assign cat_name = p.category | default: p.title -%}
+      {%- assign count = site.categories[cat_name] | size -%}
       <li>
-        <a href="{{ '/categories/' | append: cat_slug | append: '/' | relative_url }}">
-          {{ cat_name }} ({{ cat[1].size }})
-        </a>
+        <a href="{{ p.url | relative_url }}">{{ cat_name }}</a>
+        {%- if count and count > 0 -%} ({{ count }}){%- endif -%}
       </li>
     {%- endfor -%}
   {%- else -%}
-    <li>No categories yet.</li>
+    <li>No category pages found.</li>
   {%- endif -%}
 </ul>
