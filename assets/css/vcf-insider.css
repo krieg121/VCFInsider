@@ -815,3 +815,16 @@ body {
   70%  { opacity: .12; transform: scale(1.55); }
   100% { opacity: 0;   transform: scale(1.7); }
 }
+/* Post category chip (homepage + lists) */
+.article-category{
+  display:inline-block;
+  padding:.2rem .6rem;
+  border-radius:999px;
+  font-size:.75rem;
+  font-weight:600;
+  line-height:1;
+  background: rgba(0,119,200,.12);  /* soft blue tint */
+  color:#0077C8;                    /* VMware blue */
+  border:1px solid rgba(0,119,200,.25);
+  text-transform:none;
+}
