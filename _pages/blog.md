@@ -26,11 +26,16 @@ permalink: /blog/
                         </time>
                         <span class="post-author">by {{ post.author | default: site.author.name }}</span>
                     </div>
-                    
+
+                    {% assign now = 'now' | date: '%s' %}
+                    {% assign then = post.date | date: '%s' %}
+                    {% assign age = now | minus: then %}
+
                     <h2 class="post-title" style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; line-height: 1.3;">
                         <a href="{{ post.url | relative_url }}" style="color: var(--text-primary); text-decoration: none; transition: var(--transition);">
                             {{ post.title | escape }}
                         </a>
+                        {% if age < 604800 %}<span class="badge-new">NEW</span>{% endif %}
                     </h2>
                     
                     <div class="post-excerpt" style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">
@@ -111,5 +116,19 @@ permalink: /blog/
         align-items: flex-start;
         gap: 1rem;
     }
+}
+
+/* === New badge (Pumpkin) === */
+.badge-new {
+  display: inline-block;
+  margin-left: .5rem;
+  padding: .25rem .5rem;
+  border-radius: 999px;
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .04em;
+  background: #FF6B35; /* VMware-like orange */
+  color: #fff;
+  vertical-align: middle;
 }
 </style>
