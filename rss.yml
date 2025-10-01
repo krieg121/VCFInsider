@@ -1,0 +1,13 @@
+# Feeds config (edit freely)
+feeds:
+  - name: "VMware Blogs"
+    url: "https://blogs.vmware.com/feed"   # replace if your specific feed url differs
+
+# Minimum filter so only “content-worthy” items come in as drafts (tune later)
+filters:
+  min_summary_chars: 320
+
+# Default fallbacks
+defaults:
+  category: automation     # canonical slug used across your site
+  tags: []                 # optional default tags
