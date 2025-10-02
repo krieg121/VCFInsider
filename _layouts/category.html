@@ -3,49 +3,77 @@ layout: default
 ---
 
 <div class="container page-content">
-  <!-- VMware-colored header box -->
-  <div class="category-box {{ page.class }}">
-    <h1>{{ page.title }}</h1>
-    {% if page.description %}
-      <p>{{ page.description }}</p>
-    {% endif %}
+  {%- comment -%}
+    Category hero using front-matter icon + accent.
+    Falls back gracefully if icon/accent/description are missing.
+  {%- endcomment -%}
+  <div class="cat-hero" style="--cat-accent: {{ page.accent | default: '#0077C8' }}">
+    <h1 class="title">{{ page.icon }} {{ page.title }}</h1>
+    {%- if page.description -%}
+      <p class="desc">{{ page.description }}</p>
+    {%- endif -%}
   </div>
 
-  {% assign cat_name = page.category %}
-  {% assign posts = site.categories[cat_name] | default: site.tags[cat_name] %}
+  {%- comment -%}
+    Resolve the collection name:
+    Prefer page.category, then page.tag, then page.title (as a last resort).
+  {%- endcomment -%}
+  {%- assign cat_name = page.category | default: page.tag | default: page.title -%}
 
-  {% if posts and posts.size > 0 %}
+  {%- comment -%}
+    Get posts for this category (or tag). Ensure we always end up with an array.
+  {%- endcomment -%}
+  {%- assign posts = site.categories[cat_name] -%}
+  {%- if posts == nil -%}{%- assign posts = site.tags[cat_name] -%}{%- endif -%}
+  {%- if posts == nil -%}{%- assign posts = "" | split: "" -%}{%- endif -%}
+
+  {%- comment -%}
+    Sort newest → oldest. Safe because `posts` is guaranteed to be an array.
+  {%- endcomment -%}
+  {%- assign posts = posts | sort: "date" | reverse -%}
+
+  {%- if posts and posts.size > 0 -%}
     <div class="articles-grid">
-      {% for post in posts %}
+      {%- for post in posts -%}
         <article class="article-card">
-          {% assign card_image = post.image | default: post.featured_image %}
-          {% if card_image %}
-            <img class="article-image" src="{{ card_image | relative_url }}" alt="{{ post.title | escape }}">
-          {% endif %}
+          {%- assign card_image = post.image | default: post.featured_image -%}
+          {%- if card_image -%}
+            <img class="article-image"
+                 src="{{ card_image | relative_url }}"
+                 alt="{{ post.title | escape }}"
+                 loading="lazy"
+                 decoding="async">
+          {%- endif -%}
+
           <div class="article-content">
             <span class="article-category">{{ cat_name }}</span>
 
-            {% assign now = site.time | date: '%s' | plus: 0 %}
-            {% assign then = post.date | date: '%s' | plus: 0 %}
-            {% assign age = now | minus: then %}
+            {%- assign now  = site.time | date: '%s' | plus: 0 -%}
+            {%- assign then = post.date  | date: '%s' | plus: 0 -%}
+            {%- assign age  = now | minus: then -%}
 
             <h2 class="article-title">
               <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-              {% if age < 604800 %}<span class="badge-new pulse">NEW</span>{% endif %}
+              {%- if age < 604800 -%}<span class="badge-new pulse">NEW</span>{%- endif -%}
             </h2>
 
             <p class="article-excerpt">
               {{ post.excerpt | default: post.content | strip_html | truncate: 160 }}
             </p>
+
             <div class="article-meta">
-              <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time>
+              <time datetime="{{ post.date | date_to_xmlschema }}">
+                {{ post.date | date: "%b %-d, %Y" }}
+              </time>
               <a class="read-more" href="{{ post.url | relative_url }}">Read</a>
             </div>
           </div>
         </article>
-      {% endfor %}
+      {%- endfor -%}
     </div>
-  {% else %}
+  {%- else -%}
     <p>No posts in this category yet.</p>
-  {% endif %}
+  {%- endif -%}
+
+  {{ content }}
 </div>

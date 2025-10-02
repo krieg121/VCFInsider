@@ -107,27 +107,29 @@ Usage inside your homepage cards:
         {%- assign slug = lookup_name | slugify -%}
         {%- assign cat_url = "/categories/" | append: slug | append: "/" -%}
       {%- endif -%}
-      <div class="category-card" style="background: var(--vmware-light-gray); padding: 2rem; border-radius: var(--border-radius-lg); text-align: center; transition: var(--transition);">
-        <div style="font-size: 3rem; color: var(--vmware-blue); margin-bottom: 1rem;"><i class="fas fa-cloud"></i></div>
-        <h3 style="color: var(--text-primary); margin-bottom: 1rem;">{{ display_name }}</h3>
-        <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Core VCF platform insights and best practices</p>
-        <a href="{{ cat_url | relative_url }}" class="btn btn-primary" aria-label="Explore {{ display_name }}">Explore</a>
-      </div>
+      {%- assign count = site.categories[lookup_name] | size -%}
+      <a class="category-card category-card--home" href="{{ cat_url | relative_url }}" aria-label="Explore {{ display_name }}">
+        <div class="icon" style="color: var(--vmware-blue);"><i class="fas fa-cloud"></i></div>
+        <h3 class="title">{{ display_name }}</h3>
+        <p class="desc">Core VCF platform insights and best practices</p>
+        <span class="btn btn-primary">Explore · {{ count }} posts</span>
+      </a>
 
-      {%- comment -%} AI & Automation (maps to 'Automation') {%- endcomment -%}
+      {%- comment -%} AI & Automation → Automation {%- endcomment -%}
       {%- assign display_name = "AI & Automation" -%}
-      {%- assign lookup_name  = "Automation" -%} {%- comment -%} canonical category name {%- endcomment -%}
+      {%- assign lookup_name  = "Automation" -%}
       {%- assign cat_page = _category_pages | where: "category", lookup_name | first -%}
       {%- if cat_page -%}{%- assign cat_url = cat_page.url -%}{%- else -%}
         {%- assign slug = lookup_name | slugify -%}
         {%- assign cat_url = "/categories/" | append: slug | append: "/" -%}
       {%- endif -%}
-      <div class="category-card" style="background: var(--vmware-light-gray); padding: 2rem; border-radius: var(--border-radius-lg); text-align: center; transition: var(--transition);">
-        <div style="font-size: 3rem; color: var(--vmware-green); margin-bottom: 1rem;"><i class="fas fa-robot"></i></div>
-        <h3 style="color: var(--text-primary); margin-bottom: 1rem;">{{ display_name }}</h3>
-        <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">AI-powered solutions and automation strategies</p>
-        <a href="{{ cat_url | relative_url }}" class="btn btn-primary" aria-label="Explore {{ display_name }}">Explore</a>
-      </div>
+      {%- assign count = site.categories[lookup_name] | size -%}
+      <a class="category-card category-card--home" href="{{ cat_url | relative_url }}" aria-label="Explore {{ display_name }}">
+        <div class="icon" style="color: var(--vmware-green);"><i class="fas fa-robot"></i></div>
+        <h3 class="title">{{ display_name }}</h3>
+        <p class="desc">AI-powered solutions and automation strategies</p>
+        <span class="btn btn-primary">Explore · {{ count }} posts</span>
+      </a>
 
       {%- comment -%} Security {%- endcomment -%}
       {%- assign display_name = "Security" -%}
@@ -137,12 +139,13 @@ Usage inside your homepage cards:
         {%- assign slug = lookup_name | slugify -%}
         {%- assign cat_url = "/categories/" | append: slug | append: "/" -%}
       {%- endif -%}
-      <div class="category-card" style="background: var(--vmware-light-gray); padding: 2rem; border-radius: var(--border-radius-lg); text-align: center; transition: var(--transition);">
-        <div style="font-size: 3rem; color: var(--vmware-orange); margin-bottom: 1rem;"><i class="fas fa-shield-alt"></i></div>
-        <h3 style="color: var(--text-primary); margin-bottom: 1rem;">{{ display_name }}</h3>
-        <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Security best practices and compliance</p>
-        <a href="{{ cat_url | relative_url }}" class="btn btn-primary" aria-label="Explore {{ display_name }}">Explore</a>
-      </div>
+      {%- assign count = site.categories[lookup_name] | size -%}
+      <a class="category-card category-card--home" href="{{ cat_url | relative_url }}" aria-label="Explore {{ display_name }}">
+        <div class="icon" style="color: var(--vmware-orange);"><i class="fas fa-shield-alt"></i></div>
+        <h3 class="title">{{ display_name }}</h3>
+        <p class="desc">Security best practices and compliance</p>
+        <span class="btn btn-primary">Explore · {{ count }} posts</span>
+      </a>
 
       {%- comment -%} Networking {%- endcomment -%}
       {%- assign display_name = "Networking" -%}
@@ -152,12 +155,13 @@ Usage inside your homepage cards:
         {%- assign slug = lookup_name | slugify -%}
         {%- assign cat_url = "/categories/" | append: slug | append: "/" -%}
       {%- endif -%}
-      <div class="category-card" style="background: var(--vmware-light-gray); padding: 2rem; border-radius: var(--border-radius-lg); text-align: center; transition: var(--transition);">
-        <div style="font-size: 3rem; color: var(--vmware-blue); margin-bottom: 1rem;"><i class="fas fa-network-wired"></i></div>
-        <h3 style="color: var(--text-primary); margin-bottom: 1rem;">{{ display_name }}</h3>
-        <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">NSX and networking solutions</p>
-        <a href="{{ cat_url | relative_url }}" class="btn btn-primary" aria-label="Explore {{ display_name }}">Explore</a>
-      </div>
+      {%- assign count = site.categories[lookup_name] | size -%}
+      <a class="category-card category-card--home" href="{{ cat_url | relative_url }}" aria-label="Explore {{ display_name }}">
+        <div class="icon" style="color: var(--vmware-blue);"><i class="fas fa-network-wired"></i></div>
+        <h3 class="title">{{ display_name }}</h3>
+        <p class="desc">NSX and networking solutions</p>
+        <span class="btn btn-primary">Explore · {{ count }} posts</span>
+      </a>
 
     </div>
   </div>
