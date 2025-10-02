@@ -1,0 +1,55 @@
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🔎  _config.yml
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[1;32mPASS[0m  url points to https://www.vcfinsider.com
+[1;32mPASS[0m  baseurl is empty ("")
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🔎  _layouts/default.html
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[1;32mPASS[0m  vcf-insider.css is linked in <head>
+[1;32mPASS[0m  Font Awesome is linked
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🔎  assets/css/vcf-insider.css
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[1;32mPASS[0m  VMware theme tokens present (--vmware-*)
+[1;32mPASS[0m  .article-category pill style is defined
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🔎  _layouts/category.html
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[1;32mPASS[0m  category layout inherits: default
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🔎  _pages/categories.md
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[1;32mPASS[0m  categories.md uses icon from page front matter
+[1;32mPASS[0m  categories.md uses accent from page front matter
+[1;32mPASS[0m  cards set CSS var --accent-color inline
+[1;32mPASS[0m  card markup detected (card-link/category-card)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🔎  _pages/categories-*.md (front matter)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[1;32mPASS[0m  _pages/categories-automation.md : icon present
+[1;32mPASS[0m  _pages/categories-automation.md : accent is hex (#22A699)
+[1;33mWARN[0m  _pages/categories-cloud-foundation.md : icon missing
+[1;32mPASS[0m  _pages/categories-cloud-foundation.md : accent is hex (#002856)
+[1;33mWARN[0m  _pages/categories-finops.md : icon missing
+[1;32mPASS[0m  _pages/categories-finops.md : accent is hex (#845EF7)
+[1;33mWARN[0m  _pages/categories-networking.md : icon missing
+[1;32mPASS[0m  _pages/categories-networking.md : accent is hex (#0077C8)
+[1;33mWARN[0m  _pages/categories-security.md : icon missing
+[1;32mPASS[0m  _pages/categories-security.md : accent is hex (#2BB0B1)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🔎  index.html
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[1;32mPASS[0m  Latest Articles uses post.categories | first
+[1;32mPASS[0m  Homepage resolves per-category URLs with cat_url
+[1;32mPASS[0m  No hard-coded /categories/ links in index.html
+[1;32mPASS[0m  No Jinja-style {# ... #} comments
+
+[36mINFO[0m  Wrote text report to _audit/report.txt

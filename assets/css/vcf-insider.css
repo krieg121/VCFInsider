@@ -237,12 +237,7 @@ body {
   background: var(--cat); color: #fff; text-decoration: none; font-weight: 500;
 }
 
-/* Map category-specific accents */
-.categories-grid .category-card.cloud-foundation { --cat: #0091DA; } /* Blue */
-.categories-grid .category-card.networking       { --cat: #6DB33F; } /* Green */
-.categories-grid .category-card.security         { --cat: #00A79D; } /* Teal */
-.categories-grid .category-card.automation       { --cat: #34B6E4; } /* Aqua */
-.categories-grid .category-card.finops           { --cat: #845EF7; } /* Purple */
+
 
 /* ---------- Clickable Homepage Category Cards ---------- */
 .category-card--home {
