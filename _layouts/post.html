@@ -6,7 +6,7 @@ layout: default
   <div class="container">
     <div class="post-meta">
       {% if page.categories %}
-        <span class="post-category">{{ page.categories | array_to_sentence_string }}</span>
+  {% include category_pill.html categories=page.categories %}
       {% endif %}
       <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%b %-d, %Y" }}</time>
     </div>
