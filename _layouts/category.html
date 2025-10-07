@@ -8,7 +8,15 @@ layout: default
     Falls back gracefully if icon/accent/description are missing.
   {%- endcomment -%}
   <div class="cat-hero" style="--cat-accent: {{ page.accent | default: '#0077C8' }}">
-    <h1 class="title">{{ page.icon }} {{ page.title }}</h1>
+   <h1 class="title">
+  {% if page.icon_class %}
+    <i class="{{ page.icon_class }}"></i>
+  {% elsif page.icon %}
+    {{ page.icon }}
+  {% endif %}
+  {{ page.title }}
+</h1>
+
     {%- if page.description -%}
       <p class="desc">{{ page.description }}</p>
     {%- endif -%}
