@@ -17,72 +17,74 @@ Usage inside your homepage cards:
 
 <!-- Hero Section -->
 <section class="hero">
-  <div class="hero-content">
-    <h1>VCF Insider</h1>
-    <p>Your Gateway to VMware Cloud Foundation Excellence</p>
-    <div class="cta-buttons">
-      <a href="{{ '/blog/' | relative_url }}" class="btn btn-primary">
-        <i class="fas fa-book-open"></i>
-        Explore Articles
-      </a>
-      <a href="{{ '/about/' | relative_url }}" class="btn btn-secondary">
-        <i class="fas fa-info-circle"></i>
-        Learn More
-      </a>
+    <div class="hero-content">
+        <h1>VCF Insider</h1>
+        <p>Your Gateway to VMware Cloud Foundation Excellence</p>
+        <div class="cta-buttons">
+            <a href="{{ '/blog/' | relative_url }}" class="btn btn-primary">
+                <i class="fas fa-book-open"></i>
+                Explore Articles
+            </a>
+            <a href="{{ '/about/' | relative_url }}" class="btn btn-secondary">
+                <i class="fas fa-info-circle"></i>
+                Learn More
+            </a>
+        </div>
     </div>
-  </div>
 </section>
 
 <!-- Latest Articles Section -->
 <section class="articles-section">
-  <div class="container">
-    <div class="section-header">
-      <h2 class="section-title">Latest VCF Insights</h2>
-      <p class="section-subtitle">Stay ahead with expert insights, tutorials, and best practices for VMware Cloud Foundation</p>
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Latest VCF Insights</h2>
+            <p class="section-subtitle">Stay ahead with expert insights, tutorials, and best practices for VMware Cloud Foundation</p>
+        </div>
+        
+        <div class="articles-grid">
+            {% for post in site.posts limit:8 %}
+	    {% assign now = site.time | date: '%s' | plus: 0 %}
+	    {% assign then = post.date | date: '%s' | plus: 0 %}
+	    {% assign age = now | minus: then %}
+	
+            <article class="article-card">
+                {% if post.featured_image %}
+                <img src="{{ post.featured_image | default: post.image | relative_url }}" alt="{{ post.title | escape }}" class="article-image">
+                {% endif %}
+                
+                <div class="article-content">
+                    <span class="article-category">{{ post.categories | first | default: 'VCF Insights' }}</span>
+
+                    
+                   <h3 class="article-title">
+                     <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+                     {% if age < 604800 %}<span class="badge-new pulse">NEW</span>{% endif %}
+		   </h3>
+
+                    
+                    <p class="article-excerpt">
+                        {{ post.excerpt | strip_html | truncate: 150 }}
+                    </p>
+                    
+                    <div class="article-meta">
+                        <time datetime="{{ post.date | date_to_xmlschema }}">
+                            {{ post.date | date: "%B %d, %Y" }}
+                        </time>
+                        <a href="{{ post.url | relative_url }}" class="read-more">
+                            Read More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+        
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="{{ '/blog/' | relative_url }}" class="btn btn-primary">
+                View All Articles <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
     </div>
-
-    <div class="articles-grid">
-      {% for post in site.posts limit:8 %}
-        {% assign now = site.time | date: '%s' | plus: 0 %}
-        {% assign then = post.date | date: '%s' | plus: 0 %}
-        {% assign age = now | minus: then %}
-
-        <article class="article-card">
-          {% assign card_image = post.featured_image | default: post.image %}
-          {% if card_image %}
-            <!-- IMPORTANT: class-based image so CSS 16:9 rule applies -->
-            <img class="article-image" src="{{ card_image | relative_url }}" alt="{{ post.title | escape }}">
-          {% endif %}
-
-          <div class="article-content">
-            <span class="article-category">{{ post.categories | first | default: 'VCF Insights' }}</span>
-
-            <h3 class="article-title">
-              <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
-              {% if age < 604800 %}<span class="badge-new pulse">NEW</span>{% endif %}
-            </h3>
-
-            <p class="article-excerpt">
-              {{ post.excerpt | strip_html | truncate: 150 }}
-            </p>
-
-            <div class="article-meta">
-              <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time>
-              <a href="{{ post.url | relative_url }}" class="read-more">
-                Read More <i class="fas fa-arrow-right"></i>
-              </a>
-            </div>
-          </div>
-        </article>
-      {% endfor %}
-    </div>
-
-    <div style="text-align: center; margin-top: 3rem;">
-      <a href="{{ '/blog/' | relative_url }}" class="btn btn-primary">
-        View All Articles <i class="fas fa-arrow-right"></i>
-      </a>
-    </div>
-  </div>
 </section>
 
 <!-- Categories Section -->

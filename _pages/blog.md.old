@@ -12,15 +12,18 @@ permalink: /blog/
       
       {% assign card_image = post.featured_image | default: post.image %}
       {% if card_image %}
-      <div class="post-image" style="flex: 0 0 300px; overflow: hidden; line-height: 0;">
+      <div class="post-image" style="flex: 0 0 300px; overflow: hidden;">
         <img class="article-image" src="{{ card_image | relative_url }}" alt="{{ post.title | escape }}">
+
       </div>
       {% endif %}
 
       <div class="post-content" style="flex: 1; padding: 2rem; display: flex; flex-direction: column; justify-content: space-between;">
         <div>
           <div class="post-meta" style="display: flex; gap: 1rem; margin-bottom: 1rem; font-size: 0.9rem; color: var(--text-muted);">
-            {% include category_pill.html categories=post.categories %}
+            <span class="post-category" style="background: var(--vmware-orange); color: var(--vmware-white); padding: 0.25rem 0.75rem; border-radius: var(--border-radius); font-size: 0.8rem; font-weight: 600; text-transform: uppercase;">
+              {{ post.category | default: post.categories | first | default: 'VCF Insights' }}
+            </span>
             <time class="post-date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time>
             <span class="post-author">by {{ post.author | default: site.author.name }}</span>
           </div>
@@ -78,7 +81,7 @@ permalink: /blog/
 .post-title a:hover { color: var(--vmware-blue); }
 .read-more:hover { background: var(--vmware-green); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0, 123, 191, 0.3); }
 
-/* 16:9 frame for blog list images */
+/* Key change: no fixed 200px — use 16:9 */
 .post-image img {
   width: 100%;
   aspect-ratio: 16 / 9;
@@ -90,7 +93,10 @@ permalink: /blog/
 @media (max-width: 768px) {
   .blog-post { flex-direction: column; }
   .post-image { flex: none; }
+  /* Still 16:9 on mobile */
+  .post-image img { aspect-ratio: 16 / 9; height: auto; }
   .post-content { padding: 1.5rem; }
   .post-actions { flex-direction: column; align-items: flex-start; gap: 1rem; }
 }
 </style>
+
