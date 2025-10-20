@@ -1,8 +1,8 @@
 ---
 layout: default
 title: VCF Insider
-subtitle: Your Gateway to VMware Cloud Foundation Excellence
 ---
+
 {%- assign _category_pages = site.pages | where_exp: "p", "p.layout == 'category'" -%}
 {%- comment -%}
 Usage inside your homepage cards:
@@ -18,16 +18,26 @@ Usage inside your homepage cards:
 <!-- Hero Section -->
 <section class="hero">
   <div class="hero-content">
-    <h1>VCF Insider</h1>
-    <p>Your Gateway to VMware Cloud Foundation Excellence</p>
+    <!-- Keep an H1 for SEO and accessibility, but hide it visually -->
+    <h1 class="sr-only">VCF Insider</h1>
+
+    <!-- Large banner logo -->
+    <img
+      src="{{ '/assets/images/logo-vcfinsider-banner.png' | relative_url }}"
+      alt="VCF Insider — Real Stories and Solutions from the Field"
+      class="hero-logo"
+      decoding="async"
+      loading="eager">
+
+    <!-- Crisp tagline rendered as text -->
+    <p class="hero-tagline">Real Stories and Solutions from the Field</p>
+
     <div class="cta-buttons">
       <a href="{{ '/blog/' | relative_url }}" class="btn btn-primary">
-        <i class="fas fa-book-open"></i>
-        Explore Articles
+        <i class="fas fa-book-open"></i> Explore Articles
       </a>
       <a href="{{ '/about/' | relative_url }}" class="btn btn-secondary">
-        <i class="fas fa-info-circle"></i>
-        Learn More
+        <i class="fas fa-info-circle"></i> Learn More
       </a>
     </div>
   </div>
