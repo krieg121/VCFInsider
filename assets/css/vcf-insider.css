@@ -100,6 +100,42 @@ body {
 .btn-secondary { background: transparent; color: var(--vmware-white); border-color: var(--vmware-white); }
 .btn-secondary:hover { background: var(--vmware-white); color: var(--vmware-blue); }
 
+/* ---- Hero Banner Logo + Tagline ---- */
+
+/* Visually hide text for accessibility (keeps <h1> for SEO) */
+.sr-only {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 1px, 1px);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Large logo inside hero banner */
+.hero-logo {
+  /* bigger, responsive, and capped for sharpness */
+  width: clamp(360px, 48vw, 1100px);  /* was: min(90%, 900px) */
+  height: auto;
+  display: block;
+  margin: 0 auto 1.25rem;
+  filter: drop-shadow(0 6px 18px rgba(0,0,0,.15));
+}
+
+/* Tagline text beneath logo */
+.hero-tagline {
+  font-size: clamp(1rem, 2.4vw, 1.5rem);
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  margin: 0 auto 1.5rem;
+  max-width: 900px;
+  color: var(--vmware-white);
+  text-shadow: 0 2px 6px rgba(0,0,0,.25);
+  opacity: 0.96;
+}
+
+
 /* ---------- Articles (Lists & Cards) ---------- */
 .articles-section { padding: 80px 0; background: var(--vmware-light-gray); }
 .section-header { text-align: center; margin-bottom: 3rem; }
