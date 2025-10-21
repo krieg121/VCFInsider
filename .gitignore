@@ -34,3 +34,4 @@ backup-*.zip
 backup-*.sha256
 *.bak
 NUL
+backup/
