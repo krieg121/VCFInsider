@@ -77,7 +77,7 @@ exclude:
   - .gitignore
   - .git/
   - .github/
-  - NUL 
+  - NUL
 
 # Include
 include:
@@ -98,3 +98,16 @@ seo:
   twitter:
     username: "VCFInsider"
     card: "summary_large_image"
+
+# Comments (Giscus)
+giscus:
+  repo: "krieg121/VCFInsider"
+  repo_id: "R_kgDOPu2RQA"
+  category: "Comments"              
+  category_id: "DIC_kwDOPu2RQM4Cw6XS"
+  mapping: "pathname"
+  reactions_enabled: "1"
+  emit_metadata: "0"
+  input_position: "bottom"
+  theme: "preferred_color_scheme"
+  lang: "en"
