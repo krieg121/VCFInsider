@@ -9,8 +9,7 @@
   <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
 
   <!-- Font Awesome (icons) -->
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer" />
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer" />
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -33,9 +32,6 @@
   <header class="site-header">
     <div class="container">
       <div class="header-content">
-        
-
-
         <nav class="main-nav">
           <ul class="nav-list">
             {% for item in site.navigation %}
@@ -60,6 +56,16 @@
   <!-- Main Content -->
   <main class="main-content">
     {{ content }}
+
+    {%- comment -%}
+      Giscus comments: shown on posts only (unless a post sets `comments: false`)
+      Requires: _includes/comments.html and giscus config in _config.yml
+    {%- endcomment -%}
+    {% if page.layout == 'post' or page.collection == 'posts' %}
+      {% if page.comments != false %}
+        {% include comments.html %}
+      {% endif %}
+    {% endif %}
   </main>
 
   <!-- Footer -->
