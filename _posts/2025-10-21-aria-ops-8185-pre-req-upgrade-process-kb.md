@@ -8,7 +8,6 @@ description: "Step-by-step pre-requisite upgrade process for Aria Operations 8.1
 image: /assets/images/posts/aria-ops-8185/vRops_8.18.5_upgrade_KB.png
 ---
 
-![Aria Operations 8.18.5 Pre-Req Upgrade Process (KB)](/assets/images/posts/aria-ops-8185/vRops_8.18.5_upgrade_KB.png)
 
 
 
