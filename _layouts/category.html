@@ -5,17 +5,21 @@ layout: default
 <div class="container page-content">
   {%- comment -%}
     Category hero using front-matter icon + accent.
-    Falls back gracefully if icon/accent/description are missing.
+    We DISPLAY the label exactly as authored (title > category > tag),
+    and use a separate raw/slug value only for lookups.
   {%- endcomment -%}
   <div class="cat-hero" style="--cat-accent: {{ page.accent | default: '#0077C8' }}">
-   <h1 class="title">
-  {% if page.icon_class %}
-    <i class="{{ page.icon_class }}"></i>
-  {% elsif page.icon %}
-    {{ page.icon }}
-  {% endif %}
-  {{ page.title }}
-</h1>
+    {%- assign display_label = page.title | default: page.category | default: page.tag -%}
+    {%- assign raw_label     = page.category | default: page.tag | default: page.title -%}
+
+    <h1 class="title">
+      {% if page.icon_class %}
+        <i class="{{ page.icon_class }}"></i>
+      {% elsif page.icon %}
+        {{ page.icon }}
+      {% endif %}
+      {{ display_label }}
+    </h1>
 
     {%- if page.description -%}
       <p class="desc">{{ page.description }}</p>
@@ -23,22 +27,34 @@ layout: default
   </div>
 
   {%- comment -%}
-    Resolve the collection name:
-    Prefer page.category, then page.tag, then page.title (as a last resort).
+    Find posts whose category *slug* matches this page (case/spacing agnostic).
   {%- endcomment -%}
-  {%- assign cat_name = page.category | default: page.tag | default: page.title -%}
+  {%- assign target_slug = raw_label | slugify -%}
 
-  {%- comment -%}
-    Get posts for this category (or tag). Ensure we always end up with an array.
-  {%- endcomment -%}
-  {%- assign posts = site.categories[cat_name] -%}
-  {%- if posts == nil -%}{%- assign posts = site.tags[cat_name] -%}{%- endif -%}
-  {%- if posts == nil -%}{%- assign posts = "" | split: "" -%}{%- endif -%}
+  {%- assign matched_posts = "" | split: "" -%}
+  {%- for pair in site.categories -%}
+    {%- assign key   = pair[0] -%}
+    {%- assign items = pair[1] -%}
+    {%- assign key_slug = key | slugify -%}
+    {%- if key_slug == target_slug -%}
+      {%- assign matched_posts = items -%}
+      {%- break -%}
+    {%- endif -%}
+  {%- endfor -%}
 
-  {%- comment -%}
-    Sort newest → oldest. Safe because `posts` is guaranteed to be an array.
-  {%- endcomment -%}
-  {%- assign posts = posts | sort: "date" | reverse -%}
+  {%- if matched_posts.size == 0 -%}
+    {%- for pair in site.tags -%}
+      {%- assign key   = pair[0] -%}
+      {%- assign items = pair[1] -%}
+      {%- assign key_slug = key | slugify -%}
+      {%- if key_slug == target_slug -%}
+        {%- assign matched_posts = items -%}
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+
+  {%- assign posts = matched_posts | sort: "date" | reverse -%}
 
   {%- if posts and posts.size > 0 -%}
     <div class="articles-grid">
@@ -54,7 +70,7 @@ layout: default
           {%- endif -%}
 
           <div class="article-content">
-            <span class="article-category">{{ cat_name }}</span>
+            <span class="article-category">{{ display_label }}</span>
 
             {%- assign now  = site.time | date: '%s' | plus: 0 -%}
             {%- assign then = post.date  | date: '%s' | plus: 0 -%}
