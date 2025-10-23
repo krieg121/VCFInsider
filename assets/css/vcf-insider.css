@@ -196,6 +196,16 @@ body {
   margin-bottom: 1rem;
 }
 
+/* Category pill when rendered as a link (home/blog cards) */
+a.article-category {
+  text-decoration: none;       /* remove underline */
+}
+a.article-category:hover,
+a.article-category:focus {
+  text-decoration: none;       /* keep underline off on hover/focus */
+}
+
+
 /* ---------- Page / Post Layout ---------- */
 .page-header {
   background: linear-gradient(135deg, var(--vmware-blue) 0%, var(--vmware-green) 100%);

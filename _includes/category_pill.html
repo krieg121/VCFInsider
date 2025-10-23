@@ -8,8 +8,27 @@ Usage:
 {% assign cats = include.categories | default: page.categories | default: post.categories %}
 {% if cats and cats.size > 0 %}
   {% for cat in cats %}
-    <a class="article-category" href="{{ "/categories/" | append: cat | slugify | append: "/" | relative_url }}">
-      {{ cat }}
+    {%- assign slug = cat | slugify -%}
+
+    {%- comment -%}
+      Custom label formatting for known cases
+    {%- endcomment -%}
+    {%- assign pretty_label = cat -%}
+    {%- if cat == "CloudFoundation" -%}
+      {%- assign pretty_label = "Cloud Foundation" -%}
+    {%- elsif cat == "AI&Automation" or cat == "AI-Automation" -%}
+      {%- assign pretty_label = "AI & Automation" -%}
+    {%- else -%}
+      {%- assign words = cat | replace: '-', ' ' | split: ' ' -%}
+      {%- capture pretty_label -%}
+        {%- for w in words -%}
+          {{ w | capitalize }}{% unless forloop.last %} {% endunless %}
+        {%- endfor -%}
+      {%- endcapture -%}
+    {%- endif -%}
+
+    <a class="article-category" href="{{ "/categories/" | append: slug | append: "/" | relative_url }}">
+      {{ pretty_label | strip }}
     </a>
   {% endfor %}
 {% endif %}

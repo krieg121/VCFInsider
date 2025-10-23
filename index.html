@@ -65,7 +65,43 @@ Usage inside your homepage cards:
           {% endif %}
 
           <div class="article-content">
-            <span class="article-category">{{ post.categories | first | default: 'VCF Insights' }}</span>
+         {%- assign cat_raw = post.categories | first -%}
+{%- if cat_raw -%}
+  {%- assign slug = cat_raw | slugify -%}
+
+  {%- comment -%} Find the matching category page by slug {%- endcomment -%}
+  {%- assign cat_page = nil -%}
+  {%- for p in _category_pages -%}
+    {%- assign p_key  = p.category | default: p.title -%}
+    {%- assign p_slug = p_key | slugify -%}
+    {%- if p_slug == slug -%}
+      {%- assign cat_page = p -%}
+      {%- break -%}
+    {%- endif -%}
+  {%- endfor -%}
+
+  {%- if cat_page -%}
+    {%- assign cat_label = cat_page.title -%}
+    {%- assign cat_href  = cat_page.url -%}
+  {%- else -%}
+    {%- assign tmp = cat_raw | replace: '-', ' ' | replace: '_', ' ' -%}
+    {%- assign words = tmp | split: ' ' -%}
+    {%- capture cat_label -%}
+      {%- for w in words -%}
+        {%- if w != '' -%}{{ w | capitalize }}{% unless forloop.last %} {% endunless %}{%- endif -%}
+      {%- endfor -%}
+    {%- endcapture -%}
+    {%- assign cat_href = '/categories/' | append: slug | append: '/' -%}
+  {%- endif -%}
+
+  <a class="article-category" href="{{ cat_href | relative_url }}">
+    {{ cat_label | strip }}
+  </a>
+{%- else -%}
+  <span class="article-category">VCF Insights</span>
+{%- endif -%}
+
+
 
             <h3 class="article-title">
               <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
