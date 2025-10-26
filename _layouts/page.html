@@ -2,19 +2,33 @@
 layout: default
 ---
 
-<article class="page">
-    <header class="page-header">
-        <div class="container">
-            <h1 class="page-title">{{ page.title | escape }}</h1>
-            {% if page.subtitle %}
-            <p class="page-subtitle">{{ page.subtitle | escape }}</p>
-            {% endif %}
-        </div>
-    </header>
-    
-    <div class="page-content">
-        <div class="container">
-            {{ content }}
-        </div>
+<header class="post-header">
+  <div class="container">
+    <div class="post-meta">
+      {% if page.categories %}
+        {% include category_pill.html categories=page.categories %}
+      {% endif %}
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%b %-d, %Y" }}</time>
     </div>
-</article>
+
+    <h1 class="post-title">{{ page.title }}</h1>
+
+    {% if page.subtitle %}
+      <p class="post-subtitle">{{ page.subtitle }}</p>
+    {% endif %}
+  </div>
+</header>
+
+{% if page.image %}
+  <div class="container">
+    <div class="post-featured-image">
+      <img src="{{ page.image | relative_url }}" alt="{{ page.title | escape }}">
+    </div>
+  </div>
+{% endif %}
+
+<main class="post-content">
+  <div class="container">
+    {{ content }}
+  </div>
+</main>
