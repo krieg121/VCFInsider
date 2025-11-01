@@ -27,34 +27,52 @@ layout: default
   </div>
 
   {%- comment -%}
-    Find posts whose category *slug* matches this page (case/spacing agnostic).
+    Build the post list by scanning site.posts so we catch BOTH:
+    - plural 'categories: [...]'
+    - singular 'category: ...'
+    Then match by slug, de-dup, and sort newest-first.
   {%- endcomment -%}
   {%- assign target_slug = raw_label | slugify -%}
+  {%- assign matched = "" | split: "" -%}
 
-  {%- assign matched_posts = "" | split: "" -%}
-  {%- for pair in site.categories -%}
-    {%- assign key   = pair[0] -%}
-    {%- assign items = pair[1] -%}
-    {%- assign key_slug = key | slugify -%}
-    {%- if key_slug == target_slug -%}
-      {%- assign matched_posts = items -%}
+  {%- for p in site.posts -%}
+    {%- assign hits = false -%}
+
+   {%- if p.categories and p.categories != empty -%}
+  {%- for c in p.categories -%}
+    {%- assign cslug = c | slugify -%}
+    {%- if cslug == target_slug -%}
+      {%- assign hits = true -%}
       {%- break -%}
     {%- endif -%}
   {%- endfor -%}
+{%- endif -%}
 
-  {%- if matched_posts.size == 0 -%}
-    {%- for pair in site.tags -%}
-      {%- assign key   = pair[0] -%}
-      {%- assign items = pair[1] -%}
-      {%- assign key_slug = key | slugify -%}
-      {%- if key_slug == target_slug -%}
-        {%- assign matched_posts = items -%}
-        {%- break -%}
-      {%- endif -%}
-    {%- endfor -%}
+
+    {%- if hits == false and p.category -%}
+  {%- assign cat_slug = p.category | slugify -%}
+  {%- if cat_slug == target_slug -%}
+    {%- assign hits = true -%}
   {%- endif -%}
+{%- endif -%}
 
-  {%- assign posts = matched_posts | sort: "date" | reverse -%}
+
+    {%- if hits -%}
+      {%- assign matched = matched | push: p -%}
+    {%- endif -%}
+  {%- endfor -%}
+
+  {%- comment -%} De-duplicate by URL (in case a post carries both forms) {%- endcomment -%}
+  {%- assign unique_posts = "" | split: "" -%}
+  {%- assign seen_urls = "" | split: "" -%}
+  {%- for p in matched -%}
+    {%- unless seen_urls contains p.url -%}
+      {%- assign seen_urls = seen_urls | push: p.url -%}
+      {%- assign unique_posts = unique_posts | push: p -%}
+    {%- endunless -%}
+  {%- endfor -%}
+
+  {%- assign posts = unique_posts | sort: "date" | reverse -%}
 
   {%- if posts and posts.size > 0 -%}
     <div class="articles-grid">

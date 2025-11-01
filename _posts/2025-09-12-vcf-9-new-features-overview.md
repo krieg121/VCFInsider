@@ -4,10 +4,14 @@ title: "VCF 9.0: New Features and Capabilities Overview"
 subtitle: "Exploring the latest innovations in VMware Cloud Foundation 9.0"
 date: 2025-09-12 14:00:00 -0000
 author: Chris
-category: Cloud Foundation
+categories: ["Cloud Foundation"]
 tags: [VCF, VMware, Cloud Foundation, vSphere, NSX, vSAN]
 # featured_image: /assets/images/vcf-9-features.jpg
 excerpt: "VMware Cloud Foundation 9.0 brings significant enhancements to automation, security, and hybrid cloud capabilities. Here's what you need to know."
+image: /assets/images/posts/2025-09-12-vcf-9-new-features-overview/vcf9_release-dial_1920x1080.webp
+thumbnail: /assets/images/posts/2025-09-12-vcf-9-new-features-overview/vcf9_release-dial_1920x1080.webp
+og_image: /assets/images/posts/2025-09-12-vcf-9-new-features-overview/vcf9_release-dial_1920x1080.webp
+
 ---
 
 # VCF 9.0: New Features and Capabilities Overview

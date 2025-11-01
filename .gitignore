@@ -35,3 +35,4 @@ backup-*.sha256
 *.bak
 NUL
 backup/
+\#\!usrbinenv bash.sh

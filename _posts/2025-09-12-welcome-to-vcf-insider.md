@@ -4,10 +4,14 @@ title: "Welcome to VCF Insider"
 subtitle: "Your Gateway to VMware Cloud Foundation Excellence"
 date: 2025-09-12 10:00:00 -0000
 author: VCF Insider Team
-category: Cloud Foundation
+categories: ["Cloud Foundation"]
 tags: [VCF, VMware, Cloud Foundation, Introduction]
 # featured_image: /assets/images/vcf-welcome.jpg
 excerpt: "Welcome to VCF Insider, your comprehensive resource for VMware Cloud Foundation insights, best practices, and expert guidance."
+image: /assets/images/posts/2025-09-12-welcome-to-vcf-insider/vcf-insider_door_round_1920x1080.webp
+thumbnail: /assets/images/posts/2025-09-12-welcome-to-vcf-insider/vcf-insider_door_round_1920x1080.webp
+og_image: /assets/images/posts/2025-09-12-welcome-to-vcf-insider/vcf-insider_door_round_1920x1080.webp
+
 ---
 
 # Welcome to VCF Insider!

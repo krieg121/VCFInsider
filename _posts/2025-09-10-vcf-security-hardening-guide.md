@@ -4,10 +4,14 @@ title: "VCF Security Hardening: A Comprehensive Guide"
 subtitle: "Essential security practices for VMware Cloud Foundation deployments"
 date: 2025-09-10 09:00:00 -0000
 author: Chris
-category: Security
+categories: ["Security"]
 tags: [VCF, Security, Hardening, VMware, Best Practices, Compliance]
 # featured_image: /assets/images/vcf-security.jpg
 excerpt: "Learn essential security hardening techniques for VMware Cloud Foundation to protect your private cloud infrastructure from threats and ensure compliance."
+image: /assets/images/posts/2025-09-10-vcf-security-hardening-guide/vcf-security-hardening_stack_1920x1080.webp
+thumbnail: /assets/images/posts/2025-09-10-vcf-security-hardening-guide/vcf-security-hardening_stack_1920x1080.webp
+og_image: /assets/images/posts/2025-09-10-vcf-security-hardening-guide/vcf-security-hardening_stack_1920x1080.webp
+
 ---
 
 # VCF Security Hardening: A Comprehensive Guide

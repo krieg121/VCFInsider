@@ -1,0 +1,23 @@
+{% comment %}
+Reusable category pill component — uses .article-category (blue rounded).
+Usage:
+  {% include category_pill.html categories=page.categories %}
+  {% include category_pill.html categories=post.categories %}
+{% endcomment %}
+
+{% assign cats = include.categories | default: page.categories | default: post.categories %}
+{% if cats and cats.size > 0 %}
+  {% for cat in cats %}
+    {%- assign slug  = cat | slugify -%}
+    {%- assign words = cat | replace: '-', ' ' | split: ' ' -%}
+    {%- capture cat_label -%}
+      {%- for w in words -%}
+        {{ w | capitalize }}{% unless forloop.last %} {% endunless %}
+      {%- endfor -%}
+    {%- endcapture -%}
+
+    <a class="article-category" href="{{ "/categories/" | append: slug | append: "/" | relative_url }}">
+      {{ cat_label | strip }}
+    </a>
+  {% endfor %}
+{% endif %}

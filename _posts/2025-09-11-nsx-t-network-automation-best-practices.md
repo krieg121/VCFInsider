@@ -8,6 +8,10 @@ category: Networking
 tags: [NSX-T, Automation, Networking, VCF, API, PowerShell]
 # featured_image: /assets/images/nsx-automation.jpg
 excerpt: "Learn how to automate NSX-T network operations in VCF environments using APIs, PowerShell, and best practices for scalable network management."
+image: /assets/images/posts/2025-09-11-nsx-t-network-automation-best-practices/nsxt-automation_conveyor_alt_1920x1080.webp
+thumbnail: /assets/images/posts/2025-09-11-nsx-t-network-automation-best-practices/nsxt-automation_conveyor_alt_1920x1080.webp
+og_image: /assets/images/posts/2025-09-11-nsx-t-network-automation-best-practices/nsxt-automation_conveyor_alt_1920x1080.webp
+
 ---
 
 # NSX-T Network Automation: Best Practices for VCF Environments
