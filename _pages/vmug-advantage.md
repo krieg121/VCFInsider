@@ -19,9 +19,9 @@ If you're building skills in **VMware Cloud Foundation (VCF)**, **vSphere**, **A
 VMUG has published updates explaining that **EvalExperience access changed after Nov 30, 2024**, and that a newer pathway for **VCF / VVS licensing** is tied to **Broadcom’s VCP program**. Read the current VMUG Advantage FAQ for the latest details.
 
 ### Learn more / Join VMUG Advantage
-- VMUG Advantage overview: https://www.vmug.com/membership/vmug-advantage-membership/
-- VMUG membership benefits (General vs Advantage): https://www.vmug.com/membership/membership-benefits/
-- Become a member: https://www.vmug.com/membership/become-a-member/
-- VMUG Advantage FAQ (updates on licensing): https://www.vmug.com/wp-content/uploads/2024/11/EvalExperience-Update-VMUG-Advantage-FAQ-11_5_2025.pdf
+- [VMUG Advantage overview:](https://www.vmug.com/membership/vmug-advantage-membership/)
+- [VMUG membership benefits](https://www.vmug.com/membership/membership-benefits/)
+- [Become a VMUG member!](https://www.vmug.com/membership/become-a-member/)
+- [VMUG Advantage FAQ](https://www.vmug.com/wp-content/uploads/2024/11/EvalExperience-Update-VMUG-Advantage-FAQ-11_5_2025.pdf)
 
 > Disclosure: This is an independent recommendation based on my community involvement and professional development focus. No sponsorship or compensation.
