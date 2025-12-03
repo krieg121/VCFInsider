@@ -36,9 +36,11 @@ navigation:
     url: /share-your-story/
   - title: Categories
     url: /categories/
+  - title: Resources
+    url: /resources/ 
   - title: Contact
     url: /contact/
-
+ 
 # Collections
 collections:
   posts:

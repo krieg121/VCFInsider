@@ -28,3 +28,82 @@
 .post-content .giscus{margin-top:2rem}
 .giscus, .giscus-frame{width:100%}
 iframe.giscus-frame{border:0; background:transparent}
+
+/* --- VMUG Advantage page override --- */
+body.vmug-advantage .post-content{
+  max-width: 900px;          /* override 72ch */
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+body.vmug-advantage .post-content ul,
+body.vmug-advantage .post-content ol{
+  text-align: left;
+  display: inline-block;
+  list-style-position: inside;
+  padding-left: 0;
+  margin: 0.75rem auto 1.25rem;
+}
+
+/* --- VMUG Advantage page override --- */
+body.vmug-advantage .post-content{
+  max-width: 900px;          /* overrides the 72ch constraint */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ============================================
+   Resources page formatting
+   ============================================ */
+
+body.resources .post-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+body.resources .post-content h2 {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+body.resources .post-content ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0.75rem auto 1.5rem;
+  max-width: 720px;
+}
+
+body.resources .post-content li {
+  margin: 0.75rem 0;
+}
+
+body.resources .post-content a {
+  display: block;
+  padding: 0.9rem 1.1rem;
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: var(--shadow-light);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+body.resources .post-content a:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-medium);
+}
+
+/* ============================================
+   Resources page: title banner tweaks
+   ============================================ */
+
+body.resources .post-header {
+  text-align: center;
+  padding: 44px 0;            /* slightly slimmer than default */
+}
+
+body.resources .post-title {
+  margin-bottom: 0;           /* tighter */
+  line-height: 1.15;
+}
