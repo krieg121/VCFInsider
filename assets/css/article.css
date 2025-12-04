@@ -1,42 +1,143 @@
+/* =========================================================
+   VCF Insider — Article/Page Enhancements (add-ons)
+   Loaded AFTER vcf-insider.css
+   ========================================================= */
+
+/* Use site tokens if present; fall back cleanly */
 :root{
-  --fcb-navy:#002856; --fcb-blue:#0077C8; --fcb-gray:#E6E6E6; --fcb-dark:#333333; --codebg:#0B1020;
+  --fcb-navy: var(--vmware-navy, #002856);
+  --fcb-blue: #0077C8;
+  --fcb-gray: #E6E6E6;
+  --fcb-dark: #333333;
+  --codebg: #0B1020;
 }
-.post-content{max-width:72ch; line-height:1.65; font-size:1.06rem}
-.post-content h2{margin-top:2.2rem; color:var(--fcb-navy)}
-.post-content h3{margin-top:1.6rem; color:var(--fcb-navy)}
-.post-content .lead{font-size:1.12rem; opacity:.95}
-/* callouts */
-.admonition{border-left:4px solid var(--fcb-blue); background:#F4F9FD; padding:.9rem 1rem; border-radius:.5rem; margin:1rem 0}
-.admonition.warning{border-left-color:#FF7A59; background:#FFF7F4}
-.admonition.info{border-left-color:#0077C8}
-.kb{border:1px solid var(--fcb-gray); border-left:4px solid var(--fcb-blue); padding:.8rem 1rem; border-radius:.5rem; background:#fff; margin:1rem 0}
-/* tables */
-.post-content table{border-collapse:collapse; width:100%; margin:1rem 0; border:1px solid var(--fcb-gray)}
-.post-content th, .post-content td{padding:.6rem .7rem; border-top:1px solid var(--fcb-gray); text-align:left}
-.post-content thead th{background:#f1f6fb}
-/* code blocks */
-.post-content pre{position:relative; border:1px solid var(--fcb-gray); border-radius:.6rem; padding:1rem; background:var(--codebg); color:#E6E6E6; overflow:auto}
-.post-content pre code{white-space:pre}
-.post-content code{background:#eef3f8; border:1px solid #dfe7ef; border-radius:.35rem; padding:.1rem .35rem; font-size:.95em}
-/* copy button */
-.post-content pre .copy{position:absolute; top:8px; right:8px; font-size:.8rem; border:1px solid #dcdcdc; background:#fff; border-radius:.35rem; padding:.25rem .5rem; cursor:pointer}
-/* details */
-.post-content details{border:1px solid var(--fcb-gray); border-radius:.5rem; background:#fff; margin:1rem 0}
-.post-content summary{padding:.8rem 1rem; cursor:pointer; font-weight:600; color:var(--fcb-navy)}
-.post-content details>div{padding:0 1rem 1rem}
-/* giscus container */
-.post-content .giscus{margin-top:2rem}
-.giscus, .giscus-frame{width:100%}
-iframe.giscus-frame{border:0; background:transparent}
+
+/* Apply enhancements to BOTH posts and pages */
+.post-content,
+.page-content {}
+
+/* -------- Callouts / Boxes -------- */
+.admonition{
+  border-left: 4px solid var(--fcb-blue);
+  background: #F4F9FD;
+  padding: .9rem 1rem;
+  border-radius: .5rem;
+  margin: 1rem 0;
+}
+.admonition.warning{
+  border-left-color: #FF7A59;
+  background: #FFF7F4;
+}
+.admonition.info{
+  border-left-color: var(--fcb-blue);
+}
+
+.kb{
+  border: 1px solid var(--fcb-gray);
+  border-left: 4px solid var(--fcb-blue);
+  padding: .8rem 1rem;
+  border-radius: .5rem;
+  background: #fff;
+  margin: 1rem 0;
+}
+
+/* -------- Tables -------- */
+.post-content table,
+.page-content table{
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1rem 0;
+  border: 1px solid var(--fcb-gray);
+}
+.post-content th, .post-content td,
+.page-content th, .page-content td{
+  padding: .6rem .7rem;
+  border-top: 1px solid var(--fcb-gray);
+  text-align: left;
+}
+.post-content thead th,
+.page-content thead th{
+  background: #f1f6fb;
+}
+
+/* -------- Code blocks -------- */
+.post-content pre,
+.page-content pre{
+  position: relative;
+  border: 1px solid var(--fcb-gray);
+  border-radius: .6rem;
+  padding: 1rem;
+  background: var(--codebg);
+  color: #E6E6E6;
+  overflow: auto;
+}
+.post-content pre code,
+.page-content pre code{
+  white-space: pre;
+}
+.post-content code,
+.page-content code{
+  background: #eef3f8;
+  border: 1px solid #dfe7ef;
+  border-radius: .35rem;
+  padding: .1rem .35rem;
+  font-size: .95em;
+}
+
+/* Copy button (if you inject one via JS) */
+.post-content pre .copy,
+.page-content pre .copy{
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: .8rem;
+  border: 1px solid #dcdcdc;
+  background: #fff;
+  border-radius: .35rem;
+  padding: .25rem .5rem;
+  cursor: pointer;
+}
+
+/* -------- Details / Accordion -------- */
+.post-content details,
+.page-content details{
+  border: 1px solid var(--fcb-gray);
+  border-radius: .5rem;
+  background: #fff;
+  margin: 1rem 0;
+}
+.post-content summary,
+.page-content summary{
+  padding: .8rem 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--fcb-navy);
+}
+.post-content details > div,
+.page-content details > div{
+  padding: 0 1rem 1rem;
+}
+
+/* -------- Giscus -------- */
+.post-content .giscus,
+.page-content .giscus{
+  margin-top: 2rem;
+}
+.giscus, .giscus-frame{ width: 100%; }
+iframe.giscus-frame{ border: 0; background: transparent; }
+
+/* =========================================================
+   Page-specific overrides (use body_class)
+   ========================================================= */
 
 /* --- VMUG Advantage page override --- */
-body.vmug-advantage .post-content{
-  max-width: 900px;          /* override 72ch */
-  margin-left: auto;
-  margin-right: auto;
+body.vmug-advantage .page-content > .container,
+body.vmug-advantage .post-content > .container{
+  max-width: 900px;
   text-align: center;
 }
-
+body.vmug-advantage .page-content ul,
+body.vmug-advantage .page-content ol,
 body.vmug-advantage .post-content ul,
 body.vmug-advantage .post-content ol{
   text-align: left;
@@ -46,64 +147,58 @@ body.vmug-advantage .post-content ol{
   margin: 0.75rem auto 1.25rem;
 }
 
-/* --- VMUG Advantage page override --- */
-body.vmug-advantage .post-content{
-  max-width: 900px;          /* overrides the 72ch constraint */
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* ============================================
-   Resources page formatting
-   ============================================ */
-
-body.resources .post-content {
+/* --- Resources page formatting --- */
+body.resources .page-content > .container,
+body.resources .post-content > .container{
   max-width: 900px;
-  margin: 0 auto;
 }
 
-body.resources .post-content h2 {
+body.resources .page-content h2,
+body.resources .post-content h2{
   margin-top: 2rem;
   text-align: center;
 }
 
-body.resources .post-content ul {
+body.resources .page-content ul,
+body.resources .post-content ul{
   list-style: none;
   padding-left: 0;
   margin: 0.75rem auto 1.5rem;
   max-width: 720px;
 }
 
-body.resources .post-content li {
+body.resources .page-content li,
+body.resources .post-content li{
   margin: 0.75rem 0;
 }
 
-body.resources .post-content a {
+body.resources .page-content a,
+body.resources .post-content a{
   display: block;
   padding: 0.9rem 1.1rem;
-  border: 1px solid var(--border-light);
+  border: 1px solid var(--border-light, var(--fcb-gray));
   border-radius: 12px;
   background: #fff;
-  box-shadow: var(--shadow-light);
+  box-shadow: var(--shadow-light, 0 2px 10px rgba(0,0,0,.10));
   text-decoration: none;
   font-weight: 600;
+  transition: transform .15s ease, box-shadow .15s ease;
 }
 
-body.resources .post-content a:hover {
+body.resources .page-content a:hover,
+body.resources .post-content a:hover{
   transform: translateY(-1px);
-  box-shadow: var(--shadow-medium);
+  box-shadow: var(--shadow-medium, 0 4px 20px rgba(0,0,0,.15));
 }
 
-/* ============================================
-   Resources page: title banner tweaks
-   ============================================ */
-
-body.resources .post-header {
+/* Optional title banner tweaks for Resources */
+body.resources .post-header,
+body.resources .page-header{
   text-align: center;
-  padding: 44px 0;            /* slightly slimmer than default */
+  padding: 44px 0;
 }
-
-body.resources .post-title {
-  margin-bottom: 0;           /* tighter */
+body.resources .post-title,
+body.resources .page-title{
+  margin-bottom: 0;
   line-height: 1.15;
 }
