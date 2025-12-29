@@ -156,7 +156,7 @@ This script is one piece of a broader compliance workflow. Future directions inc
 
 A public, sanitized version of this script is available for download below.
 
-👉 [Download Master_CIS_Remediation_v5.8.6_SANITIZED.ps1](/assets/downloads/scripts/Master_CIS_Remediation_v5.8.6_PUBLIC.ps1)
+👉 [Download Master_CIS_Remediation_v5.8.6_SANITIZED.ps1](/assets/downloads/scripts/Master_CIS_Remediation_v5.8.6_SANITIZED.ps1)
 
 > ⚠️ This script is provided as-is for educational purposes.  
 > Always review and test in a lab environment before running in production.
