@@ -13,12 +13,28 @@ tags:
   - powercli
   - automation
   - vcenter
+body_class: cis-remediation
 description: "A field-tested look at how my Master_CIS_Remediation v5.8.6 script safely enforces CIS-aligned ESXi settings across selected vCenters—complete with dry-run and backout support."
 image: /assets/images/posts/2025-12-29-master-cis-remediation/master-cis-remediation_1920x1080.webp
 thumbnail: /assets/images/posts/2025-12-29-master-cis-remediation/master-cis-remediation_1920x1080.webp
 og_image: /assets/images/posts/2025-12-29-master-cis-remediation/master-cis-remediation_1920x1080.webp
-body_class: field-notes
 ---
+
+<span style="
+  display:inline-block;
+  margin:0.75rem 0 1.5rem;
+  padding:0.35rem 0.75rem;
+  font-size:0.75rem;
+  font-weight:500;
+  letter-spacing:0.04em;
+  text-transform:uppercase;
+  color:#0077C8;
+  background-color:rgba(0,119,200,0.08);
+  border:1px solid rgba(0,119,200,0.35);
+  border-radius:999px;
+">
+Includes Downloadable Script
+</span>
 
 ## Why I Built This
 
