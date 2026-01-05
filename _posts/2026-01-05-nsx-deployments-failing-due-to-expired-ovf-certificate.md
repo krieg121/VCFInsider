@@ -12,6 +12,9 @@ thumbnail: /assets/images/posts/2026-01-07-nsx-expired-ovf-cert/nsx-expired-ovf-
 og_image: /assets/images/posts/2026-01-07-nsx-expired-ovf-cert/nsx-expired-ovf-cert_1920x1080.webp
 ---
 
+**🎉 First article of the new year — Happy 2026.**  
+Wishing you a year of projects completed successfully, on time, and on budget. I’m looking forward to learning and sharing what’s new as VMware Cloud Foundation 9 continues to take shape this year.
+
 Over the past few days, Broadcom has identified an issue impacting VMware NSX environments where **new deployments and redeployments of NSX Managers and Edges can fail due to an expired OVF signing certificate**.
 
 This issue does **not** affect running workloads or existing NSX components. However, it *does* block several critical operational workflows that many teams only discover when they urgently need them.
