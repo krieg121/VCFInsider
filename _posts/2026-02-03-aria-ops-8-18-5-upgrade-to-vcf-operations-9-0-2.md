@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Aria Operations 8.18.5 Upgrade to VCF Operations 9.0.2 (Lab Field Notes)"
-subtitle: "Two gotchas: empty vCenter/cluster dropdown & a DNS fat-finger"
+subtitle: "Error free...for the most part"
 date: 2026-02-03 09:00:00 -0500
 author: Chris
 categories: ["Cloud Foundation"]
