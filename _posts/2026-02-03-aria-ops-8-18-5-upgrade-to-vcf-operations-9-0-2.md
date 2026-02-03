@@ -21,7 +21,7 @@ VCF Operations upgrade guide:
 
 Backup/restore reference (useful if you’re **not** upgrading through VCF Lifecycle/LCM):  
  - [VCF 9.x docs: Upgrade / Backup / Restore (non-VCF path)](https://techdocs.broadcom.com/us/en/vmware-cis/vcf/vcf-9-0-and-later/9-0/deployment/upgrading-cloud-foundation/preparing-your-vcf-9-management-components/upgrade-backup-and-restore.html)
-## Key prerequisite I almost missed
+## Key prerequisite
 
 If you’re on **Aria Operations 8.18.5** and targeting **VCF Operations 9.0.2**, make sure your **Aria Suite Lifecycle (vRSLCM)** is updated to **8.18.0 Patch 6** first—otherwise LCM may not recognize the 9.0.2 upgrade path.
 
