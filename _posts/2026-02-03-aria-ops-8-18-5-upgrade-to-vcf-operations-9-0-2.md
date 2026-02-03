@@ -19,7 +19,7 @@ Over the last week or so, I upgraded our lab **Aria Operations (vROps) 8.18.5** 
 VCF Operations upgrade guide:  
   - [VCF 9.x docs: Upgrade to VCF Operations](https://techdocs.broadcom.com/us/en/vmware-cis/vcf/vcf-9-0-and-later/9-0/deployment/upgrading-cloud-foundation/preparing-your-vcf-9-management-components/upgrading-management-components/upgrade-to-vcf-operations.html)
 
-Backup/restore reference (useful if you’re **not** upgrading through VCF Lifecycle/LCM):  
+Upgrade guide reference if you’re **not** upgrading through VCF Lifecycle/LCM:  
  - [VCF 9.x docs: Upgrade / Backup / Restore (non-VCF path)](https://techdocs.broadcom.com/us/en/vmware-cis/vcf/vcf-9-0-and-later/9-0/deployment/upgrading-cloud-foundation/preparing-your-vcf-9-management-components/upgrade-backup-and-restore.html)
 ## Key prerequisite
 
