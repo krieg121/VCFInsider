@@ -5,11 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  {%- comment -%}
-    Google Analytics / gtag.js
-    Placed at the top of <head> so it runs on every page.
-  {%- endcomment -%}
-  <!-- Google tag (gtag.js) -->
+  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-K3KQHBGRRL"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -19,28 +15,36 @@
   </script>
 
   <title>{% if page.title %}{{ page.title | escape }} | {% endif %}{{ site.title | escape }}</title>
-  <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
 
-  <!-- Font Awesome (icons) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer" />
+  <meta name="description"
+        content="{{ page.excerpt | default: site.description | strip_html | strip_newlines | truncate: 160 | escape }}">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        referrerpolicy="no-referrer" />
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
 
   <!-- SEO -->
   {% seo %}
 
-  <!-- RSS Feed -->
-  <link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }}" href="{{ '/feed.xml' | relative_url }}">
+  <!-- RSS / Atom Feed Auto-Discovery -->
+  {% feed_meta %}
 
   <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="{{ '/assets/images/favicon.ico' | relative_url }}">
+  <link rel="icon"
+        type="image/x-icon"
+        href="{{ '/assets/images/favicon.ico' | relative_url }}">
 
-  <!-- VCF Insider CSS (LAST + cache-buster so new styles always load) -->
-  <link rel="stylesheet" href="{{ '/assets/css/vcf-insider.css' | relative_url }}?v={{ site.time | date: '%s' }}">
-<!-- Article readability styles -->
-<link rel="stylesheet" href="{{ '/assets/css/article.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+  <!-- VCF Insider CSS -->
+  <link rel="stylesheet"
+        href="{{ '/assets/css/vcf-insider.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 
+  <link rel="stylesheet"
+        href="{{ '/assets/css/article.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 </head>
 
 <body class="{{ page.body_class | default: '' }}">
@@ -54,7 +58,8 @@
           <ul class="nav-list">
             {% for item in site.navigation %}
               <li class="nav-item">
-                <a href="{{ item.url | relative_url }}" class="nav-link {% if page.url == item.url %}active{% endif %}">
+                <a href="{{ item.url | relative_url }}"
+                   class="nav-link {% if page.url == item.url %}active{% endif %}">
                   {{ item.title }}
                 </a>
               </li>
@@ -63,7 +68,9 @@
         </nav>
 
         <div class="header-actions">
-          <a href="{{ '/feed.xml' | relative_url }}" class="rss-link" title="RSS Feed">
+          <a href="{{ '/feed.xml' | relative_url }}"
+             class="rss-link"
+             title="RSS Feed">
             <i class="fas fa-rss"></i>
           </a>
         </div>
@@ -76,10 +83,6 @@
   <main class="main-content">
     {{ content }}
 
-    {%- comment -%}
-      Show Giscus under blog posts only.
-      Page/post authors can disable with `comments: false` in front matter.
-    {%- endcomment -%}
     {% if page.layout == 'post' or page.collection == 'posts' %}
       {% if page.comments != false %}
         {% include comments.html %}
@@ -91,6 +94,7 @@
   <footer class="site-footer">
     <div class="container">
       <div class="footer-content">
+
         <div class="footer-section">
           <h3>VCF Insider</h3>
           <p>Your trusted source for VMware Cloud Foundation insights, tutorials, and best practices.</p>
@@ -135,10 +139,13 @@
             <button type="submit">Subscribe</button>
           </form>
         </div>
+
       </div>
 
       <div class="footer-bottom">
-        <p>&copy; {{ 'now' | date: "%Y" }} VCF Insider. All rights reserved. | Built with ❤️ for the VMware community</p>
+        <p>&copy; {{ 'now' | date: "%Y" }} VCF Insider.
+           All rights reserved. |
+           Built with ❤️ for the VMware community</p>
       </div>
     </div>
   </footer>

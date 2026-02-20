@@ -19,7 +19,7 @@ github: [metadata]
 
 # Site settings
 author:
-  name: Chris
+  name: Chris Kitchens
   email: Chris@VCFInsider.com
   twitter: VCFInsider
   github: krieg121
@@ -37,7 +37,7 @@ navigation:
   - title: Categories
     url: /categories/
   - title: Resources
-    url: /resources/ 
+    url: /resources/
   - title: Contact
     url: /contact/
  
@@ -57,7 +57,7 @@ defaults:
       type: "posts"
     values:
       layout: "post"
-      author: "VCF Insider Team"
+      author: "Chris Kitchens"
   - scope:
       path: ""
       type: "pages"
@@ -84,6 +84,8 @@ exclude:
 # Include
 include:
   - _pages
+
+excerpt_separator: "<!--more-->"
 
 # RSS Feed
 feed:
