@@ -8,6 +8,7 @@
   --vmware-blue: #007CBA;
   --vmware-green: #8BC34A;
   --vmware-navy: #002856;
+  --vmware-orange: #F59E0B;
 
   --vmware-dark-gray: #2C3E50;
   --vmware-light-gray: #F8F9FA;
@@ -467,24 +468,54 @@ a.article-category:focus { text-decoration: none; }
 
 /* ---------- Certifications Grid (About page) ---------- */
 .cert-wrap { margin: 2.5rem 0; }
-.cert-title { font-size: 1.25rem; margin-bottom: 1rem; color: var(--text-primary); }
+
+.cert-title {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
 .cert-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 1rem 1.25rem;
-  align-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+  gap: 1rem;
+  align-items: start;
 }
+
 .cert-card {
   background: var(--vmware-light-gray);
   border: 1px solid rgba(0,0,0,.06);
   border-radius: var(--border-radius);
   text-align: center;
-  padding: .75rem;
+  padding: .75rem .65rem;
   transition: var(--transition);
+  min-height: 118px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
-.cert-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-light); }
-.cert-card img { max-width: 100%; max-height: 56px; display: block; margin: 0 auto; filter: saturate(1.05); }
-.cert-caption { margin-top: .5rem; font-size: .85rem; color: var(--text-secondary); }
+
+.cert-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-light);
+}
+
+.cert-card img {
+  max-width: 100%;
+  height: 52px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+  filter: saturate(1.05);
+}
+
+.cert-caption {
+  margin-top: .55rem;
+  font-size: .85rem;
+  line-height: 1.3;
+  color: var(--text-secondary);
+}
 
 /* ---------- Footer ---------- */
 .site-footer {

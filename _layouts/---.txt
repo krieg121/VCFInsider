@@ -1,10 +1,10 @@
 ---
 layout: post
 title: "Distributed Power Management: The VMware Feature Most Enterprises Never Used"
-subtitle: "Why DPM remains one of vSphere’s most capable — yet most overlooked — automation features."
-date: 2026-03-12
+subtitle: "Why DPM remains one of vSphere’s most capable — yet most overlooked — automation features, and how to make it work for you in 2026."
+date: 2026-03-14
 author: Chris Kitchens
-categories: ["Automation"]
+categories: ["VCF Operations"]
 tags: ["vSphere", "VCF", "Automation", "Power Management", "DRS"]
 description: "Distributed Power Management (DPM) automatically powers hosts on and off based on demand, yet most enterprises never enabled it. Here's why—and how to make it work in modern VMware Cloud Foundation environments."
 image: /assets/images/posts/2026-03-14-distributed-power-management-the-vmware-feature-most-enterprises-never-used/hero.webp
@@ -33,10 +33,11 @@ When demand rises, DPM wakes the host through the same interface and reintegrate
 In VMware Cloud Foundation (VCF), the behavior is the same. Each Workload Domain runs its own vCenter and DRS cluster, so DPM operates locally within that domain. The logic is identical whether you’re managing a single vSphere cluster or a VCF-managed environment.
 
 ## Real-World Scenario
-Earlier in my career I worked for a company that had roughly 250 employees. Our server room was local, not a vast datacenter and Cloud wasn't even a thing yet. Power consumption and cooling costs were a real concern. Our team was tasked to see if we could find a way to cut costs. I suggested DPM. I was given the OK to test it on NP. After enabling and configuring the test cluster, I let it run for awhile. Eventually it powered down 2 hosts in a 5 node cluster (You can control how many hosts it will power down). You can use BMC software to wake up the servers, but you can also use WOL nics. If I remember correctly, your BMC nic needs to be WOL enabled if you go this route.
+In one large enterprise environment I worked with, power and cooling costs were a constant concern. The virtualization team had hundreds of ESXi hosts running at 10–20% utilization overnight. The facilities group asked if we could reduce power draw during off-hours.
 
-I spent a week testing the cluster, running servers hot to see if it would power on hosts when needed. It did. I pulled the plug on a server to see what would happen. It powered up a host, and HA'd the VMs over to it and powered them on. In short, it was solid. I was impressed to say the least. I then implemented it in non-prod. Let it run for a month or two, then prod. Mind you, I didn't enable this on EVERY cluster we had. I don't remember how much $$$ we ended up saving (this was back in 2009) but I do remember it definitely helped. I think our team got some Jimmy Johns out of it (I hate JJs, LOL).
+We tested DPM on a small non-production cluster. The hosts were identical, all with modern BMC firmware and consistent BIOS settings. Within minutes of enabling DPM, the cluster powered down half its hosts after vMotioning workloads. The next morning, as developers logged in and workloads ramped up, DPM automatically powered the hosts back on. The entire cycle was seamless.
 
+That test cluster saved measurable power and cooling capacity—and proved the feature worked exactly as designed.
 
 ## Technical Analysis
 From a technical standpoint, DPM relies on several moving parts working together:
@@ -46,8 +47,6 @@ vCenter Server: Runs the DRS and DPM logic, evaluating resource demand and issui
 ESXi Host Agents (hostd/vpxa): Handle standby and wake operations when directed by vCenter.
 
 BMC Interfaces (iLO, iDRAC, IPMI, Redfish): Provide out-of-band power control.
-or
-WOL Nics
 
 DRS Scheduler: Ensures no powered-off host is holding critical workloads before shutdown.
 
@@ -63,23 +62,19 @@ When cluster demand increases, DRS requests additional capacity.
 
 DPM issues a power-on command, waits for the host to rejoin vCenter, and rebalances workloads.
 
-Latency between the power-on event and host readiness depends mostly on hardware and firmware. Modern Redfish-based controllers are much faster than older IPMI implementations. Just keep in mind, HA restart times may be longer due to the boot up.
+Latency between the power-on event and host readiness depends mostly on hardware and firmware. Modern Redfish-based controllers are much faster than older IPMI implementations.
 
 ## Operational Considerations
-So why isn’t everyone using DPM? 
-1. In my experience, I have heard "We pay a flat rate for our power so this wouldn't save us any $$$"
+So why isn’t everyone using DPM? In many environments, it comes down to trust and predictability.
 
-2. "If a server is powered down, someone may take it" (LOL).
+## Common Concerns
+Fear of automation: Many admins are uncomfortable letting vCenter power-cycle physical hardware automatically.
 
-3. Fear of automation: Many admins are uncomfortable letting vCenter power-cycle physical hardware automatically.
+Mixed hardware: DPM works best when all hosts have identical firmware, BIOS settings, and BMC interfaces. Mixed generations often behave inconsistently.
 
-4. Mixed hardware: DPM works best when all hosts have identical firmware, BIOS settings, and BMC interfaces. Mixed generations often behave inconsistently.
+Power-on latency: If a host takes several minutes to boot, DPM may lag behind sudden demand spikes.
 
-5. Power-on latency: If a host takes several minutes to boot, DPM may lag behind sudden demand spikes.
-
-6. Historical firmware issues: Early IPMI and BMC bugs caused occasional failures to wake hosts, leaving clusters short on capacity.
-
-I could go on, but it basically boils down to trust.
+Historical firmware issues: Early IPMI and BMC bugs caused occasional failures to wake hosts, leaving clusters short on capacity.
 
 ## Environmental Factors
 Power and cooling behavior vary widely between data centers. In some facilities, idle hosts still draw significant baseline power, reducing the benefit of DPM. In others—especially where energy costs or thermal limits are tight—the savings can be substantial.
@@ -87,47 +82,47 @@ Power and cooling behavior vary widely between data centers. In some facilities,
 ## Integration and Monitoring
 DPM actions appear in vCenter events and can be tracked in Aria Operations. 
 
-1. It’s good practice to monitor:
+It’s good practice to monitor:
 
-2. Number of hosts in standby
+Number of hosts in standby
 
-3. Average power-on duration
+Average power-on duration
 
-4. Cluster resource headroom before DPM triggers
+Cluster resource headroom before DPM triggers
 
-5. Any failed power-on or power-off attempts
+Any failed power-on or power-off attempts
 
 ## Where DPM Shines
 DPM isn’t for every cluster—but it’s perfect for some.
 
-1. Dev/Test Clusters: Idle capacity overnight can be safely powered down without impacting SLAs.
+Dev/Test Clusters: Idle capacity overnight can be safely powered down without impacting SLAs.
 
-2. Lab Environments: Ideal for transient workloads and experimentation.
+Lab Environments: Ideal for transient workloads and experimentation.
 
-3. VDI Clusters: Predictable daily demand cycles make host power management easy to tune.
+VDI Clusters: Predictable daily demand cycles make host power management easy to tune.
 
-4. Edge Deployments: When every watt matters, automated host control helps stay within power budgets.
+Edge Deployments: When every watt matters, automated host control helps stay within power budgets.
 
-5. Sustainability-Focused Operations: DPM directly supports measurable energy efficiency goals.
+Sustainability-Focused Operations: DPM directly supports measurable energy efficiency goals.
 
 ## Lessons Learned
 A few patterns emerge from real-world usage:
 
-1. Consistency is key. Identical hardware and firmware eliminate most DPM issues.
+Consistency is key. Identical hardware and firmware eliminate most DPM issues.
 
-2. Test before production. Validate in a non-critical cluster to measure wake latency and reliability.
+Test before production. Validate in a non-critical cluster to measure wake latency and reliability.
 
-3. Integrate with monitoring. Visibility builds confidence—knowing when and why hosts power off helps teams trust automation.
+Don’t overreact to early versions. Many admins formed opinions from 2009-era experiences. Modern DPM is far more reliable.
 
-4. DPM and HA coexist fine. vSphere HA respects powered-off hosts and won’t place workloads there until DPM brings them online.
+Integrate with monitoring. Visibility builds confidence—knowing when and why hosts power off helps teams trust automation.
+
+DPM and HA coexist fine. vSphere HA respects powered-off hosts and won’t place workloads there until DPM brings them online.
 
 Once tuned, DPM becomes nearly invisible. The cluster quietly scales itself up and down, saving power without manual intervention.
 
 ## Conclusion
 Distributed Power Management is one of those features that quietly matured while the industry moved on to other automation topics. It’s stable, effective, and fully supported in modern vSphere and VCF releases. Yet, most enterprises still leave it disabled.
 
-If your clusters have predictable load patterns or idle capacity, it’s worth revisiting. Start small, validate hardware compatibility, and monitor results. You might be surprised how well it works and how much $$$ you save.
+If your clusters have predictable load patterns or idle capacity, it’s worth revisiting. Start small, validate hardware compatibility, and monitor results. You might be surprised how well it works.
 
-DPM isn’t a broken feature. It’s a forgotten one. And imo, it’s time to remember it.
-
--Chris
+DPM isn’t a broken feature. It’s a forgotten one. And in 2026, it’s time to remember it.

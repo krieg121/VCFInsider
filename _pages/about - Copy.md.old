@@ -7,10 +7,9 @@ permalink: /about/
 
 ## Welcome to VCF Insider
 
+Welcome to VCF Insider – your ultimate resource for VMware Cloud Foundation (VCF) technology. Led by an IT professional with 25 years of experience centered around virtualization, including certifications as a VCP for vSphere 4, 5, and 2023 (7), VCF Insider offers expert insights, practical advice, and in-depth tutorials on VMware Cloud Foundation.
 
-Welcome to VCF Insider – a practical resource for VMware Cloud Foundation (VCF) professionals. Led by an IT engineer with 25 years of experience centered around virtualization, VCF Insider shares real-world insights drawn from enterprise infrastructure work, hands-on troubleshooting, and day-to-day experience with VMware Cloud Foundation.
-
-This blog is built for IT architects, system administrators, and cloud engineers who want useful, field-tested content instead they can actually use. From architecture and operations to automation, upgrades, and lessons learned, VCF Insider is here to help you design, deploy, manage, and improve VCF environments with confidence.
+This blog is designed to empower IT architects, system admins and cloud engineers with the tools, techniques and updates needed to master VCF technology. Whether you're focused on architecture, automation, or multi-cloud strategies, VCF Insider will help guide you. Join the VCF Insider community and learn how to optimize, deploy, and manage VMware Cloud Foundation.
 
 ## Our Mission
 
@@ -44,17 +43,11 @@ VCF Insider is dedicated to providing comprehensive insights, tutorials, and bes
     <p style="color: var(--text-secondary);">Cutting-edge solutions and innovative approaches to cloud infrastructure challenges, keeping you at the forefront of technology.</p>
 </div>
 
-<div class="feature-card" style="background: var(--vmware-light-gray); padding: 2rem; border-radius: var(--border-radius-lg); text-align: center; border: 2px solid var(--vmware-navy);">
-    <div style="font-size: 3rem; color: var(--vmware-navy); margin-bottom: 1rem;">📋</div>
-    <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Lab &amp; Field Notes</h3>
-    <p style="color: var(--text-secondary);">Hands-on upgrade notes, troubleshooting lessons, and real-world observations from lab work and field experience.</p>
-</div>
-
 </div>
 
 ## Our Expertise
 
-VCF Insider focuses on hands-on experience across key areas of VMware Cloud Foundation, including:
+Our team consists of VMware Cloud Foundation experts with years of hands-on experience in:
 
 - **VCF Architecture & Design** - Planning and implementing robust VCF environments  
 - **AI & Automation** - Leveraging VCF for AI workloads and automation  
