@@ -12,7 +12,9 @@ thumbnail: "/assets/images/posts/2026-05-05-broadcom-announces-vmware-cloud-foun
 og_image: "/assets/images/posts/2026-05-05-broadcom-announces-vmware-cloud-foundation-9-1/hero.webp"
 ---
 
-Broadcom announced VMware Cloud Foundation 9.1 today, and while the version number makes it sound like a normal point release, the messaging around this one is much bigger than that.
+Broadcom announced VMware Cloud Foundation 9.1 today, and while the version number makes it sound like a normal point release, the messaging around this one is much bigger than that. 
+
+Broadcom is also hosting an **Inside VMware Cloud Foundation** session covering the release and the direction of the platform. You can find that event page here: [Inside VMware Cloud Foundation](https://go-vmware.broadcom.com/inside-vmware-cloud-foundation).
 
 VCF 9.1 is being positioned as a private cloud platform for production AI, modern applications, Kubernetes, traditional VMs, and stronger cyber resilience. That is a pretty clear signal: Broadcom wants VCF to be viewed less as a virtualization bundle and more as the standard operating platform for enterprise private cloud.
 
@@ -26,19 +28,19 @@ One of the biggest messages around VCF 9.1 is efficiency. Broadcom is calling ou
 
 A few items stood out immediately:
 
-Enhanced NVMe memory tiering
-Improved vSAN deduplication and compression
-Larger VCF fleet scale
-Faster cluster upgrades
-More Kubernetes scale through vSphere Kubernetes Service
-Better observability for private AI workloads
-Stronger security and compliance capabilities built into the platform
+- Enhanced NVMe memory tiering
+- Improved vSAN deduplication and compression
+- Larger VCF fleet scale
+- Faster cluster upgrades
+- More Kubernetes scale through vSphere Kubernetes Service
+- Better observability for private AI workloads
+- Stronger security and compliance capabilities built into the platform
 
 That matters because most enterprise teams are not sitting around with unlimited budget, unlimited hardware, and unlimited staff. In the real world, the ask is usually the opposite: run more, secure more, modernize more, and do it with what you already have.
 
 VCF 9.1 seems to be aimed directly at that problem.
 
-Private AI Is Clearly Front and Center
+## Private AI Is Clearly Front and Center
 
 The AI message is hard to miss. Broadcom is tying VCF 9.1 directly to inference, agentic AI workloads, GPU visibility, Kubernetes, data sovereignty, and private cloud economics.
 
@@ -48,7 +50,7 @@ The important part for VMware customers is that Broadcom is not treating AI as a
 
 That could be a big deal if it actually simplifies operations instead of creating another platform island.
 
-Kubernetes Keeps Moving Closer to the Core
+## Kubernetes Keeps Moving Closer to the Core
 
 Another major takeaway is the continued push around vSphere Kubernetes Service. VCF 9.1 includes scale and lifecycle improvements for Kubernetes, including support for more Kubernetes clusters per Supervisor and faster deployment and upgrade workflows.
 
@@ -56,7 +58,7 @@ This is important because Kubernetes has often been treated as something adjacen
 
 For enterprise teams, that could reduce some of the operational split between infrastructure teams and platform teams. It also gives existing VMware shops a more realistic path to support modern workloads without immediately rebuilding everything around a completely separate stack.
 
-Security and Resilience Are Becoming Platform Features
+## Security and Resilience Are Becoming Platform Features
 
 The other part of the announcement that caught my attention is resilience. Broadcom is calling out capabilities around ransomware recovery, compliance enforcement, zero-trust security, live patching, and secure workload mobility.
 
@@ -64,7 +66,7 @@ That is the right direction. Security can no longer be something bolted on after
 
 The interesting question will be how much of this is included directly in the core VCF platform and how much depends on advanced services or additional licensing. That detail matters in the real world because architectural value and licensing reality are not always the same conversation.
 
-My Initial Take
+## My Initial Take
 
 VCF 9.1 looks like a release focused on three practical outcomes:
 
@@ -85,7 +87,7 @@ Which features are production-ready on day one versus roadmap or tech preview?
 
 Those are the questions that matter once the announcement excitement wears off.
 
-Final Thoughts
+## Final Thoughts
 
 My quick reaction: VCF 9.1 is Broadcom’s clearest statement yet that VCF is the center of its private cloud strategy. The release is not just about running VMs. It is about running VMs, containers, AI workloads, security, compliance, and operations under one private cloud platform.
 
