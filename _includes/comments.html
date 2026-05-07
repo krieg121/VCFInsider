@@ -4,21 +4,35 @@
   </h3>
   <p style="font-weight:500; text-align:center; margin-bottom:1.5rem; color:#333;">
     Have thoughts or questions? Leave a comment below — your insights help others!
-  </p>  
+  </p>
 
-<script src="https://giscus.app/client.js"
-          data-repo="{{ site.giscus.repo }}"
-          data-repo-id="{{ site.giscus.repo_id }}"
-          data-category="{{ site.giscus.category }}"
-          data-category-id="{{ site.giscus.category_id }}"
-          data-mapping="{{ site.giscus.mapping | default: 'pathname' }}"
-          data-strict="0"
-          data-reactions-enabled="{{ site.giscus.reactions_enabled | default: '1' }}"
-          data-emit-metadata="{{ site.giscus.emit_metadata | default: '0' }}"
-          data-input-position="{{ site.giscus.input_position | default: 'bottom' }}"
-          data-theme="{{ site.giscus.theme | default: 'preferred_color_scheme' }}"
-          data-lang="{{ site.giscus.lang | default: 'en' }}"
-          crossorigin="anonymous" async>
+  {% comment %}
+  Original giscus comment system preserved for rollback.
+
+  <script src="https://giscus.app/client.js"
+            data-repo="{{ site.giscus.repo }}"
+            data-repo-id="{{ site.giscus.repo_id }}"
+            data-category="{{ site.giscus.category }}"
+            data-category-id="{{ site.giscus.category_id }}"
+            data-mapping="{{ site.giscus.mapping | default: 'pathname' }}"
+            data-strict="0"
+            data-reactions-enabled="{{ site.giscus.reactions_enabled | default: '1' }}"
+            data-emit-metadata="{{ site.giscus.emit_metadata | default: '0' }}"
+            data-input-position="{{ site.giscus.input_position | default: 'bottom' }}"
+            data-theme="{{ site.giscus.theme | default: 'preferred_color_scheme' }}"
+            data-lang="{{ site.giscus.lang | default: 'en' }}"
+            crossorigin="anonymous" async>
   </script>
+  {% endcomment %}
+
+  <script async src="https://talk.hyvor.com/embed/embed.js" type="module"></script>
+
+  <hyvor-talk-comments
+    website-id="15385"
+    page-id="{{ page.url | relative_url }}"
+    page-title="{{ page.title | escape }}"
+    page-url="{{ site.url }}{{ page.url }}">
+  </hyvor-talk-comments>
+
   <noscript>Please enable JavaScript to view comments.</noscript>
 </div>
