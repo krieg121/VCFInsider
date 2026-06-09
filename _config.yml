@@ -30,6 +30,8 @@ navigation:
     url: /
   - title: Blog
     url: /blog/
+  - title: Community
+    url: https://community.vcfinsider.com
   - title: About
     url: /about/
   - title: Share Your Story
