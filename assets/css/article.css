@@ -202,3 +202,89 @@ body.resources .page-title{
   margin-bottom: 0;
   line-height: 1.15;
 }
+
+/* =========================================================
+   VCF Insider Community CTA
+   ========================================================= */
+
+.post-community-divider {
+  margin: 3rem 0 2rem;
+  border: 0;
+  border-top: 1px solid rgba(0, 124, 186, 0.25);
+}
+
+.post-community-cta {
+  margin: 2rem 0 0;
+  padding: 0;
+}
+
+.post-community-cta h2 {
+  margin-bottom: 1rem;
+  color: var(--fcb-navy, var(--vmware-blue));
+}
+
+.post-community-cta p {
+  margin-bottom: 1rem;
+}
+
+.community-cta-button {
+  display: inline-block;
+  margin: 0.5rem 0 1.5rem;
+  padding: 0.75rem 1.1rem;
+  border-radius: 10px;
+  background: var(--vmware-blue, #007CBA);
+  color: #ffffff;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 8px 20px rgba(0, 124, 186, 0.22);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.community-cta-button:hover {
+  background: #005f8f;
+  color: #ffffff;
+  text-decoration: none;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(0, 124, 186, 0.3);
+}
+
+.community-cta-image {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  margin-top: 1rem;
+  border-radius: 14px;
+  box-shadow: 0 10px 24px rgba(0, 40, 86, 0.14);
+}
+
+@media (max-width: 768px) {
+  .post-community-divider {
+    margin: 2.5rem 0 1.5rem;
+  }
+
+  .community-cta-button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .community-cta-image {
+    border-radius: 10px;
+  }
+}
+
+.image-caption {
+  margin-top: 0.5rem;
+  margin-bottom: 1.75rem;
+  padding-left: 0.85rem;
+  border-left: 3px solid #007CBA;
+  color: #5f6f7f;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  font-style: italic;
+}
+
+.image-caption strong {
+  color: #2C3E50;
+  font-style: normal;
+}
