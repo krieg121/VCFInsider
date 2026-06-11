@@ -1,8 +1,11 @@
 # VCF Insider Blog Configuration
 title: VCF Insider
-description: Your Gateway to VMware Cloud Foundation Excellence
+description: "Real-world VMware Cloud Foundation stories and solutions covering VCF, NSX, Avi, automation, homelab, lifecycle, and lessons learned."
 baseurl: ""
 url: "https://www.vcfinsider.com"
+image: /assets/images/social/vcf-insider-social-image.png
+logo: /assets/images/vcf-insider-logo.png
+
 # For GitHub Pages, use: url: "https://krieg121.github.io/VCFInsider"
 
 # Build settings
@@ -98,9 +101,10 @@ feed:
 seo:
   type: "WebSite"
   name: "VCF Insider"
-  description: "Your Gateway to VMware Cloud Foundation Excellence"
+  title: "VCF Insider"
+  description: "Real-world VMware Cloud Foundation stories and solutions covering VCF, NSX, Avi, automation, homelab, lifecycle, and lessons learned."
   url: "https://www.vcfinsider.com"
-  # image: "/assets/images/vcf-insider-logo.png"
+  image: "/assets/images/social/vcf-insider-social-image.png"
   twitter:
     username: "VCFInsider"
     card: "summary_large_image"
