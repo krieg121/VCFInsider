@@ -57,7 +57,7 @@ At one point, we could not even generate the log bundle Support needed because l
 <figure style="margin: 2rem 0;">
   <img src="/assets/images/posts/2026-08-27-vcf-9-1-error-handling/vcf-9-1-upgrade-sos-resource-lock.webp" alt="SDDC Manager SoS log collection blocked by an active NSX workflow owned by Operations Manager" style="display: block; width: 100%; max-width: 100%; height: auto; margin: 0;">
   <figcaption style="margin-top: 0.75rem; font-style: italic; color: #2C3E50; line-height: 1.6;">
-    <strong>Figure 2:</strong> The SoS utility found an active NSX workflow owned by Operations Manager and would not continue normal log collection. The appliance hostname and unique identifiers have been removed, and the raw lock-data block has been hidden.
+    <strong>Figure 2:</strong> The SoS utility found an active NSX workflow owned by Operations Manager and would not continue normal log collection. The appliance hostname and unique identifiers have been removed.
   </figcaption>
 </figure>
 
