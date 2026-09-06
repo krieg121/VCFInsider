@@ -51,9 +51,6 @@ collections:
   posts:
     output: true
     permalink: /:categories/:year/:month/:day/:title/
-  categories:
-    output: true
-    permalink: /categories/:name/
 
 # Defaults
 defaults:
