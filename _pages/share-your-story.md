@@ -52,12 +52,9 @@ Use this structure to organize your submission:
 
 <div class="story-template-card" aria-label="VCF story template">
   <div class="story-template-header">
-    <span class="story-template-kicker">
-      <i class="fa-solid fa-pen-to-square" aria-hidden="true"></i>
-      VCF Insider Field Note
-    </span>
-    <h4>Build your story in six parts</h4>
-    <p>Use these prompts as a starting point. Keep what helps and adjust the rest to fit your experience.</p>
+    <span class="story-template-kicker">VCF Insider / Story Framework</span>
+    <h4>Start with what happened in the field.</h4>
+    <p>You do not need to follow this word for word. Use the prompts that help tell the story clearly.</p>
   </div>
 
   <div class="story-template-grid">
