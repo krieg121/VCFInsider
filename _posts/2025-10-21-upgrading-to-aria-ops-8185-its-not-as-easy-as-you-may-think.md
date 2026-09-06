@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Upgrading to Aria Ops 8.18.5? It’s not as easy as you may think."
-categories: ["cloud-foundation"]
+categories: ["Cloud Foundation"]
 tags: [aria-operations, vcf, lcm, vidm]
 author: "Chris"
 description: "Upgrading to Aria Ops 8.18.5? It’s not as easy as you may think."
