@@ -153,13 +153,3 @@ It is figuring out which dependency is actually blocking you.
 Upgrading Avi was the next step, but the upgrade path was not as obvious as it first looked.
 
 In the next post, I will walk through what happened when we checked the Broadcom Interoperability Matrix, why Avi / NSX ALB 22.1.6 not appearing as a selectable version mattered, and how GSS helped confirm that we could upgrade directly to Avi / NSX ALB 31.2.1 before continuing with the VCF 9.0.2 management domain upgrade.
-
----
-
-## Continue the Conversation
-
-Have you run into VCF lifecycle blockers, Avi / NSX ALB compatibility issues, or upgrade path surprises of your own?
-
-Join the discussion in the VCF Insider Community, an independent space for VMware Cloud Foundation engineers, homelab builders, and anyone working through real-world VCF deployments, troubleshooting, automation, and lessons learned.
-
-[Visit the VCF Insider Community](https://community.vcfinsider.com)
