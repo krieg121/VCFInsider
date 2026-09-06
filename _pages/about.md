@@ -98,12 +98,11 @@ We'd love to hear from you! [Contact us](/contact/) to learn more about contribu
 
 ## Stay Connected
 
-Follow us on social media and subscribe to our newsletter to stay updated with the latest VCF insights:
+Follow us on social media to stay updated with the latest VCF insights:
 
 - **Email**: [Chris@VCFInsider.com](mailto:Chris@VCFInsider.com)  
 - **Twitter**: [@VCFInsider](https://twitter.com/VCFInsider)  
-- **LinkedIn**: [VCF Insider](https://linkedin.com/company/vcfinsider)  
-- **Newsletter**: Subscribe below for weekly VCF insights
+- **LinkedIn**: [VCF Insider](https://www.linkedin.com/company/vcfinsider)
 
 ---
 
