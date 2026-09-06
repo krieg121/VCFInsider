@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "VCF Management Services Would Not Deployâ€”and Neither the Error nor the Logs Explained Why"
+title: "VCF Management Services Would Not Deploy—and Neither the Error nor the Logs Explained Why"
 date: 2026-08-07 09:00:00 -0400
 author: "Chris Kitchens"
 categories: ["Cloud Foundation"]
@@ -93,7 +93,7 @@ That is why I wanted to write this one down. If you are deploying VCF 9.1 Manage
 ## References
 
 - [Broadcom KB 444448: Resetting Passwords for VMware Cloud Foundation Services Runtime](https://knowledge.broadcom.com/external/article/444448/resetting-passwords-for-vmware-cloud-fou.html)
-- [Broadcom KB 443889: Error when deploying VCF Management Services during VCF 9.1 upgradeâ€”VCF Instance Cloud Proxy Registration validation failed](https://knowledge.broadcom.com/external/article/443889/error-when-deploying-vcf-management-serv.html)
+- [Broadcom KB 443889: Error when deploying VCF Management Services during VCF 9.1 upgrade—VCF Instance Cloud Proxy Registration validation failed](https://knowledge.broadcom.com/external/article/443889/error-when-deploying-vcf-management-serv.html)
 
 ---
 
