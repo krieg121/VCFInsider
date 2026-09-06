@@ -623,10 +623,17 @@ a.article-category:focus { text-decoration: none; }
     padding: .75rem 0;
     gap: .75rem;
   }
-  .nav-toggle { display: inline-flex; }
-  .header-actions { margin-left: auto; }
+  .nav-toggle {
+    display: inline-flex;
+    order: 1;
+  }
+  .header-actions {
+    order: 2;
+    margin-left: auto;
+  }
   .main-nav {
     display: none;
+    order: 3;
     flex: 1 0 100%;
     width: 100%;
   }
