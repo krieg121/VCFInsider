@@ -18,6 +18,8 @@ Usage:
       {%- assign pretty_label = "Cloud Foundation" -%}
     {%- elsif cat == "AI&Automation" or cat == "AI-Automation" -%}
       {%- assign pretty_label = "AI & Automation" -%}
+    {%- elsif include.preserve_label -%}
+      {%- assign pretty_label = cat | escape -%}
     {%- else -%}
       {%- assign words = cat | replace: '-', ' ' | split: ' ' -%}
       {%- capture pretty_label -%}

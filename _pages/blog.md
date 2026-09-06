@@ -18,7 +18,7 @@ body_class: blog-index
 
     <div class="blog-card__content">
       <div class="blog-card__meta">
-        {% include category_pill.html categories=post.categories %}
+        {% include category_pill.html categories=post.categories preserve_label=true %}
         <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time>
         <span>by {{ post.author | default: site.author.name }}</span>
       </div>
