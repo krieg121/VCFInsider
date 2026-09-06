@@ -183,6 +183,68 @@ body {
   opacity: 0.96;
 }
 
+/* ---------- Homepage Community Promo ---------- */
+.community-promo {
+  background: var(--vmware-navy);
+  color: var(--vmware-white);
+  border-bottom: 3px solid var(--vmware-green);
+}
+
+.community-promo-inner {
+  min-height: 78px;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding-top: .85rem;
+  padding-bottom: .85rem;
+}
+
+.community-promo-icon {
+  flex: 0 0 auto;
+  color: #45B8ED;
+  font-size: 1.5rem;
+}
+
+.community-promo-copy {
+  flex: 1 1 auto;
+}
+
+.community-promo-copy h2 {
+  margin: 0 0 .15rem;
+  color: var(--vmware-white);
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.community-promo-copy p {
+  margin: 0;
+  color: #D8E3EF;
+  font-size: .92rem;
+  line-height: 1.45;
+}
+
+.community-promo-link {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  padding: .65rem 1rem;
+  color: var(--vmware-navy);
+  background: var(--vmware-white);
+  border-radius: var(--border-radius);
+  font-size: .88rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.community-promo-link:hover {
+  color: var(--vmware-blue);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-medium);
+}
+
 /* ---------- Articles (Lists & Cards) ---------- */
 .articles-section { padding: 80px 0; background: var(--vmware-light-gray); }
 .section-header { text-align: center; margin-bottom: 3rem; }
@@ -550,10 +612,22 @@ a.article-category:focus { text-decoration: none; }
   .section-title { font-size: 2rem; }
   .page-title, .post-title { font-size: 2rem; }
   .footer-content { grid-template-columns: 1fr; text-align: center; }
+  .community-promo-inner {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: .75rem 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+  .community-promo-copy { flex: 1 1 calc(100% - 3rem); }
+  .community-promo-link { margin-left: 2.75rem; }
 }
 
 @media (max-width: 480px) {
   .container { padding: 0 1rem; }
   .articles-section, .page-content, .post-content { padding: 40px 0; }
   .article-content { padding: 1rem; }
+  .community-promo-icon { display: none; }
+  .community-promo-copy { flex-basis: 100%; }
+  .community-promo-link { margin-left: 0; }
 }
