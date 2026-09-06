@@ -248,13 +248,3 @@ I will still verify every step. I just will not have to start from scratch.
 * [VCF Upgrade Planner GitHub Repository](https://github.com/vmware/vcf-upgrade-planner)
 * [VCF Upgrade Planner README](https://github.com/vmware/vcf-upgrade-planner/blob/main/README.md)
 * [VCF Upgrade Planner Issues and Feedback](https://github.com/vmware/vcf-upgrade-planner/issues)
-
----
-
-## Continue the Conversation
-
-Are you planning a move to VCF 9.1, or have you already used the VCF Upgrade Planner against a real environment?
-
-Join the discussion in the **VCF Insider Community** and share what the planner caught, what it missed, and how you are building your own upgrade runbook.
-
-[Visit the VCF Insider Community](https://community.vcfinsider.com)
