@@ -35,14 +35,14 @@ navigation:
     url: /blog/
   - title: Community
     url: https://community.vcfinsider.com
-  - title: About
-    url: /about/
-  - title: Share Your Story
-    url: /share-your-story/
   - title: Categories
     url: /categories/
   - title: Resources
     url: /resources/
+  - title: Share Your Story
+    url: /share-your-story/
+  - title: About
+    url: /about/
   - title: Contact
     url: /contact/
  
