@@ -67,7 +67,8 @@
             {% for item in site.navigation %}
               <li class="nav-item">
                 <a href="{{ item.url | relative_url }}"
-                   class="nav-link {% if page.url == item.url %}active{% endif %}">
+                   class="nav-link {% if page.url == item.url %}active{% endif %}"
+                   {% if item.title == 'Community' %}data-community-link-location="navigation"{% endif %}>
                   {{ item.title }}
                 </a>
               </li>
@@ -121,7 +122,11 @@
             <a href="mailto:Chris@VCFInsider.com" class="social-link" title="Email">
               <i class="fas fa-envelope"></i>
             </a>
-            <a href="#" class="social-link" title="LinkedIn">
+            <a href="https://www.linkedin.com/company/vcfinsider"
+               class="social-link"
+               title="LinkedIn"
+               target="_blank"
+               rel="noopener">
               <i class="fab fa-linkedin"></i>
             </a>
           </div>
@@ -133,7 +138,10 @@
             <li><a href="{{ '/blog/' | relative_url }}">Blog</a></li>
             <li><a href="{{ '/about/' | relative_url }}">About</a></li>
             <li><a href="{{ '/categories/' | relative_url }}">Categories</a></li>
-            <li><a href="https://community.vcfinsider.com" target="_blank" rel="noopener">Community</a></li>
+            <li><a href="https://community.vcfinsider.com"
+                   target="_blank"
+                   rel="noopener"
+                   data-community-link-location="footer">Community</a></li>
             <li><a href="{{ '/contact/' | relative_url }}">Contact</a></li>
           </ul>
         </div>
@@ -148,15 +156,6 @@
             <li><a href="{{ '/categories/finops/' | relative_url }}">FinOps</a></li>
             <li><a href="{{ '/categories/opinion/' | relative_url }}">Opinion</a></li>
           </ul>
-        </div>
-
-        <div class="footer-section">
-          <h4>Newsletter</h4>
-          <p>Stay updated with the latest VCF insights.</p>
-          <form class="newsletter-form">
-            <input type="email" placeholder="Enter your email" required>
-            <button type="submit">Subscribe</button>
-          </form>
         </div>
 
       </div>
