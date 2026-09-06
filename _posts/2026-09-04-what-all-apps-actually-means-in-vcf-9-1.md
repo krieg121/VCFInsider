@@ -167,10 +167,3 @@ That is the shift I came away from Explore thinking about the most. VCF 9.1 is n
 
 ---
 
-## Continue the Conversation
-
-Are you already starting to work through the All Apps model in VCF 9.1, or are you still trying to figure out where it fits into your environment?
-
-I am especially interested in how other teams are approaching regions, projects, namespaces, quota, and the provider/consumer split as they start designing around this model.
-
-[Join the discussion in the VCF Insider Community](https://community.vcfinsider.com/)
