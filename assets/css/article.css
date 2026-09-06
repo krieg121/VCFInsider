@@ -136,14 +136,14 @@
   text-transform: uppercase;
 }
 
-.page-content .story-template-header h4 {
+.post-content .story-template-header h4 {
   margin: 0 0 .3rem !important;
   color: var(--fcb-navy) !important;
   font-size: 1.2rem;
   line-height: 1.35;
 }
 
-.page-content .story-template-header p {
+.post-content .story-template-header p {
   max-width: 62ch;
   margin: 0 !important;
   color: #5F6F7F;
@@ -176,14 +176,14 @@
   font-weight: 700;
 }
 
-.page-content .story-template-step h5 {
+.post-content .story-template-step h5 {
   margin: 0 0 .12rem !important;
   color: var(--fcb-navy);
   font-size: .98rem;
   line-height: 1.4;
 }
 
-.page-content .story-template-step p {
+.post-content .story-template-step p {
   margin: 0 !important;
   color: #5F6F7F;
   font-size: .9rem;
