@@ -19,6 +19,10 @@ layout: default
     <time class="post-date" datetime="{{ page.date | date_to_xmlschema }}">
       {{ page.date | date: "%b %-d, %Y" }}
     </time>
+
+    {% if page.author %}
+      <p class="post-author">By {{ page.author }}</p>
+    {% endif %}
   </div>
 </header>
 
