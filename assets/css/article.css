@@ -98,6 +98,118 @@
   cursor: pointer;
 }
 
+/* -------- Share Your Story template -------- */
+.story-template-card {
+  margin: 1rem 0 2.5rem;
+  overflow: hidden;
+  border: 1px solid #DCE5ED;
+  border-top: 4px solid var(--vmware-green, #8BC34A);
+  border-radius: 12px;
+  background: #FFFFFF;
+  box-shadow: 0 10px 28px rgba(0, 40, 86, .10);
+}
+
+.story-template-header {
+  padding: 1.5rem 1.75rem;
+  background: var(--fcb-navy);
+  color: #FFFFFF;
+}
+
+.story-template-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  margin-bottom: .7rem;
+  color: #9ED8F2;
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.page-content .story-template-header h4 {
+  margin: 0 0 .4rem;
+  color: #FFFFFF;
+  font-size: 1.35rem;
+}
+
+.page-content .story-template-header p {
+  max-width: 62ch;
+  margin: 0;
+  color: #D9E6F1;
+  font-size: .95rem;
+}
+
+.story-template-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.story-template-step {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  gap: .85rem;
+  padding: 1.35rem 1.5rem;
+  border-top: 1px solid #E6EDF3;
+}
+
+.story-template-step:nth-child(-n + 2) {
+  border-top: 0;
+}
+
+.story-template-step:nth-child(even) {
+  border-left: 1px solid #E6EDF3;
+}
+
+.story-template-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: 50%;
+  background: #EAF5FA;
+  color: var(--fcb-blue);
+  font-size: .78rem;
+  font-weight: 700;
+}
+
+.page-content .story-template-step h5 {
+  margin: .05rem 0 .25rem;
+  color: var(--fcb-navy);
+  font-size: 1rem;
+}
+
+.page-content .story-template-step p {
+  margin: 0;
+  color: #5F6F7F;
+  font-size: .92rem;
+  line-height: 1.55;
+}
+
+@media (max-width: 640px) {
+  .story-template-header {
+    padding: 1.25rem;
+  }
+
+  .story-template-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .story-template-step,
+  .story-template-step:nth-child(-n + 2) {
+    border-top: 1px solid #E6EDF3;
+  }
+
+  .story-template-step:first-child {
+    border-top: 0;
+  }
+
+  .story-template-step:nth-child(even) {
+    border-left: 0;
+  }
+}
+
 /* -------- Details / Accordion -------- */
 .post-content details,
 .page-content details{
