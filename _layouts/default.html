@@ -83,11 +83,19 @@
   <main class="main-content">
     {{ content }}
 
+    {% comment %}
+    Hyvor Talk comments disabled now that article discussion is being routed
+    to the VCF Insider Community.
+
+    Rollback:
+    Uncomment the block below if blog comments are needed again.
+
     {% if page.layout == 'post' or page.collection == 'posts' %}
       {% if page.comments != false %}
         {% include comments.html %}
       {% endif %}
     {% endif %}
+    {% endcomment %}
   </main>
 
   <!-- Footer -->
@@ -117,6 +125,7 @@
             <li><a href="{{ '/blog/' | relative_url }}">Blog</a></li>
             <li><a href="{{ '/about/' | relative_url }}">About</a></li>
             <li><a href="{{ '/categories/' | relative_url }}">Categories</a></li>
+            <li><a href="https://community.vcfinsider.com" target="_blank" rel="noopener">Community</a></li>
             <li><a href="{{ '/contact/' | relative_url }}">Contact</a></li>
           </ul>
         </div>
