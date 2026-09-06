@@ -60,6 +60,26 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Track clicks to the VCF Insider Community in Google Analytics.
+    const communityLinks = document.querySelectorAll('a[href*="community.vcfinsider.com"]');
+    communityLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            if (typeof window.gtag !== 'function') {
+                return;
+            }
+
+            const image = this.querySelector('img');
+            const linkText = this.textContent.trim() || (image && image.alt) || 'VCF Insider Community';
+
+            window.gtag('event', 'community_click', {
+                link_url: this.href,
+                link_text: linkText,
+                link_location: this.dataset.communityLinkLocation || 'article-content',
+                transport_type: 'beacon'
+            });
+        });
+    });
+
     // Add smooth scrolling to all anchor links
     const links = document.querySelectorAll('a[href^="#"]');
     links.forEach(link => {
