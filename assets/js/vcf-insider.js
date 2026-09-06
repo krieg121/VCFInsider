@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Show reading progress on article pages.
-    const postContent = document.querySelector('.post-content');
+    const postContent = document.querySelector('.post-content[data-reading-progress]');
     const postHeader = document.querySelector('.post-header');
     const siteHeader = document.querySelector('.site-header');
 
