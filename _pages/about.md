@@ -102,7 +102,7 @@ Follow us on social media to stay updated with the latest VCF insights:
 
 - **Email**: [Chris@VCFInsider.com](mailto:Chris@VCFInsider.com)  
 - **Twitter**: [@VCFInsider](https://twitter.com/VCFInsider)  
-- **LinkedIn**: [VCF Insider](https://www.linkedin.com/company/vcfinsider)
+- **LinkedIn**: [Chris Kitchens](https://www.linkedin.com/in/chris-kitchens-a5335066/)
 
 ---
 
