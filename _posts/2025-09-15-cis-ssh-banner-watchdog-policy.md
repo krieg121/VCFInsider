@@ -2,7 +2,7 @@
 layout: post
 title: "Automate CIS baseline remediations: SSH logon banner & watchdog policy"
 date: 2025-09-15 10:00:00 -0400
-categories: [automation]          # machine slug for URLs/listing
+categories: [Automation]
 category: Automation              # display label used on cards/lists
 tags: [Automation, PowerCLI]
 featured_image: /assets/images/posts/2025-09-15-cis-ssh-banner-watchdog-policy/cover.png
