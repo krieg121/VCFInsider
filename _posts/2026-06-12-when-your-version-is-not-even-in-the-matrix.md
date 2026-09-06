@@ -148,14 +148,3 @@ The Broadcom Interoperability Matrix is important, but it may not always show th
 In this case, SDDC Manager made the blocker clear, and GSS confirmed the missing part of the path. After upgrading Avi / NSX ALB from 22.1.6 to 31.2.1, the VCF 9.0.2 management domain upgrade plan became selectable again.
 
 The takeaway for me is simple: check Avi earlier, and do not assume the matrix will always give you a clean path from the exact version sitting in the environment.
-
----
-
-## Continue the Conversation
-
-Have you run into VCF lifecycle blockers, Avi / NSX ALB compatibility issues, or upgrade paths where the matrix did not tell the full story?
-
-Join the discussion in the **VCF Insider Community**, an independent space for VMware Cloud Foundation engineers, homelab builders, and anyone working through real-world VCF deployments, troubleshooting, automation, and lessons learned.
-
-[Visit the VCF Insider Community](https://community.vcfinsider.com)
-
