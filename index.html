@@ -58,7 +58,8 @@ Usage inside your homepage cards:
     <a href="https://community.vcfinsider.com"
        class="community-promo-link"
        target="_blank"
-       rel="noopener">
+       rel="noopener"
+       data-community-link-location="homepage-promo">
       Visit the Community <i class="fas fa-arrow-right" aria-hidden="true"></i>
     </a>
   </div>
@@ -73,7 +74,7 @@ Usage inside your homepage cards:
     </div>
 
     <div class="articles-grid">
-      {% for post in site.posts limit:8 %}
+      {% for post in site.posts limit:6 %}
         {% assign now = site.time | date: '%s' | plus: 0 %}
         {% assign then = post.date | date: '%s' | plus: 0 %}
         {% assign age = now | minus: then %}
