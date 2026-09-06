@@ -50,25 +50,66 @@ Send your story to **[Chris@VCFInsider.com](mailto:Chris@VCFInsider.com)** with:
 ### **Option 2: Story Template**
 Use this structure to organize your submission:
 
-```
-**The Challenge:**
-What problem were you trying to solve?
+<div class="story-template-card" aria-label="VCF story template">
+  <div class="story-template-header">
+    <span class="story-template-kicker">
+      <i class="fa-solid fa-pen-to-square" aria-hidden="true"></i>
+      VCF Insider Field Note
+    </span>
+    <h4>Build your story in six parts</h4>
+    <p>Use these prompts as a starting point. Keep what helps and adjust the rest to fit your experience.</p>
+  </div>
 
-**The Environment:**
-Brief description of your setup (size, complexity, etc.)
+  <div class="story-template-grid">
+    <section class="story-template-step">
+      <span class="story-template-number">01</span>
+      <div>
+        <h5>The Challenge</h5>
+        <p>What problem were you trying to solve?</p>
+      </div>
+    </section>
 
-**The Solution:**
-What you did to solve it
+    <section class="story-template-step">
+      <span class="story-template-number">02</span>
+      <div>
+        <h5>The Environment</h5>
+        <p>Briefly describe the environment, scale, versions, and constraints.</p>
+      </div>
+    </section>
 
-**The Results:**
-What happened? What worked? What didn't?
+    <section class="story-template-step">
+      <span class="story-template-number">03</span>
+      <div>
+        <h5>The Solution</h5>
+        <p>Explain what you did and why you chose that approach.</p>
+      </div>
+    </section>
 
-**Key Takeaways:**
-What would you do differently? What advice do you have?
+    <section class="story-template-step">
+      <span class="story-template-number">04</span>
+      <div>
+        <h5>The Results</h5>
+        <p>What happened? What worked, and what did not?</p>
+      </div>
+    </section>
 
-**Resources:**
-Scripts, tools, documentation that helped
-```
+    <section class="story-template-step">
+      <span class="story-template-number">05</span>
+      <div>
+        <h5>Key Takeaways</h5>
+        <p>What would you do differently, and what should others know?</p>
+      </div>
+    </section>
+
+    <section class="story-template-step">
+      <span class="story-template-number">06</span>
+      <div>
+        <h5>Resources</h5>
+        <p>Include any scripts, tools, screenshots, or documentation that helped.</p>
+      </div>
+    </section>
+  </div>
+</div>
 
 ## What Happens Next?
 
