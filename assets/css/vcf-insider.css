@@ -615,7 +615,7 @@ a.article-category:focus { text-decoration: none; }
 .footer-bottom { border-top: 1px solid #495057; padding-top: 1rem; text-align: center; color: #ADB5BD; font-size: .9rem; }
 
 /* ---------- Responsive ---------- */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .header-content {
     flex-direction: row;
     flex-wrap: wrap;
