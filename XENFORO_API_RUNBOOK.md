@@ -125,22 +125,46 @@ Calling `/me/` without specifying an acting user returned:
 That is the XenForo guest context.
 
 This behavior is consistent with a super-user-style API key where the
-effective user must be supplied separately. Confirm the key type and
-the intended VCF Insider account before performing any write.
+effective user must be supplied separately. Confirm the key type before
+changing its scopes or using it for broader automation.
+
+## Confirmed XenForo identities
+
+Confirmed September 9, 2026:
+
+- `megsadmin` - user ID `1`
+- `VCF Insider` - user ID `4`
+
+The browser/admin session is logged in as `megsadmin`, while the existing
+public forum content is authored by the separate `VCF Insider` account.
+
+The API should act as the public VCF Insider account by sending:
+
+```powershell
+"XF-Api-User" = "4"
+```
+
+A read-only `/me/` request with `XF-Api-User: 4` was verified successfully.
+The response confirmed:
+
+- `user_id`: `4`
+- `username`: `VCF Insider`
+- `is_staff`: `true`
+- `user_title`: `Administrator`
+- `message_count`: `13`
 
 ## Acting as the VCF Insider account
 
-Once the XenForo user ID for the `VCF Insider` account has been confirmed,
-add the `XF-Api-User` header:
+Use the confirmed VCF Insider user ID in the request headers:
 
 ```powershell
 $headers = @{
     "XF-Api-Key"  = $key
-    "XF-Api-User" = "<VCF_INSIDER_USER_ID>"
+    "XF-Api-User" = "4"
 }
 ```
 
-Then verify the identity with:
+Then verify the identity before any write operation:
 
 ```powershell
 Invoke-RestMethod `
@@ -150,8 +174,12 @@ Invoke-RestMethod `
     ConvertTo-Json -Depth 8
 ```
 
-Do not continue to a write operation unless the response identifies the
-expected `VCF Insider` account.
+Do not continue to a write operation unless the response identifies:
+
+```text
+user_id: 4
+username: VCF Insider
+```
 
 ## Required workflow before creating forum content
 
@@ -177,12 +205,15 @@ Confirmed:
 - `index.php/api/...` is the working route on this installation.
 - `/api/...` currently returns an Apache 404.
 - An API call without an acting user currently resolves to guest user ID 0.
+- `megsadmin` is XenForo user ID `1`.
+- `VCF Insider` is XenForo user ID `4`.
+- `XF-Api-User: 4` makes `/me/` resolve to the `VCF Insider` account.
+- The `VCF Insider` account reports staff status, Administrator title, and 13 messages.
 
 Still to verify:
 
-- The XenForo user ID for `VCF Insider`.
 - The exact API-key type and scopes.
-- The effective permissions of the `VCF Insider` account.
+- The effective forum/thread permissions of the `VCF Insider` account.
 - The complete forum/node inventory.
 - The complete thread inventory.
 - Thread-creation behavior and returned canonical URLs.
