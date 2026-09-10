@@ -1,8 +1,16 @@
+{% assign community_href = page.community_thread_url | default: "https://community.vcfinsider.com" %}
+
 <hr class="post-community-divider">
 
 <section class="post-community-cta">
   <h2>Continue the Conversation</h2>
 
+  {% if page.community_thread_url %}
+  <p>
+    Read the article, then join the discussion:
+    <strong>{{ page.community_thread_title }}</strong>
+  </p>
+  {% else %}
   <p>
     Have a question, a different approach, or something you have learned from the field?
   </p>
@@ -12,8 +20,9 @@
     homelab builders, and virtualization folks working through real-world VCF deployments,
     troubleshooting, automation, architecture, and lessons learned.
   </p>
+  {% endif %}
 
-  <a href="https://community.vcfinsider.com"
+  <a href="{{ community_href }}"
      target="_blank"
      rel="noopener"
      data-community-link-location="article-cta">

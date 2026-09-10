@@ -11,6 +11,8 @@ image: /assets/images/posts/2026-08-27-vcf-9-1-error-handling/hero.webp
 thumbnail: /assets/images/posts/2026-08-27-vcf-9-1-error-handling/hero.webp
 og_image: /assets/images/posts/2026-08-27-vcf-9-1-error-handling/hero.webp
 hero_image_path: /assets/images/posts/2026-08-27-vcf-9-1-error-handling/hero.webp
+community_thread_title: "VCF 9.1 Upgrade Failures: What Did the Error Actually Mean?"
+community_thread_url: "https://community.vcfinsider.com/index.php?threads/vcf-9-1-upgrade-failures-what-did-the-error-actually-mean.27/"
 ---
 
 I have spent a lot of time around VCF 9.1 lately, both working through my own deployment issues and helping our Ops team with an upgrade from VCF 9.0.2. One thing keeps coming up: VCF usually knows enough to stop the workflow, but the error it gives you is rarely enough to explain what it is actually upset about.

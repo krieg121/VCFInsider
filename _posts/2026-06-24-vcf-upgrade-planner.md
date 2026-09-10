@@ -11,6 +11,8 @@ excerpt: "The VCF Upgrade Planner does not perform the upgrade, but it takes a p
 image: "/assets/images/posts/2026-06-24-vcf-upgrade-planner/hero.webp"
 thumbnail: "/assets/images/posts/2026-06-24-vcf-upgrade-planner/hero.webp"
 og_image: "/assets/images/posts/2026-06-24-vcf-upgrade-planner/hero.webp"
+community_thread_title: "VCF 9.x Upgrade Planning: What Should Engineers Watch For?"
+community_thread_url: "https://community.vcfinsider.com/index.php?threads/vcf-9-x-upgrade-planning-what-should-engineers-watch-for.22/"
 ---
 
 Planning a VMware Cloud Foundation upgrade usually starts with a browser full of tabs.

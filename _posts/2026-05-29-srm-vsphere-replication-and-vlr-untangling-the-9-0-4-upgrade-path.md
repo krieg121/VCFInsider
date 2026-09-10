@@ -10,6 +10,8 @@ description: "Field notes from converging Site Recovery Manager and vSphere Repl
 image: "/assets/images/posts/2026-05-29-srm-vsphere-replication-and-vlr-untangling-the-9-0-4-upgrade-path/hero.webp"
 thumbnail: "/assets/images/posts/2026-05-29-srm-vsphere-replication-and-vlr-untangling-the-9-0-4-upgrade-path/hero.webp"
 og_image: "/assets/images/posts/2026-05-29-srm-vsphere-replication-and-vlr-untangling-the-9-0-4-upgrade-path/hero.webp"
+community_thread_title: "SRM, vSphere Replication, and VLR 9.0.4: Lessons from the Convergence Path"
+community_thread_url: "https://community.vcfinsider.com/index.php?threads/srm-vsphere-replication-and-vlr-9-0-4-lessons-from-the-convergence-path.28/"
 ---
 
 Some upgrades are difficult because the technology is complicated.

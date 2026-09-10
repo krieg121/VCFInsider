@@ -10,6 +10,8 @@ description: "A real-world VMware Cloud Foundation field note on breaking a cros
 image: "/assets/images/posts/2026-05-01-breaking-elm-between-two-vcf-instances-to-restore-a-supported-upgrade-path/hero.webp"
 thumbnail: "/assets/images/posts/2026-05-01-breaking-elm-between-two-vcf-instances-to-restore-a-supported-upgrade-path/hero.webp"
 og_image: "/assets/images/posts/2026-05-01-breaking-elm-between-two-vcf-instances-to-restore-a-supported-upgrade-path/hero.webp"
+community_thread_title: "Breaking Cross-Instance ELM Before a VCF Upgrade"
+community_thread_url: "https://community.vcfinsider.com/index.php?threads/breaking-cross-instance-elm-before-a-vcf-upgrade.29/"
 ---
 
 ## Introduction
