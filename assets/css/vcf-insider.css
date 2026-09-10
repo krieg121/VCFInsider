@@ -712,16 +712,16 @@ a.article-category:focus { text-decoration: none; }
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: minmax(0, 1.08fr) minmax(400px, .92fr);
+  grid-template-columns: minmax(0, 1.18fr) minmax(360px, .82fr);
   align-items: center;
-  gap: clamp(2rem, 5vw, 5rem);
-  min-height: 530px;
-  padding-top: 4rem;
-  padding-bottom: 4rem;
+  gap: clamp(2rem, 4vw, 4rem);
+  min-height: 475px;
+  padding-top: 3.25rem;
+  padding-bottom: 3.25rem;
 }
 
 .home-page .home-hero-copy {
-  max-width: 700px;
+  max-width: 760px;
 }
 
 .home-page .home-hero-kicker,
@@ -736,22 +736,22 @@ a.article-category:focus { text-decoration: none; }
 
 .home-page .home-hero-logo {
   display: block;
-  width: min(100%, 620px);
+  width: min(100%, 690px);
   height: auto;
-  margin: 0 0 1.1rem;
+  margin: 0 0 1rem;
   filter: drop-shadow(0 12px 28px rgba(0,0,0,.20));
 }
 
 .home-page .home-hero-tagline {
   margin: 0 0 .55rem;
   color: #fff;
-  font-size: clamp(1.55rem, 2.4vw, 2.25rem);
+  font-size: clamp(1.7rem, 2.5vw, 2.35rem);
   font-weight: 700;
   line-height: 1.2;
 }
 
 .home-page .home-hero-description {
-  max-width: 650px;
+  max-width: 700px;
   margin: 0 0 1.7rem;
   color: #D8E8F2;
   font-size: clamp(1rem, 1.25vw, 1.15rem);
@@ -794,9 +794,9 @@ a.article-category:focus { text-decoration: none; }
 }
 
 .home-page .home-hero-points {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.2rem 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, max-content);
+  gap: 1.5rem;
   margin-top: 2rem;
   color: #DCEAF2;
   font-size: .78rem;
@@ -823,7 +823,7 @@ a.article-category:focus { text-decoration: none; }
 
 .home-page .home-hero-visual img {
   display: block;
-  width: min(100%, 520px);
+  width: min(100%, 455px);
   height: auto;
   filter: drop-shadow(0 24px 42px rgba(0,0,0,.24));
 }
@@ -887,7 +887,11 @@ a.article-category:focus { text-decoration: none; }
 
 @media (max-width: 1100px) {
   .home-page .home-hero-grid {
-    grid-template-columns: 1fr 420px;
+    grid-template-columns: 1fr 380px;
+  }
+
+  .home-page .home-hero-points {
+    grid-template-columns: repeat(2, max-content);
   }
 
   .home-page .home-latest .articles-grid {
@@ -905,6 +909,10 @@ a.article-category:focus { text-decoration: none; }
 
   .home-page .home-hero-copy {
     max-width: none;
+  }
+
+  .home-page .home-hero-logo {
+    width: min(100%, 600px);
   }
 
   .home-page .home-hero-visual {
@@ -926,6 +934,7 @@ a.article-category:focus { text-decoration: none; }
 
   .home-page .home-hero-points {
     display: grid;
+    grid-template-columns: 1fr;
     gap: .8rem;
   }
 
