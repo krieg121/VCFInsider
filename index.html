@@ -1,6 +1,7 @@
 ---
 layout: default
 title: VCF Insider
+body_class: home-page
 ---
 
 {%- assign _category_pages = site.pages | where_exp: "p", "p.layout == 'category'" -%}
@@ -15,66 +16,77 @@ Usage inside your homepage cards:
   <a href="{{ cat_url | relative_url }}">…</a>
 {%- endcomment -%}
 
-<!-- Hero Section -->
-<section class="hero">
-  <div class="hero-content">
-    <!-- Keep an H1 for SEO and accessibility, but hide it visually -->
-    <h1 class="sr-only">VCF Insider</h1>
+<!-- Homepage Hero -->
+<section class="home-hero">
+  <div class="container home-hero-grid">
+    <div class="home-hero-copy">
+      <p class="home-hero-kicker">People / Solutions / Real Stories</p>
 
-    <!-- Large banner logo -->
-    <img
-      src="{{ '/assets/images/logo-vcfinsider-banner.png' | relative_url }}"
-      alt="VCF Insider — Real Stories and Solutions from the Field"
-      class="hero-logo"
-      decoding="async"
-      loading="eager">
+      <h1 class="sr-only">VCF Insider</h1>
 
-    <!-- Crisp tagline rendered as text -->
-    <p class="hero-tagline">Real Stories and Solutions from the Field</p>
+      <img
+        src="{{ '/assets/images/logo-vcfinsider-banner.png' | relative_url }}"
+        alt="VCF Insider"
+        class="home-hero-logo"
+        decoding="async"
+        loading="eager">
 
-    <div class="cta-buttons">
-      <a href="{{ '/blog/' | relative_url }}" class="btn btn-primary">
-        <i class="fas fa-book-open"></i> Explore Articles
-      </a>
-      <a href="{{ '/about/' | relative_url }}" class="btn btn-secondary">
-        <i class="fas fa-info-circle"></i> Learn More
-      </a>
+      <p class="home-hero-tagline">Real Stories and Solutions from the Field</p>
+
+      <p class="home-hero-description">
+        VMware Cloud Foundation field notes, troubleshooting, upgrades,
+        architecture, automation, and lessons learned from the community.
+      </p>
+
+      <div class="home-hero-actions">
+        <a href="{{ '/blog/' | relative_url }}"
+           class="home-hero-button home-hero-button--primary">
+          <i class="fas fa-book-open" aria-hidden="true"></i>
+          Explore Articles
+        </a>
+
+        <a href="https://community.vcfinsider.com"
+           class="home-hero-button home-hero-button--secondary"
+           target="_blank"
+           rel="noopener"
+           data-community-link-location="homepage-hero">
+          <i class="fas fa-users" aria-hidden="true"></i>
+          Join the Community
+        </a>
+      </div>
+
+      <div class="home-hero-points" aria-label="What you will find at VCF Insider">
+        <span><i class="far fa-file-lines" aria-hidden="true"></i> Practical Guidance</span>
+        <span><i class="far fa-user" aria-hidden="true"></i> Real-World Experiences</span>
+        <span><i class="far fa-lightbulb" aria-hidden="true"></i> A Stronger VCF Community</span>
+      </div>
+    </div>
+
+    <div class="home-hero-visual" aria-hidden="true">
+      <img
+        src="{{ '/assets/images/home/vcf-home-infrastructure.webp' | relative_url }}"
+        alt=""
+        decoding="async">
     </div>
   </div>
 </section>
 
-<!-- Community Promo Strip -->
-<aside class="community-promo" aria-labelledby="community-promo-title">
-  <div class="container community-promo-inner">
-    <div class="community-promo-icon" aria-hidden="true">
-      <i class="fas fa-comments"></i>
-    </div>
-
-    <div class="community-promo-copy">
-      <h2 id="community-promo-title">Working through VCF in the real world?</h2>
-      <p>Ask questions, compare notes, and share what you have learned with the VCF Insider Community.</p>
-    </div>
-
-    <a href="https://community.vcfinsider.com"
-       class="community-promo-link"
-       target="_blank"
-       rel="noopener"
-       data-community-link-location="homepage-promo">
-      Visit the Community <i class="fas fa-arrow-right" aria-hidden="true"></i>
-    </a>
-  </div>
-</aside>
-
 <!-- Latest Articles Section -->
-<section class="articles-section">
+<section class="articles-section home-latest">
   <div class="container">
-    <div class="section-header">
-      <h2 class="section-title">Latest VCF Insights</h2>
-      <p class="section-subtitle">Stay ahead with expert insights, tutorials, and best practices for VMware Cloud Foundation</p>
+    <div class="home-latest-header">
+      <div>
+        <p class="home-section-kicker">Featured Content</p>
+        <h2 class="section-title">Latest from the Field</h2>
+      </div>
+
+      <a href="{{ '/blog/' | relative_url }}" class="home-view-all">
+        View All Articles <i class="fas fa-arrow-right" aria-hidden="true"></i>
+      </a>
     </div>
 
     <div class="articles-grid">
-      {% for post in site.posts limit:6 %}
+      {% for post in site.posts limit:4 %}
         {% assign now = site.time | date: '%s' | plus: 0 %}
         {% assign then = post.date | date: '%s' | plus: 0 %}
         {% assign age = now | minus: then %}
@@ -123,8 +135,6 @@ Usage inside your homepage cards:
   <span class="article-category">VCF Insights</span>
 {%- endif -%}
 
-
-
             <h3 class="article-title">
               <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
               {% if age < 604800 %}<span class="badge-new pulse">NEW</span>{% endif %}
@@ -143,12 +153,6 @@ Usage inside your homepage cards:
           </div>
         </article>
       {% endfor %}
-    </div>
-
-    <div style="text-align: center; margin-top: 3rem;">
-      <a href="{{ '/blog/' | relative_url }}" class="btn btn-primary">
-        View All Articles <i class="fas fa-arrow-right"></i>
-      </a>
     </div>
   </div>
 </section>
