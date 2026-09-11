@@ -1,150 +1,594 @@
-# VCF Insider - GitHub Pages Deployment Guide
+# VCF Insider Site Operations Runbook
 
-## 🚀 Deploy Your VCF Insider Blog to GitHub Pages
+This document is the working development, validation, and production deployment
+runbook for VCF Insider.
 
-Your Jekyll site is now ready for GitHub Pages! Follow these steps to deploy your blog and connect your custom domain.
+Repository:
 
-## Step 1: Create GitHub Repository
+    https://github.com/krieg121/VCFInsider
 
-1. **Go to GitHub.com** and sign in to your account
-2. **Click "New repository"** (green button)
-3. **Repository name**: `vcf-insider-blog` (or any name you prefer)
-4. **Description**: "VCF Insider - VMware Cloud Foundation Blog"
-5. **Make it Public** (required for free GitHub Pages)
-6. **Don't initialize** with README (we have our own files)
-7. **Click "Create repository"**
+Production site:
 
-## Step 2: Upload Your Files to GitHub
+    https://www.vcfinsider.com/
 
-### Option A: Using GitHub Desktop (Recommended for beginners)
-1. **Download GitHub Desktop** from https://desktop.github.com/
-2. **Clone your repository** to your computer
-3. **Copy all your Jekyll files** into the repository folder
-4. **Commit and push** your changes
+Community:
 
-### Option B: Using Git Command Line
-```bash
-# Navigate to your project directory
-cd C:\Users\Chris\Documents\GitHub\wordpress-autopost
+    https://community.vcfinsider.com/
 
-# Initialize git repository
-git init
-
-# Add all files
-git add .
-
-# Commit files
-git commit -m "Initial commit - VCF Insider blog"
-
-# Add your GitHub repository as remote
-git remote add origin https://github.com/YOURUSERNAME/vcf-insider-blog.git
-
-# Push to GitHub
-git push -u origin main
-```
-
-## Step 3: Enable GitHub Pages
-
-1. **Go to your repository** on GitHub.com
-2. **Click "Settings"** tab
-3. **Scroll down to "Pages"** section
-4. **Source**: Select "Deploy from a branch"
-5. **Branch**: Select "main" (or "master")
-6. **Folder**: Select "/ (root)"
-7. **Click "Save"**
-
-## Step 4: Configure Custom Domain
-
-### Update _config.yml for your GitHub Pages URL:
-```yaml
-# Change this line in _config.yml:
-url: "https://YOURUSERNAME.github.io"
-baseurl: "/vcf-insider-blog"  # Your repository name
-```
-
-### Add Custom Domain to GitHub Pages:
-1. **In your repository Settings > Pages**
-2. **Add your custom domain**: `vcfinsider.com`
-3. **Check "Enforce HTTPS"** (will be available after DNS is configured)
-
-## Step 5: Configure DNS (Domain Settings)
-
-### Where to Make Changes:
-- **Go to your domain registrar** (GoDaddy, Namecheap, etc.)
-- **Find DNS management** or **DNS settings**
-
-### DNS Records to Add:
-
-#### For Root Domain (vcfinsider.com):
-```
-Type: A
-Name: @
-Value: 185.199.108.153
-Value: 185.199.109.153
-Value: 185.199.110.153
-Value: 185.199.111.153
-```
-
-#### For WWW Subdomain (www.vcfinsider.com):
-```
-Type: CNAME
-Name: www
-Value: YOURUSERNAME.github.io
-```
-
-### Wait for DNS Propagation:
-- **DNS changes** can take 24-48 hours to fully propagate
-- **Use online tools** like https://dnschecker.org to verify
-
-## Step 6: Verify Deployment
-
-1. **Check GitHub Actions** tab in your repository for build status
-2. **Visit your site**: `https://YOURUSERNAME.github.io/vcf-insider-blog`
-3. **Test custom domain**: `https://vcfinsider.com` (after DNS propagation)
-4. **Check HTTPS**: Ensure SSL certificate is working
-
-## Troubleshooting
-
-### Build Failures:
-- **Check GitHub Actions** logs for error details
-- **Verify Gemfile** has `github-pages` gem
-- **Ensure _config.yml** has correct plugins
-
-### DNS Issues:
-- **Wait 24-48 hours** for full propagation
-- **Use DNS checker** tools to verify
-- **Check domain registrar** settings
-
-### Custom Domain Not Working:
-- **Verify DNS records** are correct
-- **Wait for HTTPS** certificate (can take a few hours)
-- **Check GitHub Pages** settings for domain configuration
-
-## Post-Deployment Checklist
-
-- ✅ **Site loads** at GitHub Pages URL
-- ✅ **Custom domain** works (vcfinsider.com)
-- ✅ **HTTPS** is enabled and working
-- ✅ **All pages** load correctly
-- ✅ **Blog posts** display properly
-- ✅ **Contact form** works (if implemented)
-- ✅ **RSS feed** is accessible
-
-## Next Steps
-
-1. **Add Google Analytics** for traffic monitoring
-2. **Set up Google Search Console** for SEO
-3. **Create social media** accounts
-4. **Start promoting** your blog
-5. **Regular content** publishing schedule
-
-## Support
-
-If you encounter issues:
-1. **Check GitHub Pages** documentation
-2. **Review Jekyll** troubleshooting guides
-3. **Contact your domain registrar** for DNS issues
+VCF Insider is a Jekyll site published with GitHub Pages.
 
 ---
 
-**Your VCF Insider blog will be live at: https://vcfinsider.com** 🎉
+## 1. Production rules
+
+`main` is production.
+
+Do not modify, merge into, force-update, or otherwise change `main` unless the
+specific production change has been reviewed and explicitly approved by Chris.
+
+Normal workflow:
+
+1. Verify the current production `main`.
+2. Create a focused test branch from that exact commit.
+3. Make only the approved changes.
+4. Build and preview locally.
+5. Validate desktop and mobile behavior.
+6. Review the complete branch-to-`main` diff.
+7. Merge through a reviewed pull request only after explicit approval.
+8. Verify the resulting `main` commit.
+9. Smoke-test the live site.
+
+Do not mix unrelated fixes into the same branch.
+
+GitHub is the source of truth.
+
+Local checkouts may contain untracked, experimental, backup, or temporary
+files. Do not delete or overwrite those files simply to obtain a clean working
+tree.
+
+---
+
+## 2. Verify production before starting
+
+Always fetch the current remote state first:
+
+```powershell
+git fetch origin
+git log -1 --oneline origin/main
+```
+
+Record or verify the production commit before creating a new branch.
+
+Do not assume a previously remembered `main` SHA is still current.
+
+---
+
+## 3. Create a focused test branch
+
+Create each site change from the current verified `origin/main`.
+
+Example:
+
+```powershell
+git switch -c <test-branch> origin/main
+```
+
+Use a branch name that describes one task, for example:
+
+```text
+homepage-category-cards-test
+blog-layout-fix-test
+deployment-guide-refresh
+```
+
+If the normal checkout contains unrelated local files, do not disturb them just
+to start a new task. Use a separate worktree instead.
+
+---
+
+## 4. Safe local worktrees
+
+### Editing locally in an isolated worktree
+
+For a new local task:
+
+```powershell
+git fetch origin
+git worktree add -b <test-branch> ..\VCFInsider-<task> origin/main
+cd ..\VCFInsider-<task>
+```
+
+This creates the task branch in a separate working directory without modifying
+the primary checkout.
+
+### Previewing an existing remote test branch
+
+When the test branch already exists remotely:
+
+```powershell
+git fetch origin
+git worktree add --detach ..\VCFInsider-preview origin/<test-branch>
+cd ..\VCFInsider-preview
+```
+
+To refresh an existing preview worktree:
+
+```powershell
+git fetch origin
+git switch --detach origin/<test-branch>
+```
+
+A detached preview worktree is for building and testing.
+
+Do not make production commits from it.
+
+---
+
+## 5. Local dependencies
+
+The project uses Bundler and the `github-pages` dependency set.
+
+Install dependencies when setting up a new checkout or after dependency
+changes:
+
+```powershell
+bundle install
+```
+
+Normal Jekyll commands should be run through Bundler:
+
+```powershell
+bundle exec jekyll build
+bundle exec jekyll serve
+```
+
+This helps keep the local Jekyll environment aligned with the versions defined
+by the repository.
+
+---
+
+## 6. Build before preview
+
+Run:
+
+```powershell
+bundle exec jekyll build
+```
+
+The build must complete successfully before a change is considered ready.
+
+Warnings are not automatically failures. Review the final build result and
+distinguish non-blocking dependency/platform warnings from actual Jekyll
+errors.
+
+The generated `_site` directory is build output, not source content.
+
+---
+
+## 7. Local preview
+
+Run:
+
+```powershell
+bundle exec jekyll serve
+```
+
+Open:
+
+    http://127.0.0.1:4000/
+
+Keep the Jekyll process running while testing.
+
+After each final CSS, layout, or template adjustment, rebuild or refresh the
+served branch and verify the actual rendered result rather than relying only on
+the source diff.
+
+---
+
+## 8. Required visual validation
+
+For CSS, layout, navigation, card, or template changes, validate at minimum:
+
+- Desktop around 1440px wide
+- Mobile around 390px wide
+- Mobile around 430px wide
+
+Check for:
+
+- horizontal overflow
+- clipped headings
+- unexpected text wrapping
+- broken navigation
+- malformed category pills
+- inconsistent card heights
+- inconsistent button placement
+- stretched or cropped images
+- unreadable text
+- bad contrast
+- changes outside the intended section
+
+When shared classes are modified, inspect other pages that use those classes.
+
+Whenever possible, scope page-specific styling to a page-specific parent such
+as:
+
+```css
+.home-page ...
+body.blog-index ...
+```
+
+This reduces the risk of changing unrelated pages.
+
+---
+
+## 9. Validate the exact branch before merge
+
+Fetch the latest remote refs:
+
+```powershell
+git fetch origin
+```
+
+Check whitespace:
+
+```powershell
+git diff --check origin/main...origin/<test-branch>
+```
+
+Review changed files and size:
+
+```powershell
+git diff --stat origin/main...origin/<test-branch>
+```
+
+Review the actual patch:
+
+```powershell
+git diff origin/main...origin/<test-branch>
+```
+
+Review the commits that would enter production:
+
+```powershell
+git log --oneline origin/main..origin/<test-branch>
+```
+
+Confirm:
+
+- only expected files changed
+- no temporary files were added
+- no backup files were added
+- no credentials or secrets are present
+- no unrelated cleanup is included
+- all requested fixes are present
+- previously approved behavior remains intact
+
+If `main` changed while the test branch was being developed, stop and review
+the new relationship before merging.
+
+Do not assume the old comparison is still valid.
+
+---
+
+## 10. Production merge workflow
+
+Use a pull request from the reviewed test branch into `main`.
+
+Before merging, verify:
+
+- PR base is `main`
+- PR head is the expected test branch
+- PR head SHA matches the version that was reviewed
+- changed-file list matches the approved scope
+- the branch is mergeable
+- desktop/mobile validation is complete
+
+Merge only after Chris explicitly approves the production merge.
+
+Afterward:
+
+```powershell
+git fetch origin
+git log -1 --oneline origin/main
+```
+
+Record the new production commit SHA.
+
+---
+
+## 11. Post-deployment validation
+
+After GitHub Pages publishes the new `main`, open:
+
+    https://www.vcfinsider.com/
+
+Check the pages directly affected by the change.
+
+Also check at least one page that should not have changed.
+
+For homepage changes, verify:
+
+- hero
+- Latest from the Field
+- article cards
+- category section
+- navigation
+- community links
+- desktop layout
+- mobile layout
+
+For Blog index changes, verify:
+
+- `/blog/`
+- card layout
+- category labels
+- article links
+- mobile stacking
+
+For article-template changes, open at least one real article.
+
+A successful Git merge does not by itself prove that the live site renders
+correctly.
+
+---
+
+## 12. Publishing new articles
+
+Posts live in:
+
+```text
+_posts/
+```
+
+The current post format commonly includes front matter such as:
+
+```yaml
+layout: post
+title:
+description:
+excerpt:
+date:
+author:
+categories:
+tags:
+image:
+thumbnail:
+og_image:
+hero_image_path:
+```
+
+Not every field is required for every template, but new articles should follow
+the established metadata pattern used by recent production posts.
+
+In particular, keep:
+
+- a valid publication date
+- an authored category label
+- a useful excerpt
+- a card/hero image
+- social image metadata where applicable
+
+Do not invent new category spelling or capitalization casually. Category labels
+and category URLs are handled separately by the site.
+
+---
+
+## 13. Homepage article behavior
+
+`Latest from the Field` is generated automatically from the four newest posts.
+
+The homepage template loops over:
+
+```liquid
+{% for post in site.posts limit:4 %}
+```
+
+A new article therefore appears automatically when it becomes one of the four
+newest posts.
+
+Homepage cards automatically inherit the shared homepage presentation,
+including:
+
+- article image
+- category pill
+- title
+- excerpt
+- publication date
+- Read More button
+- NEW badge for recently published posts
+
+The homepage currently looks for:
+
+```liquid
+post.featured_image
+```
+
+and falls back to:
+
+```liquid
+post.image
+```
+
+Current production posts commonly use `image`.
+
+No hand-built homepage card is required for each article.
+
+---
+
+## 14. Category handling
+
+Preserve authored category labels such as:
+
+```text
+Cloud Foundation
+AI & Automation
+NSX-T
+VCF 9.1
+VMware Cloud Foundation
+```
+
+Do not change category URLs merely to alter the visible label.
+
+If a category label renders incorrectly, trace the Liquid/template rendering
+path before attempting to fix it with CSS.
+
+After category-related changes, validate:
+
+- homepage cards
+- Blog index
+- category pages
+- category URLs
+
+---
+
+## 15. Custom-domain configuration
+
+The production domain is:
+
+    https://www.vcfinsider.com
+
+The repository currently contains:
+
+```yaml
+url: "https://www.vcfinsider.com"
+baseurl: ""
+```
+
+and the `CNAME` file contains:
+
+```text
+www.vcfinsider.com
+```
+
+Do not change `_config.yml`, `CNAME`, DNS, or GitHub Pages domain settings as
+part of unrelated development work.
+
+A domain change should be handled as its own reviewed task.
+
+---
+
+## 16. Scope discipline
+
+Keep each branch focused.
+
+A homepage change should not silently modify:
+
+- Blog index layout
+- article templates
+- navigation
+- analytics
+- community behavior
+
+A Blog index change should not silently modify:
+
+- homepage cards
+- article pages
+- navigation
+- analytics
+
+A documentation change should not include application code changes.
+
+If testing reveals a second unrelated issue, record it and handle it in a
+separate task unless it is directly caused by the current patch.
+
+---
+
+## 17. Rollback
+
+If a production change causes a significant problem:
+
+1. Identify the production commit that introduced the issue.
+2. Identify the previous known-good production commit.
+3. Determine whether a targeted repair or revert is safer.
+4. Preview the repair when practical.
+5. Review the exact patch.
+6. Obtain explicit approval.
+7. Apply the repair.
+8. Verify the live site again.
+
+Do not force-reset `main` or rewrite production history as a routine rollback
+method.
+
+---
+
+## 18. Secrets and sensitive files
+
+Never commit:
+
+- API keys
+- passwords
+- access tokens
+- database credentials
+- private backups
+- private configuration exports
+
+Do not place secrets in:
+
+- Markdown documentation
+- screenshots
+- commit messages
+- issue descriptions
+- terminal transcripts
+
+The VCF Insider Community API has its own runbook:
+
+```text
+XENFORO_API_RUNBOOK.md
+```
+
+Forum writes and VCF Insider repository writes are separate operations and
+require separate approval.
+
+---
+
+## 19. Important source locations
+
+```text
+_config.yml        Jekyll/site configuration
+CNAME              Production custom domain
+_layouts/          Page and post layouts
+_includes/         Shared Liquid components
+_pages/            Static pages
+_posts/            Published articles
+assets/css/        Site CSS
+assets/js/         Site JavaScript
+assets/images/     Site and article images
+index.html         Homepage
+```
+
+Current site dependencies include:
+
+- Jekyll via GitHub Pages
+- Minima
+- jekyll-feed
+- jekyll-sitemap
+- jekyll-seo-tag
+- custom VCF Insider CSS and JavaScript
+
+---
+
+## 20. Definition of done
+
+Before a site change is considered complete:
+
+- [ ] Current `origin/main` verified
+- [ ] Test branch based on intended production commit
+- [ ] Exact scope identified
+- [ ] Proposed patch reviewed before implementation
+- [ ] Only approved files changed
+- [ ] `git diff --check` passes
+- [ ] Jekyll build succeeds
+- [ ] Desktop preview validated
+- [ ] 390px mobile preview validated
+- [ ] 430px mobile preview validated
+- [ ] No horizontal overflow
+- [ ] No unintended shared-style regressions
+- [ ] Final branch-to-`main` diff reviewed
+- [ ] Production merge explicitly approved
+- [ ] PR head SHA re-verified before merge
+- [ ] New `main` SHA recorded
+- [ ] Live site smoke-tested
+
+---
+
+Last materially updated: September 2026.
