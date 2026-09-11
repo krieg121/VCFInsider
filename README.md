@@ -1,107 +1,197 @@
-# VCF Insider Blog
+# VCF Insider
 
-**Your Gateway to VMware Cloud Foundation Excellence**
+**Real Stories and Solutions from the Field**
 
-A professional Jekyll blog focused on VMware Cloud Foundation insights, best practices, and technical guidance for the VCF community.
+VCF Insider is an independent technical site focused on real-world VMware
+Cloud Foundation experience: upgrades, architecture, troubleshooting,
+automation, networking, platform operations, and lessons learned in the field.
 
-## 🚀 Live Site
+Live site:
 
-Visit the live blog at: **[https://vcfinsider.com](https://vcfinsider.com)**
+https://www.vcfinsider.com/
 
-## 📝 About
+Community:
 
-VCF Insider provides comprehensive coverage of:
+https://community.vcfinsider.com/
 
-- **Cloud Foundation Fundamentals** - Core platform insights and architecture guidance
-- **AI & Automation** - Leveraging artificial intelligence and automation in VCF environments
-- **Security Best Practices** - Comprehensive security strategies and compliance guidance
-- **Networking Solutions** - NSX integration and advanced networking configurations
+## What You'll Find Here
 
-## 🛠️ Built With
+VCF Insider is built around practical technical content rather than product
+marketing.
 
-- **Jekyll** - Static site generator
-- **GitHub Pages** - Hosting platform
-- **Minima Theme** - Jekyll theme with custom VMware branding
-- **Custom CSS** - VMware-inspired design and color scheme
+Topics include:
 
-## 📁 Repository Structure
+- VMware Cloud Foundation architecture and operations
+- VCF upgrades and lifecycle management
+- NSX and networking
+- AI and automation
+- Troubleshooting and error handling
+- VCF Automation and private-cloud consumption
+- Field notes from real implementations
+- Lessons learned from problems that did not go exactly as planned
 
+The goal is simple: document useful technical experience in a way that helps
+other people working with VCF.
+
+## Site Structure
+
+```text
+_config.yml        Jekyll and site configuration
+_layouts/          Page and article layouts
+_includes/         Shared Liquid components
+_pages/            Static pages
+_posts/            Published articles
+assets/css/        Site styling
+assets/js/         Site JavaScript
+assets/images/     Site and article images
+index.html         Homepage
 ```
-├── _config.yml          # Site configuration
-├── _layouts/            # HTML layouts
-├── _pages/              # Static pages
-├── _posts/              # Blog posts
-├── assets/              # CSS, JS, and images
-├── Gemfile              # Ruby dependencies
-└── README.md            # This file
+
+## Built With
+
+The site currently uses:
+
+- Jekyll
+- GitHub Pages
+- Minima
+- Liquid templates
+- Custom CSS and JavaScript
+- jekyll-feed
+- jekyll-sitemap
+- jekyll-seo-tag
+
+The production site uses the custom domain:
+
+```text
+https://www.vcfinsider.com
 ```
 
-## 🔧 Local Development
+## Local Development
 
-### Prerequisites
+Prerequisites:
 
 - Ruby 3.4+
-- Bundler gem
+- Bundler
 - Git
 
-### Setup
+Clone the repository:
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/YOURUSERNAME/vcf-insider-blog.git
-   cd vcf-insider-blog
-   ```
+```powershell
+git clone https://github.com/krieg121/VCFInsider.git
+cd VCFInsider
+```
 
-2. **Install dependencies**
-   ```bash
-   bundle install
-   ```
+Install dependencies:
 
-3. **Serve locally**
-   ```bash
-   bundle exec jekyll serve
-   ```
+```powershell
+bundle install
+```
 
-4. **Visit** `http://localhost:4000`
+Build the site:
 
-## 📖 Content Guidelines
+```powershell
+bundle exec jekyll build
+```
 
-### Blog Posts
-- Written in Markdown
-- Include proper front matter
-- Use VMware-specific terminology
-- Include code examples where relevant
+Serve it locally:
 
-### Categories
-- **Cloud Foundation** - Core VCF platform content
-- **AI & Automation** - AI and automation topics
-- **Security** - Security and compliance
-- **Networking** - NSX and networking solutions
+```powershell
+bundle exec jekyll serve
+```
 
-## 🤝 Contributing
+Then open:
 
-We welcome contributions from the VMware community! Please:
+```text
+http://127.0.0.1:4000/
+```
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Submit a pull request
+For the full branch, preview, validation, and production deployment workflow,
+see:
 
-## 📧 Contact
+[DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md)
 
-- **Email**: [Chris@VCFInsider.com](mailto:Chris@VCFInsider.com)
-- **Twitter**: [@VCFInsider](https://twitter.com/VCFInsider)
+## Publishing Articles
 
-## 📄 License
+Articles are stored in:
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+```text
+_posts/
+```
 
-## 🙏 Acknowledgments
+Posts are Markdown files with Jekyll front matter describing things such as:
 
-- VMware community for inspiration and feedback
-- Jekyll and GitHub Pages teams for excellent tooling
-- Minima theme contributors for the base theme
+- title
+- description
+- excerpt
+- publication date
+- author
+- category
+- tags
+- article and social images
+
+The homepage automatically displays the four newest articles under
+**Latest from the Field**, so new homepage cards do not need to be created
+manually.
+
+## Categories
+
+The main site currently highlights:
+
+- Cloud Foundation
+- AI & Automation
+- Security
+- Networking
+
+Additional article topics and category pages may exist as the content library
+grows.
+
+Visible category labels should preserve their authored capitalization,
+spacing, acronyms, and punctuation.
+
+## Community
+
+VCF Insider also has a companion discussion community:
+
+https://community.vcfinsider.com/
+
+Articles may link directly to related community discussions so readers can
+continue the conversation, share their own experience, or compare approaches.
+
+The XenForo API and community automation workflow are documented separately in:
+
+[XENFORO_API_RUNBOOK.md](XENFORO_API_RUNBOOK.md)
+
+## Share Your Story
+
+VCF Insider is not intended to be only one person's perspective.
+
+If you have a useful VCF troubleshooting story, upgrade experience,
+architecture lesson, automation workflow, or field note worth sharing, visit:
+
+https://www.vcfinsider.com/share-your-story/
+
+## Repository Workflow
+
+`main` is the production branch.
+
+Site changes are developed on focused test branches, reviewed and validated
+locally, and merged into `main` only after production approval.
+
+The detailed operating procedure is maintained in:
+
+[DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md)
+
+## Contact
+
+VCF Insider:
+
+https://www.vcfinsider.com/contact/
+
+GitHub:
+
+https://github.com/krieg121
 
 ---
 
-**Built with ❤️ for the VMware Cloud Foundation community**
+Built from real-world VCF experience and maintained as the working source for
+VCF Insider.
