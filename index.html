@@ -161,16 +161,19 @@ Usage inside your homepage cards:
 </section>
 
 <!-- Categories Section -->
-<section class="categories-section" style="padding: 80px 0; background: var(--vmware-white);">
+<section class="categories-section home-categories">
   <div class="container">
-    <div class="section-header">
+    <div class="section-header home-categories-header">
+      <p class="home-section-kicker">Explore the Field</p>
       <h2 class="section-title">Explore by Category</h2>
-      <p class="section-subtitle">Find content tailored to your specific VCF interests</p>
+      <p class="section-subtitle">
+        Dive into focused content from real-world experience, field notes, and practical guidance.
+      </p>
     </div>
 
     {%- assign _category_pages = site.pages | where_exp: "p", "p.layout == 'category'" -%}
 
-    <div class="categories-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem;">
+    <div class="categories-grid home-categories-grid">
 
       {%- comment -%} Cloud Foundation {%- endcomment -%}
       {%- assign display_name = "Cloud Foundation" -%}
@@ -181,11 +184,14 @@ Usage inside your homepage cards:
         {%- assign cat_url = "/categories/" | append: slug | append: "/" -%}
       {%- endif -%}
       {%- assign count = site.categories[lookup_name] | size -%}
-      <a class="category-card category-card--home" href="{{ cat_url | relative_url }}" aria-label="Explore {{ display_name }}">
-        <div class="icon" style="color: var(--vmware-blue);"><i class="fas fa-cloud"></i></div>
+      <a class="category-card category-card--home category-card--cloud" href="{{ cat_url | relative_url }}" aria-label="Explore {{ display_name }}">
+        <div class="icon"><i class="fas fa-cloud"></i></div>
         <h3 class="title">{{ display_name }}</h3>
-        <p class="desc">Core VCF platform insights and best practices</p>
-        <span class="btn btn-primary">Explore · {{ count }} posts</span>
+        <p class="desc">Core VCF platform insights and field guidance.</p>
+        <span class="home-category-meta">
+          {{ count }} article{% unless count == 1 %}s{% endunless %}
+          <i class="fas fa-arrow-right" aria-hidden="true"></i>
+        </span>
       </a>
 
       {%- comment -%} AI & Automation → Automation {%- endcomment -%}
@@ -197,11 +203,14 @@ Usage inside your homepage cards:
         {%- assign cat_url = "/categories/" | append: slug | append: "/" -%}
       {%- endif -%}
       {%- assign count = site.categories[lookup_name] | size -%}
-      <a class="category-card category-card--home" href="{{ cat_url | relative_url }}" aria-label="Explore {{ display_name }}">
-        <div class="icon" style="color: var(--vmware-green);"><i class="fas fa-robot"></i></div>
+      <a class="category-card category-card--home category-card--automation" href="{{ cat_url | relative_url }}" aria-label="Explore {{ display_name }}">
+        <div class="icon"><i class="fas fa-robot"></i></div>
         <h3 class="title">{{ display_name }}</h3>
-        <p class="desc">AI-powered solutions and automation strategies</p>
-        <span class="btn btn-primary">Explore · {{ count }} posts</span>
+        <p class="desc">Automation, AI, and operational efficiency in the real world.</p>
+        <span class="home-category-meta">
+          {{ count }} article{% unless count == 1 %}s{% endunless %}
+          <i class="fas fa-arrow-right" aria-hidden="true"></i>
+        </span>
       </a>
 
       {%- comment -%} Security {%- endcomment -%}
@@ -213,11 +222,14 @@ Usage inside your homepage cards:
         {%- assign cat_url = "/categories/" | append: slug | append: "/" -%}
       {%- endif -%}
       {%- assign count = site.categories[lookup_name] | size -%}
-      <a class="category-card category-card--home" href="{{ cat_url | relative_url }}" aria-label="Explore {{ display_name }}">
-        <div class="icon" style="color: var(--vmware-orange);"><i class="fas fa-shield-alt"></i></div>
+      <a class="category-card category-card--home category-card--security" href="{{ cat_url | relative_url }}" aria-label="Explore {{ display_name }}">
+        <div class="icon"><i class="fas fa-shield-alt"></i></div>
         <h3 class="title">{{ display_name }}</h3>
-        <p class="desc">Security best practices and compliance</p>
-        <span class="btn btn-primary">Explore · {{ count }} posts</span>
+        <p class="desc">Security practices, hardening, and guidance from the field.</p>
+        <span class="home-category-meta">
+          {{ count }} article{% unless count == 1 %}s{% endunless %}
+          <i class="fas fa-arrow-right" aria-hidden="true"></i>
+        </span>
       </a>
 
       {%- comment -%} Networking {%- endcomment -%}
@@ -229,11 +241,14 @@ Usage inside your homepage cards:
         {%- assign cat_url = "/categories/" | append: slug | append: "/" -%}
       {%- endif -%}
       {%- assign count = site.categories[lookup_name] | size -%}
-      <a class="category-card category-card--home" href="{{ cat_url | relative_url }}" aria-label="Explore {{ display_name }}">
-        <div class="icon" style="color: var(--vmware-blue);"><i class="fas fa-network-wired"></i></div>
+      <a class="category-card category-card--home category-card--networking" href="{{ cat_url | relative_url }}" aria-label="Explore {{ display_name }}">
+        <div class="icon"><i class="fas fa-network-wired"></i></div>
         <h3 class="title">{{ display_name }}</h3>
-        <p class="desc">NSX and networking solutions</p>
-        <span class="btn btn-primary">Explore · {{ count }} posts</span>
+        <p class="desc">NSX, connectivity, and networking lessons from real environments.</p>
+        <span class="home-category-meta">
+          {{ count }} article{% unless count == 1 %}s{% endunless %}
+          <i class="fas fa-arrow-right" aria-hidden="true"></i>
+        </span>
       </a>
 
     </div>
