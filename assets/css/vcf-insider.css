@@ -873,6 +873,10 @@ a.article-category:focus { text-decoration: none; }
   font-size: .9rem;
 }
 
+.home-page .home-latest .article-category {
+  align-self: flex-start;
+}
+
 .home-page .home-latest .article-meta {
   margin-top: auto;
   align-items: flex-start;
