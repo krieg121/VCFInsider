@@ -43,7 +43,10 @@ Replication is a good example of the difference. Its job is to keep another copy
 This is where the old **"trust, but verify"** idea gets turned around a little. During a cyber event, the safer mindset may be **verify before you trust**. Disaster recovery generally begins with the assumption that the workload is worth recovering; cyber recovery gives you a process to decide whether that assumption is still valid.
 
 <figure style="margin: 2rem 0;">
-  <img src="/assets/images/posts/2026-09-14-cyber-recovery/verify-before-you-trust.webp" alt="Cyber recovery timeline showing why teams may need to investigate older recovery points and validate them in isolation before returning a workload to production" style="display: block; width: 100%; max-width: 100%; height: auto; margin: 0;">
+  <picture>
+    <source media="(max-width: 600px)" srcset="/assets/images/posts/2026-09-14-cyber-recovery/verify-before-you-trust-mobile.webp">
+    <img src="/assets/images/posts/2026-09-14-cyber-recovery/verify-before-you-trust.webp" alt="Cyber recovery timeline showing why teams may need to investigate older recovery points and validate them in isolation before returning a workload to production" style="display: block; width: 100%; max-width: 100%; height: auto; margin: 0;">
+  </picture>
   <figcaption style="margin-top: 0.75rem; font-style: italic; color: #2C3E50; line-height: 1.6;">
     <strong>Figure 1:</strong> During a cyber incident, the newest recovery point may not be the safest one. Finding a trustworthy state may mean working backward through recovery history and validating candidate workloads in isolation.
   </figcaption>
