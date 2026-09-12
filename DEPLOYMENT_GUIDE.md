@@ -380,7 +380,9 @@ and category URLs are handled separately by the site.
 The homepage template loops over:
 
 ```liquid
+{% raw %}
 {% for post in site.posts limit:4 %}
+{% endraw %}
 ```
 
 A new article therefore appears automatically when it becomes one of the four
