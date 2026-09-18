@@ -12,6 +12,8 @@ image: /assets/images/posts/2026-09-14-cyber-recovery/hero.webp
 thumbnail: /assets/images/posts/2026-09-14-cyber-recovery/hero.webp
 og_image: /assets/images/posts/2026-09-14-cyber-recovery/hero.webp
 hero_image_path: /assets/images/posts/2026-09-14-cyber-recovery/hero.webp
+community_thread_url: "https://community.vcfinsider.com/index.php?threads/when-is-a-recoverable-backup-the-wrong-thing-to-restore.31/"
+community_thread_title: "When Is a Recoverable Backup the Wrong Thing to Restore?"
 ---
 
 Earlier in my career, I wore a lot of hats. I worked with VMware, Exchange, SharePoint, networking and storage, while also handling backups and disaster recovery. On the backup side, that meant spending a lot of time with products like Backup Exec and vRanger. We were also using Compellent SAN replication for disaster recovery, back before Compellent became part of Dell. At one point I was responsible for my company's entire backup environment and recovery strategy, so whether we could actually get our data back was something I spent a lot of time thinking about.
