@@ -81,6 +81,8 @@ exclude:
   - .gitignore
   - .git/
   - .github/
+  - scripts/Deploy-VCFInsider.ps1
+  - scripts/deploy-vcfinsider-remote.sh
   - NUL
 
 # Include
