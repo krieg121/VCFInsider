@@ -15,7 +15,10 @@ Community:
 
     https://community.vcfinsider.com/
 
-VCF Insider is a Jekyll site published with GitHub Pages.
+VCF Insider is a Jekyll site built locally and deployed to DreamHost.
+
+GitHub is the source of truth. DreamHost serves the production site. GitHub
+Pages is not the production host.
 
 ---
 
@@ -36,7 +39,9 @@ Normal workflow:
 6. Review the complete branch-to-`main` diff.
 7. Merge through a reviewed pull request only after explicit approval.
 8. Verify the resulting `main` commit.
-9. Smoke-test the live site.
+9. Run the DreamHost deployment from a clean local `main` that exactly matches
+   `origin/main`.
+10. Smoke-test the live site.
 
 Do not mix unrelated fixes into the same branch.
 
@@ -296,9 +301,132 @@ Record the new production commit SHA.
 
 ---
 
-## 11. Post-deployment validation
+## 11. DreamHost staging and production deployment
 
-After GitHub Pages publishes the new `main`, open:
+Hosting details:
+
+```text
+SSH host:          vps69933.dreamhostps.com
+SSH user:          vcfinsider_web
+Staging site:      /home/vcfinsider_web/staging.vcfinsider.com
+Staging data:      /home/vcfinsider_web/deployments/vcfinsider-staging
+Production site:   /home/vcfinsider_web/vcfinsider.com
+Production data:   /home/vcfinsider_web/deployments/vcfinsider
+```
+
+The deployment is deliberately separate from the GitHub merge. Merging a pull
+request into `main` does not change the DreamHost site.
+
+The local deployment entry point is:
+
+```powershell
+.\scripts\Deploy-VCFInsider.ps1
+```
+
+The script has three modes:
+
+```powershell
+# Validation only; no DreamHost file changes
+.\scripts\Deploy-VCFInsider.ps1
+
+# Deploy an approved, clean remote-tracked branch to staging
+.\scripts\Deploy-VCFInsider.ps1 -Staging
+
+# Deploy a clean main that exactly matches origin/main to production
+.\scripts\Deploy-VCFInsider.ps1 -Production
+```
+
+With no parameters, validation mode:
+
+- verifies the repository and current `origin/main`
+- verifies non-interactive SSH key authentication
+- performs read-only preflights of both DreamHost web roots
+- builds the site with `JEKYLL_ENV=production`
+- confirms `_site/index.html` exists
+- makes no DreamHost file changes
+
+Before running it, load the dedicated key into the Windows SSH agent:
+
+```powershell
+Start-Service ssh-agent
+ssh-add "$env:USERPROFILE\.ssh\vcfinsider_dreamhost_ed25519"
+```
+
+### Staging mode
+
+Staging mode is for testing a focused branch before it enters `main`. It stops
+unless all of the following are true:
+
+- the current branch is named and is not `main`
+- the working tree is clean
+- the branch exists on `origin`
+- local HEAD exactly matches the freshly fetched remote branch
+- the origin points to `krieg121/VCFInsider`
+- the dedicated SSH key works non-interactively
+- the Jekyll build succeeds
+- the typed `STAGE <short-SHA>` confirmation matches
+
+The staging build uses `https://staging.vcfinsider.com` as the Jekyll URL,
+includes future-dated posts for review, and replaces the generated
+`robots.txt` with a site-wide crawl disallow. This reduces accidental search
+indexing but is not an access-control mechanism. Password protection should be
+configured separately before placing sensitive unpublished content on staging.
+
+Staging checks both `/` and `/blog/` after promotion. Its backups, releases,
+and current-release metadata remain separate from production under:
+
+```text
+/home/vcfinsider_web/deployments/vcfinsider-staging/
+```
+
+### Production mode
+
+Production mode stops unless all of the following are true:
+
+- the current branch is `main`
+- the working tree is clean
+- local `main` exactly matches the freshly fetched `origin/main`
+- the origin points to `krieg121/VCFInsider`
+- the dedicated SSH key works non-interactively
+- the Jekyll build succeeds
+- the typed commit confirmation matches
+
+The script packages `_site`, uploads it to a private incoming directory, backs
+up the current target, and promotes the release. Production checks both `/` and
+`/blog/` after promotion.
+
+For both targets, DreamHost's `/.dh-diag` symlink is preserved during
+synchronization. The script also preserves `/.well-known/` and `/.htaccess` if
+either is created by DreamHost or maintained outside Jekyll.
+
+Backups and staged releases are retained under:
+
+```text
+/home/vcfinsider_web/deployments/vcfinsider/backups/
+/home/vcfinsider_web/deployments/vcfinsider/releases/
+```
+
+The deployed release ID and Git SHA are recorded in:
+
+```text
+/home/vcfinsider_web/deployments/vcfinsider/current-release
+```
+
+No automatic backup deletion is performed. Review storage usage and implement
+a separately approved retention policy before removing old backups.
+
+After the deployment, remove the key from the Windows SSH agent when it is no
+longer needed:
+
+```powershell
+ssh-add -d "$env:USERPROFILE\.ssh\vcfinsider_dreamhost_ed25519"
+```
+
+---
+
+## 12. Post-deployment validation
+
+After the DreamHost deployment completes, open:
 
     https://www.vcfinsider.com/
 
@@ -332,7 +460,7 @@ correctly.
 
 ---
 
-## 12. Publishing new articles
+## 13. Publishing new articles
 
 Posts live in:
 
@@ -373,7 +501,7 @@ and category URLs are handled separately by the site.
 
 ---
 
-## 13. Homepage article behavior
+## 14. Homepage article behavior
 
 `Latest from the Field` is generated automatically from the four newest posts.
 
@@ -417,7 +545,7 @@ No hand-built homepage card is required for each article.
 
 ---
 
-## 14. Category handling
+## 15. Category handling
 
 Preserve authored category labels such as:
 
@@ -443,7 +571,7 @@ After category-related changes, validate:
 
 ---
 
-## 15. Custom-domain configuration
+## 16. Custom-domain configuration
 
 The production domain is:
 
@@ -469,7 +597,7 @@ A domain change should be handled as its own reviewed task.
 
 ---
 
-## 16. Scope discipline
+## 17. Scope discipline
 
 Keep each branch focused.
 
@@ -495,25 +623,30 @@ separate task unless it is directly caused by the current patch.
 
 ---
 
-## 17. Rollback
+## 18. Rollback
 
 If a production change causes a significant problem:
 
-1. Identify the production commit that introduced the issue.
-2. Identify the previous known-good production commit.
-3. Determine whether a targeted repair or revert is safer.
-4. Preview the repair when practical.
-5. Review the exact patch.
-6. Obtain explicit approval.
-7. Apply the repair.
-8. Verify the live site again.
+1. Stop further deployment attempts.
+2. Record the failed release ID, Git SHA, and observed symptoms.
+3. Identify the timestamped DreamHost backup for that release.
+4. Determine whether restoring the backup or deploying a reviewed corrective
+   commit is safer.
+5. Obtain explicit approval for the exact rollback action.
+6. Restore or redeploy using the approved procedure.
+7. Verify the live site again.
 
-Do not force-reset `main` or rewrite production history as a routine rollback
-method.
+The remote helper attempts to restore the just-created backup automatically if
+the file-promotion operation itself fails. A rollback caused by bad rendered
+content or a failed live smoke test is a separate production write and requires
+explicit approval.
+
+Do not force-reset `main`, rewrite production history, or manually overwrite
+the web root as a routine rollback method.
 
 ---
 
-## 18. Secrets and sensitive files
+## 19. Secrets and sensitive files
 
 Never commit:
 
@@ -543,7 +676,7 @@ require separate approval.
 
 ---
 
-## 19. Important source locations
+## 20. Important source locations
 
 ```text
 _config.yml        Jekyll/site configuration
@@ -569,7 +702,7 @@ Current site dependencies include:
 
 ---
 
-## 20. Definition of done
+## 21. Definition of done
 
 Before a site change is considered complete:
 
@@ -589,6 +722,11 @@ Before a site change is considered complete:
 - [ ] Production merge explicitly approved
 - [ ] PR head SHA re-verified before merge
 - [ ] New `main` SHA recorded
+- [ ] Validation-only DreamHost deployment run succeeds
+- [ ] Staging deployment separately approved
+- [ ] Staging release validated at desktop and mobile widths
+- [ ] Production deployment separately approved
+- [ ] Deployed DreamHost release ID and Git SHA recorded
 - [ ] Live site smoke-tested
 
 ---
