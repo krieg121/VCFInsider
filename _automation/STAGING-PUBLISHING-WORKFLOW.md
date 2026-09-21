@@ -1,11 +1,11 @@
-# VCF Insider staging publication harness
+# VCF Insider publication workflow
 
-This package adds a staging-only publication test around the existing VCF Insider deployment workflow. It does not replace or modify either of these known-good files:
+This package adds a guarded publication workflow around the existing VCF Insider deployment scripts. It preserves the established DreamHost deployment path while adding preparation, verification, XenForo, and Buffer release gates.
 
 - `scripts/Deploy-VCFInsider.ps1`
 - `scripts/deploy-vcfinsider-remote.sh`
 
-The harness has no production deployment parameter and contains no XenForo or social-media write operation. Its only optional repository write is an explicit, branch-protected community CTA front-matter update.
+The low-level staging harness remains non-production and cannot write to Buffer. Production deployment and Buffer publishing are available only through separate scripts with exact-commit checks, duplicate detection, explicit confirmation phrases, and read-back verification.
 
 The new files live under underscore-prefixed directories so Jekyll does not copy the automation script, manifests, or social drafts into the generated website. No `_config.yml` change is required.
 
@@ -17,6 +17,8 @@ Copy these files into the matching locations in the VCF Insider repository:
 _automation/Test-VCFInsiderPublication.ps1
 _automation/Publish-VCFInsiderXenForoThread.ps1
 _automation/Prepare-VCFInsiderBufferPosts.ps1
+_automation/Publish-VCFInsiderBufferPosts.ps1
+_automation/Invoke-VCFInsiderPublication.ps1
 _automation/STAGING-PUBLISHING-WORKFLOW.md
 _publishing/publication-manifest.template.json
 _publishing/2026-09-21-cyber-recovery-part2.example.json
@@ -36,7 +38,7 @@ The harness:
 8. Plans or applies the two community CTA front-matter fields with conflict detection and idempotency.
 9. Writes a JSON release report.
 
-It cannot:
+`Test-VCFInsiderPublication.ps1` cannot:
 
 - deploy production;
 - create, update, or delete a XenForo thread;
@@ -47,13 +49,22 @@ The CTA update cannot write directly to `main`. It stops without changing the ar
 
 The XenForo publishing script keeps thread creation separate from deployment. It uses the proven API sequence: verify `/me/`, perform the paged exact-title duplicate search, POST to `/threads/`, and read the new thread back with `with_first_post=1`. Existing exact-title threads are successful no-ops; they are never reposted.
 
-The Buffer planner keeps social-media writes inside the authenticated Codex session where the Buffer MCP connection exists. PowerShell validates the verified channel IDs, services, post text, publication mode, schedule offsets, and mandatory platform-specific link-preview metadata, then produces a deterministic plan and a guarded Codex request. The planner itself cannot create, schedule, modify, or delete Buffer content.
+The Buffer planner validates the verified channel IDs, services, post text, publication mode, schedule offsets, and mandatory platform-specific link-preview metadata, then produces a deterministic plan. The planner itself cannot create, schedule, modify, or delete Buffer content.
+
+`Publish-VCFInsiderBufferPosts.ps1` uses Buffer's current GraphQL API at `https://api.buffer.com`. It authenticates with a Bearer API key, verifies the organization and channels, performs paged exact-duplicate detection, displays the complete payload, and requires `PUBLISH <release_name>` or `SCHEDULE <release_name>` before the first mutation. A duplicate must match the channel, text, timing, mode, service, and complete link-preview metadata; older same-text posts with different preview metadata are reported but do not block a fully matching post. Posts are created sequentially and read back immediately. A non-null, exact platform link attachment is mandatory. A failed or ambiguous mutation is never retried automatically.
+
+The implementation follows Buffer's official [API quick start](https://developers.buffer.com/guides/getting-started.html), [first-post guide](https://developers.buffer.com/guides/your-first-post.html), and [GraphQL reference](https://developers.buffer.com/reference.html).
 
 LinkedIn and Facebook article promotions are fail-closed: every enabled post must contain the complete verified `linkAttachment` payload with the production URL, exact article title, preview description, and hero thumbnail. X remains disabled because its current connected-channel and link-preview workflow has not been verified.
 
-## Repository requirement for staging deployment
+## Repository requirements
 
-The existing staging deployment script requires:
+The deployment script accepts only these two verified repositories:
+
+- `github.com/krieg121/VCFInsider`
+- `gitlab.com/vcf-insider-group/vcfinsider`
+
+Staging deployment requires:
 
 - a focused non-`main` branch;
 - a clean working tree;
@@ -159,6 +170,12 @@ The manifest's `buffer` object contains the verified Buffer organization, Linked
 
 The preview title must exactly match `article_title`. The thumbnail must be an HTTPS URL on `www.vcfinsider.com`. The generated LinkedIn input uses `metadata.linkedin.linkAttachment`; the Facebook input uses `metadata.facebook.linkAttachment` with `type: post`. Both use an empty `assets` array, matching the verified Buffer payloads.
 
+Each channel also has an optional `article_url`. Leave it empty to use the canonical `production_url`, or supply a platform-specific URL using only standard `utm_*` parameters. The host and article path must remain identical to `production_url`; the planner rejects redirects or unrelated query parameters. The selected URL is used in both the post text and its link attachment.
+
+```json
+"article_url": "https://www.vcfinsider.com/category/YYYY/MM/DD/article-slug/?utm_source=linkedin&utm_medium=social&utm_campaign=article-slug"
+```
+
 For scheduled publication, keep `buffer.mode` set to `customScheduled`. Each enabled channel requires an approved future `due_at` value with an explicit Eastern offset:
 
 ```json
@@ -185,9 +202,77 @@ This writes the following files outside the repository:
 - `buffer-codex-request.txt`
 - `buffer-release-report.json`
 
-Open a Buffer-enabled ChatGPT or Codex session, paste the contents of `buffer-codex-request.txt`, and let it complete the first read-only turn. The request requires organization and channel verification, duplicate detection, complete payload review, and a non-null platform link attachment before approval. It requires the exact phrase `SCHEDULE <release_name>` for scheduled posts or `PUBLISH <release_name>` for immediate posts before any mutation.
+The generated `buffer-codex-request.txt` remains available as a connector-based fallback. The direct API publisher uses the same payload and safeguards without copying the request into another chat.
 
 Posts are created sequentially. After each write, the request requires a read-back verification of the post ID, channel, text, status, timing, and the complete platform `linkAttachment`. If a post is created but preview verification fails, stop and reconcile it manually; never automatically delete, recreate, or retry it.
+
+### Buffer API credentials
+
+Never place the Buffer API key in a manifest, script, Git file, command-line argument, or release report. For interactive use, leave `VCFINSIDER_BUFFER_API_KEY` unset and let the publisher prompt with `Read-Host -AsSecureString`. For future non-interactive use, inject that environment variable from the automation platform's secret store rather than placing the key in a shell command or repository setting that is not access-controlled.
+
+Run a read-only API preflight:
+
+```powershell
+.\_automation\Publish-VCFInsiderBufferPosts.ps1 `
+  -PlanPath "$env:USERPROFILE\Documents\VCFInsider-publishing-previews\<release_name>\buffer-plan.json"
+```
+
+Permit the guarded write only after reviewing that output:
+
+```powershell
+.\_automation\Publish-VCFInsiderBufferPosts.ps1 `
+  -PlanPath "$env:USERPROFILE\Documents\VCFInsider-publishing-previews\<release_name>\buffer-plan.json" `
+  -Publish
+```
+
+The script still requires the exact interactive `PUBLISH <release_name>` or `SCHEDULE <release_name>` phrase. Existing exact duplicates are verified and treated as successful no-ops.
+
+## Two-stage orchestrator
+
+The orchestrator keeps preparation separate from final release.
+
+Prepare previews and the Buffer plan without deploying anything:
+
+```powershell
+.\_automation\Invoke-VCFInsiderPublication.ps1 `
+  -ManifestPath ".\_publishing\YYYY-MM-DD-article-name.json" `
+  -Prepare
+```
+
+Deploy the focused branch to staging and run the optional read-only XenForo check:
+
+```powershell
+.\_automation\Invoke-VCFInsiderPublication.ps1 `
+  -ManifestPath ".\_publishing\YYYY-MM-DD-article-name.json" `
+  -Prepare `
+  -DeployStaging `
+  -CheckXenForo
+```
+
+For a new article, complete the guarded XenForo workflow only after the article is live, add the verified thread URL to the manifest, apply the CTA on a focused branch, and merge it. This preserves the rule that a community thread must not link to an unpublished production article.
+
+Run the final release from a clean `main` that exactly matches the approved remote commit:
+
+```powershell
+.\_automation\Invoke-VCFInsiderPublication.ps1 `
+  -ManifestPath ".\_publishing\YYYY-MM-DD-article-name.json" `
+  -Release `
+  -ExpectedCommit "<full-40-character-main-commit>"
+```
+
+That command deploys and verifies production, then performs a read-only Buffer API preflight. Add `-PublishBuffer` to permit the separate Buffer confirmation gate:
+
+```powershell
+.\_automation\Invoke-VCFInsiderPublication.ps1 `
+  -ManifestPath ".\_publishing\YYYY-MM-DD-article-name.json" `
+  -Release `
+  -ExpectedCommit "<full-40-character-main-commit>" `
+  -PublishBuffer
+```
+
+The final release refuses a dirty tree, a non-`main` branch, a commit mismatch, a missing verified XenForo URL, or article front matter that does not exactly match the manifest CTA.
+
+If no Buffer channels are enabled, the final release skips Buffer without making an API request. Supplying `-PublishBuffer` while no channels are enabled fails before the production deployment.
 
 To copy the generated request to the Windows clipboard:
 
@@ -218,4 +303,4 @@ These outputs are deliberately outside the Git repository so they do not dirty t
 
 ## Production boundary
 
-Production orchestration should be implemented only after this staging harness completes a full test successfully. The production workflow should reuse the same manifest but remain a separate script with its own explicit approval and idempotency controls.
+Production still uses `scripts/Deploy-VCFInsider.ps1 -Production` and its exact `DEPLOY <short-commit>` confirmation. The orchestrator adds another boundary around it: full expected commit verification before deployment, live article and CTA verification after deployment, and a separate Buffer confirmation before any social mutation.

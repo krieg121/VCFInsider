@@ -33,18 +33,21 @@
         "enabled": false,
         "channel_id": "6ab15189ea19ca0bdea6d809",
         "service": "linkedin",
+        "article_url": "",
         "due_at": ""
       },
       "facebook": {
         "enabled": false,
         "channel_id": "6ab151f6ea19ca0bdea6dad7",
         "service": "facebook",
+        "article_url": "",
         "due_at": ""
       },
       "x": {
         "enabled": false,
         "channel_id": "",
         "service": "twitter",
+        "article_url": "",
         "due_at": ""
       }
     }
