@@ -12,6 +12,8 @@ image: /assets/images/posts/2026-09-21-vcf-9-1-cyber-recovery/hero.webp
 thumbnail: /assets/images/posts/2026-09-21-vcf-9-1-cyber-recovery/hero.webp
 og_image: /assets/images/posts/2026-09-21-vcf-9-1-cyber-recovery/hero.webp
 hero_image_path: /assets/images/posts/2026-09-21-vcf-9-1-cyber-recovery/hero.webp
+community_thread_url: "https://community.vcfinsider.com/index.php?threads/cyber-recovery-part-2-how-do-you-find-a-recovery-point-you-can-trust.32/"
+community_thread_title: "Cyber Recovery Part 2: How Do You Find a Recovery Point You Can Trust?"
 ---
 
 In [Part 1](https://www.vcfinsider.com/cloud%20foundation/2026/09/14/cyber-recovery-verify-before-you-trust/), I focused on why a recoverable backup may still be the wrong thing to restore. The next question is more practical: if the newest recovery point cannot automatically be trusted, how do you decide where to begin?
