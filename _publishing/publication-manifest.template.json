@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "release_name": "yyyy-mm-dd-short-article-name",
+  "post_path": "_posts/YYYY-MM-DD-article-slug.md",
+  "article_title": "Exact article title from front matter",
+  "expected_text": "Distinctive plain-text phrase expected on the rendered page",
+  "staging_url": "https://staging.vcfinsider.com/category/YYYY/MM/DD/article-slug/",
+  "production_url": "https://www.vcfinsider.com/category/YYYY/MM/DD/article-slug/",
+  "xenforo": {
+    "node_id": 5,
+    "forum_name": "VMware Cloud Foundation",
+    "thread_title": "Exact proposed XenForo thread title",
+    "thread_url": "",
+    "message": "Proposed XenForo body. Use {{ARTICLE_URL}} where the production article link belongs."
+  },
+  "social": {
+    "linkedin": "LinkedIn draft with {{ARTICLE_URL}}",
+    "facebook": "Facebook draft with {{ARTICLE_URL}}",
+    "x": "X draft with {{ARTICLE_URL}}"
+  },
+  "buffer": {
+    "organization_id": "6ab14f719b262e913086edb6",
+    "timezone": "America/New_York",
+    "mode": "customScheduled",
+    "scheduling_type": "automatic",
+    "link_preview": {
+      "title": "Exact article title from front matter",
+      "description": "Concise description shown in the social link-preview card",
+      "thumbnail_url": "https://www.vcfinsider.com/assets/images/posts/YYYY-MM-DD-article-slug/hero.webp"
+    },
+    "channels": {
+      "linkedin": {
+        "enabled": false,
+        "channel_id": "6ab15189ea19ca0bdea6d809",
+        "service": "linkedin",
+        "due_at": ""
+      },
+      "facebook": {
+        "enabled": false,
+        "channel_id": "6ab151f6ea19ca0bdea6dad7",
+        "service": "facebook",
+        "due_at": ""
+      },
+      "x": {
+        "enabled": false,
+        "channel_id": "",
+        "service": "twitter",
+        "due_at": ""
+      }
+    }
+  }
+}

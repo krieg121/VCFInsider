@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "release_name": "2026-09-21-cyber-recovery-part2",
+  "post_path": "_posts/2026-09-21-vcf-9-1-cyber-recovery-finding-the-recovery-point-you-can-trust.md",
+  "article_title": "VCF 9.1 Cyber Recovery: Finding the Recovery Point You Can Trust",
+  "expected_text": "Finding the Recovery Point You Can Trust",
+  "staging_url": "https://staging.vcfinsider.com/cloud%20foundation/2026/09/21/vcf-9-1-cyber-recovery-finding-the-recovery-point-you-can-trust/",
+  "production_url": "https://www.vcfinsider.com/cloud%20foundation/2026/09/21/vcf-9-1-cyber-recovery-finding-the-recovery-point-you-can-trust/",
+  "xenforo": {
+    "node_id": 5,
+    "forum_name": "VMware Cloud Foundation",
+    "thread_title": "Cyber Recovery Part 2: How Do You Find a Recovery Point You Can Trust?",
+    "thread_url": "https://community.vcfinsider.com/index.php?threads/cyber-recovery-part-2-how-do-you-find-a-recovery-point-you-can-trust.32/",
+    "message": "Part 2 of the VCF Insider cyber recovery series is now live.\n\nThe newest recovery point is not automatically the safest one. The initial compromise may predate detection by days or weeks, which means recent snapshots and backups can preserve the same malicious foothold you are trying to remove.\n\nThis article covers:\n\n[LIST]\n[*]Why compromise timing changes recovery-point selection\n[*]How retention depth affects your available choices\n[*]Why candidate recovery points should be validated in isolation\n[*]Why a supported security inspection control is essential before returning workloads to production\n[*]What to do when a candidate recovery point is found to be compromised\n[/LIST]\n\nRead the article:\n[URL]{{ARTICLE_URL}}[/URL]\n\nHow does your organization decide how far back to investigate after a cyber incident? What evidence must a recovery point provide before you trust it enough to return to production?"
+  },
+  "social": {
+    "linkedin": "A recoverable backup is not automatically a trustworthy recovery point. Part 2 of my VCF 9.1 Cyber Recovery series looks at timeline analysis, retention, isolated clean-room validation, EDR-assisted inspection, and what happens when the first candidate is also compromised.\n\nRead Part 2: {{ARTICLE_URL}}",
+    "facebook": "Part 2 of the VCF Insider Cyber Recovery series is live. This article looks at how VCF 9.1 helps teams investigate recovery history, validate candidates in an isolated clean room, and move to another snapshot when the evidence is not strong enough.\n\nRead it here: {{ARTICLE_URL}}",
+    "x": "The newest recovery point is not automatically the safest one. Part 2 covers how VCF 9.1 uses recovery-point evidence and isolated validation to find a candidate you can trust. {{ARTICLE_URL}}"
+  },
+  "buffer": {
+    "organization_id": "6ab14f719b262e913086edb6",
+    "timezone": "America/New_York",
+    "mode": "customScheduled",
+    "scheduling_type": "automatic",
+    "link_preview": {
+      "title": "VCF 9.1 Cyber Recovery: Finding the Recovery Point You Can Trust",
+      "description": "A practical look at how VCF 9.1 uses recovery-point analysis, retention, clean-room isolation, and EDR-assisted validation during cyber recovery.",
+      "thumbnail_url": "https://www.vcfinsider.com/assets/images/posts/2026-09-21-vcf-9-1-cyber-recovery/hero.webp"
+    },
+    "channels": {
+      "linkedin": {
+        "enabled": false,
+        "channel_id": "6ab15189ea19ca0bdea6d809",
+        "service": "linkedin",
+        "due_at": ""
+      },
+      "facebook": {
+        "enabled": false,
+        "channel_id": "6ab151f6ea19ca0bdea6dad7",
+        "service": "facebook",
+        "due_at": ""
+      },
+      "x": {
+        "enabled": false,
+        "channel_id": "",
+        "service": "twitter",
+        "due_at": ""
+      }
+    }
+  }
+}
