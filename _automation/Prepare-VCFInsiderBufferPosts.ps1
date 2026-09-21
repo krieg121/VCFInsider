@@ -92,7 +92,11 @@ function Assert-HttpsUrl {
     if (-not [System.Uri]::TryCreate($Value, [System.UriKind]::Absolute, [ref]$uri)) {
         throw "Manifest property '$Name' is not an absolute URL: $Value"
     }
-    if ($uri.Scheme -ne "https" -or $uri.Host -ne $ExpectedHost) {
+    if ($uri.Scheme -ne "https" -or
+        $uri.Host -ne $ExpectedHost -or
+        -not $uri.IsDefaultPort -or
+        -not [string]::IsNullOrEmpty($uri.UserInfo) -or
+        -not [string]::IsNullOrEmpty($uri.Fragment)) {
         throw "Manifest property '$Name' must use https://$ExpectedHost/: $Value"
     }
 }
@@ -185,8 +189,8 @@ if ($schemaVersion -ne 1) {
 }
 
 $releaseName = Get-RequiredText -InputObject $manifest -Name "release_name"
-if ($releaseName -notmatch '^[a-z0-9][a-z0-9-]{2,79}$') {
-    throw "release_name must contain only lowercase letters, numbers, and hyphens."
+if ($releaseName -notmatch '^[0-9]{4}-[0-9]{2}-[0-9]{2}-[a-z0-9][a-z0-9-]{2,69}$') {
+    throw "release_name must begin with yyyy-MM-dd and contain only lowercase letters, numbers, and hyphens."
 }
 
 $articleTitle = Get-RequiredText -InputObject $manifest -Name "article_title"
@@ -256,9 +260,33 @@ foreach ($definition in $definitions) {
         throw "buffer.channels.$($definition.Name) cannot be enabled. Its connected-channel and link-preview workflow has not been verified."
     }
 
+    $articleUrl = Get-OptionalText -InputObject $channel -Name "article_url"
+    if ([string]::IsNullOrWhiteSpace($articleUrl)) {
+        $articleUrl = $productionUrl
+    }
+    else {
+        Assert-HttpsUrl `
+            -Value $articleUrl `
+            -ExpectedHost "www.vcfinsider.com" `
+            -Name "buffer.channels.$($definition.Name).article_url"
+        $canonicalUri = [System.Uri]$productionUrl
+        $trackingUri = [System.Uri]$articleUrl
+        if ($trackingUri.AbsolutePath -cne $canonicalUri.AbsolutePath) {
+            throw "buffer.channels.$($definition.Name).article_url must use the production article path."
+        }
+        $allowedTrackingKeys = @("utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term")
+        $queryPairs = @($trackingUri.Query.TrimStart('?') -split '&' | Where-Object { $_ })
+        foreach ($pair in $queryPairs) {
+            $key = [System.Uri]::UnescapeDataString(($pair -split '=', 2)[0])
+            if ($key -cnotin $allowedTrackingKeys) {
+                throw "buffer.channels.$($definition.Name).article_url contains unsupported query parameter '$key'."
+            }
+        }
+    }
+
     $textTemplate = Get-RequiredText -InputObject $social -Name $definition.SocialName
-    $text = $textTemplate.Replace("{{ARTICLE_URL}}", $productionUrl)
-    if ($text -notmatch [regex]::Escape($productionUrl)) {
+    $text = $textTemplate.Replace("{{ARTICLE_URL}}", $articleUrl)
+    if ($text -notmatch [regex]::Escape($articleUrl)) {
         throw "social.$($definition.SocialName) must include {{ARTICLE_URL}}."
     }
     $countedCharacters = if ($definition.Name -eq "x") {
@@ -289,7 +317,7 @@ foreach ($definition in $definitions) {
     $postInput = $null
     if ($enabled) {
         $attachment = New-LinkAttachment `
-            -Url $productionUrl `
+            -Url $articleUrl `
             -Title $previewTitle `
             -Description $previewDescription `
             -ThumbnailUrl $previewThumbnailUrl
@@ -320,7 +348,9 @@ foreach ($definition in $definitions) {
             metadata = $metadata
             mode = $mode
             schedulingType = $schedulingType
+            needsApproval = $false
             saveToDraft = $false
+            source = "vcfinsider-publishing-automation"
         }
         if ($mode -ceq "customScheduled") {
             $inputFields["dueAt"] = $dueAt
@@ -334,6 +364,7 @@ foreach ($definition in $definitions) {
         enabled = $enabled
         supported = $definition.Supported
         channel_id = $channelId
+        article_url = $articleUrl
         due_at = $dueAt
         text = $text
         raw_characters = $text.Length
@@ -352,7 +383,8 @@ if ([string]::IsNullOrWhiteSpace($OutputDirectory)) {
 $outputFullPath = [System.IO.Path]::GetFullPath($OutputDirectory)
 $repositoryFullPath = [System.IO.Path]::GetFullPath($repositoryRoot).TrimEnd([char[]]@('\', '/'))
 $repositoryPrefix = $repositoryFullPath + [System.IO.Path]::DirectorySeparatorChar
-if ($outputFullPath.StartsWith($repositoryPrefix, [System.StringComparison]::OrdinalIgnoreCase)) {
+if ($outputFullPath.Equals($repositoryFullPath, [System.StringComparison]::OrdinalIgnoreCase) -or
+    $outputFullPath.StartsWith($repositoryPrefix, [System.StringComparison]::OrdinalIgnoreCase)) {
     throw "Buffer output must be outside the Git repository: $outputFullPath"
 }
 New-Item -ItemType Directory -Path $outputFullPath -Force | Out-Null

@@ -103,7 +103,11 @@ $sshOptions = @(
 
 Write-Step "Verifying repository identity and current remote state"
 $originUrl = Get-NativeText "git" @("remote", "get-url", "origin")
-if ($originUrl -notmatch '^((https://github\.com/)|(git@github\.com:))krieg121/VCFInsider(\.git)?$') {
+$approvedOrigins = @(
+    '^((https://github\.com/)|(git@github\.com:))krieg121/VCFInsider(\.git)?$',
+    '^((https://gitlab\.com/)|(git@gitlab\.com:))vcf-insider-group/vcfinsider(\.git)?$'
+)
+if (-not ($approvedOrigins | Where-Object { $originUrl -match $_ })) {
     throw "Unexpected origin URL: $originUrl"
 }
 
