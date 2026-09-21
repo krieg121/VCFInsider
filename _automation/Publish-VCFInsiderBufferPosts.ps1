@@ -422,20 +422,45 @@ $postFields
                 Test-DateMatch -Expected $plannedPost.due_at -Actual $_.dueAt
             })
         }
-        if ($duplicates.Count -gt 1) {
-            throw "Multiple exact Buffer duplicates exist for '$($plannedPost.platform)'. Reconcile them manually."
-        }
-        if ($duplicates.Count -eq 1) {
+        $verifiedDuplicates = @()
+        $sameTextMismatches = @()
+        foreach ($duplicate in $duplicates) {
             $existingData = Invoke-BufferGraphQl `
                 -Query $postReadQuery `
-                -Variables @{ input = @{ id = [string]$duplicates[0].id } } `
+                -Variables @{ input = @{ id = [string]$duplicate.id } } `
                 -OperationName "ReadBackPost"
-            $verified = Assert-PostMatchesPlan -Post $existingData.post -PlannedPost $plannedPost -Plan $plan
+            try {
+                $verified = Assert-PostMatchesPlan `
+                    -Post $existingData.post `
+                    -PlannedPost $plannedPost `
+                    -Plan $plan
+                $verifiedDuplicates += [pscustomobject]@{
+                    post = $existingData.post
+                    result = $verified
+                }
+            }
+            catch {
+                $sameTextMismatches += [string]$duplicate.id
+            }
+        }
+
+        if ($verifiedDuplicates.Count -gt 1) {
+            throw "Multiple fully matching Buffer duplicates exist for '$($plannedPost.platform)'. Reconcile them manually."
+        }
+        if ($verifiedDuplicates.Count -eq 1) {
+            $verified = $verifiedDuplicates[0].result
             $verified["action"] = "existing-exact-duplicate"
+            $verified["ignored_same_text_post_ids"] = $sameTextMismatches
             $report["results"] += [pscustomobject]$verified
-            Write-Host "Existing verified $($plannedPost.platform) post: $($existingData.post.id)" -ForegroundColor Yellow
+            Write-Host "Existing verified $($plannedPost.platform) post: $($verifiedDuplicates[0].post.id)" -ForegroundColor Yellow
+            if ($sameTextMismatches.Count -gt 0) {
+                Write-Host "Ignored same-text posts with different metadata: $($sameTextMismatches -join ', ')" -ForegroundColor DarkYellow
+            }
         }
         else {
+            if ($sameTextMismatches.Count -gt 0) {
+                Write-Host "Same-text $($plannedPost.platform) posts exist, but none match the complete validated payload." -ForegroundColor Yellow
+            }
             $pendingPosts += $plannedPost
         }
     }
